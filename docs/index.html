@@ -376,7 +376,7 @@
         <div class="flex max-w-3xl flex-col items-start">
           <p class="font-mono text-[11px] font-semibold tracking-[0.3em] text-cyan">FIRMWARE CODE</p>
           <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-cream sm:text-4xl lg:text-5xl">Arduino Firmware & Code</h2>
-          <p class="mt-5 text-[15.5px] leading-relaxed text-mute sm:text-base">The four Arduino C++ sketches written for Big Hero 6ix: the line following navigation code and the lab challenge test sketches.</p>
+          <p class="mt-5 text-[15.5px] leading-relaxed text-mute sm:text-base">Arduino C++ firmware sketches: real-time potentiometer calibration and 7-channel photoresistor reflectance sensing.</p>
         </div>
 
         <!-- Sleek IDE Container -->
@@ -407,16 +407,10 @@
           <!-- File Tabs Bar -->
           <div class="flex flex-wrap items-center gap-1.5 border-b border-edge/70 bg-[#0A0B10] px-4 py-2.5 sm:px-7">
             <button data-code-tab onclick="selectSketchTab(0)" class="flex items-center gap-2 rounded-lg px-3.5 py-2 font-mono text-[11.5px] transition-all duration-300 bg-cyan/10 text-cyan shadow-[inset_0_0_0_1px_rgba(0,240,255,0.3)]">
-              <span class="text-cyan font-bold">#</span> ECE5_Robot_LineFollower_Production.ino
+              <span class="text-cyan font-bold">#</span> ESP32Potentiometer_Code.ino
             </button>
             <button data-code-tab onclick="selectSketchTab(1)" class="flex items-center gap-2 rounded-lg px-3.5 py-2 font-mono text-[11.5px] transition-all duration-300 text-mute hover:bg-white/[0.04] hover:text-cream">
-              <span class="text-mute font-bold">#</span> ESP32Potentiometer_Code.ino
-            </button>
-            <button data-code-tab onclick="selectSketchTab(2)" class="flex items-center gap-2 rounded-lg px-3.5 py-2 font-mono text-[11.5px] transition-all duration-300 text-mute hover:bg-white/[0.04] hover:text-cream">
               <span class="text-mute font-bold">#</span> ESP32Photoresistor_Code.ino
-            </button>
-            <button data-code-tab onclick="selectSketchTab(3)" class="flex items-center gap-2 rounded-lg px-3.5 py-2 font-mono text-[11.5px] transition-all duration-300 text-mute hover:bg-white/[0.04] hover:text-cream">
-              <span class="text-mute font-bold">#</span> ESP32Motor_Driver_Code.ino
             </button>
           </div>
 
@@ -425,9 +419,9 @@
             <div class="flex items-center justify-between border-b border-edge/60 bg-surface/40 px-5 py-3 sm:px-7">
               <div class="flex items-center gap-2.5">
                 <span class="rounded bg-mint/10 px-2 py-0.5 font-mono text-[10px] font-semibold text-mint">ACTIVE SOURCE</span>
-                <span id="code-header-name" class="font-mono text-[12px] text-cream font-medium">ECE5_Robot_LineFollower_Production.ino</span>
+                <span id="code-header-name" class="font-mono text-[12px] text-cream font-medium">ESP32Potentiometer_Code.ino</span>
               </div>
-              <span id="code-header-label" class="font-mono text-[11px] tracking-wider text-mute">Main line following code</span>
+              <span id="code-header-label" class="font-mono text-[11px] tracking-wider text-mute">Real-time gain tuning bank · IO1-IO4</span>
             </div>
 
             <!-- Code Viewer Pane -->
