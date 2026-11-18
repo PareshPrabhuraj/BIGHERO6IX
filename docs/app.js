@@ -2,7 +2,7 @@
 // ============================================================
 // Big Hero 6ix - Autonomous Line-Following Robot
 // UC San Diego ECE 5: Making, Breaking, Hacking Stuff
-// Self-Contained Controller & 60 FPS PID Physics Engine
+// Self-Contained Controller & 60 FPS Simulation Physics Engine
 // ============================================================
 
 (function () {
@@ -210,8 +210,8 @@
       id: "2",
       title: "Systems Integration & Competition Readiness",
       stepBadge: "CHALLENGE 2 - FULL ELECTROMECHANICAL INTEGRATION",
-      body: "Complete integration of all breadboard subsystems onto the 3D-printed chassis. Features strict electrical power isolation between the 9V motor pack and 3.3V ESP32 microcontroller, front ball caster balance, low-CG battery bay, and discrete PID control software tuned for the competition tournament.",
-      chips: ["Full Integration", "Isolated 9V Rail", "Low-CG Battery Bay", "Front Ball Caster", "Closed-Loop PID Loop"],
+      body: "Complete integration of all breadboard subsystems onto the 3D-printed chassis. Features strict electrical power isolation between the 9V motor pack and 3.3V ESP32 microcontroller, front ball caster balance, low-CG battery bay, and discrete closed-loop steering software tuned for the competition tournament.",
+      chips: ["Full Integration", "Isolated 9V Rail", "Low-CG Battery Bay", "Front Ball Caster", "Closed-Loop Control"],
       images: [
         {
           src: "images/placeholder_chassis.svg",
@@ -419,7 +419,7 @@
     }
   });
 
-  // --- Real-Time 60 FPS Canvas PID Simulation Engine ---
+  // --- Real-Time 60 FPS Canvas Track Simulation Engine ---
   const TRACK_W = 960;
   const TRACK_H = 620;
   const SENSOR_OFFSETS = [-18, -12, -6, 0, 6, 12, 18];
@@ -513,7 +513,7 @@
     nearest: 0,
   };
 
-  const simCanvas = document.getElementById('pid-sim-canvas');
+  const simCanvas = document.getElementById('track-sim-canvas');
   const simCtx = simCanvas ? simCanvas.getContext('2d') : null;
   const waveCanvas = document.getElementById('sim-error-waveform');
   const waveCtx = waveCanvas ? waveCanvas.getContext('2d') : null;
@@ -610,7 +610,7 @@
         sim.e = weighted / total;
       }
 
-      // 2. Closed-Loop PID Law
+      // 2. Closed-Loop Steering Law
       sim.sumE = Math.max(-100, Math.min(100, sim.sumE + sim.e * DT));
       const dE = (sim.e - sim.prevE) / DT;
       sim.turn = (sim.kp * 0.4) * sim.e + (sim.ki * 0.05) * sim.sumE + (sim.kd * 0.04) * dE;
@@ -768,11 +768,11 @@
   const sketches = [
     {
       name: "ECE5_Robot_LineFollower_Production.ino",
-      label: "Main closed-loop PID navigation",
+      label: "Main closed-loop navigation",
       code: `/* ============================================================
    ECE5_Robot_LineFollower_Production.ino
    Team Big Hero 6ix - UC San Diego ECE 5, Lab 4 Finale
-   Closed-loop PID line following on the ESP32-S3
+   Closed-loop line following on the ESP32-S3
    ------------------------------------------------------------
    7-sensor comb (LDR + 10k dividers): IO5, IO6, IO7, IO14..IO17
    Tuning pots:  IO1 (Kd) · IO2 (Ki) · IO3 (Kp) · IO4 (Speed)
@@ -830,7 +830,7 @@ void loop() {
   }
   error = (total > 0.05) ? weighted / total : prevError;  // hold on loss
 
-  /* ---- PID law with anti-windup (sum clamped to +/-200) ---- */
+  /* ---- Control law with anti-windup (sum clamped to +/-200) ---- */
   sumError = constrain(sumError + error * 0.016, -200.0, 200.0);
   float turn = Kp * error
              + Ki * sumError * 0.016
