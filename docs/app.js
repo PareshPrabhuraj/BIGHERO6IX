@@ -121,7 +121,6 @@
       title: "4-Potentiometer Real-Time Tuning Deck",
       stepBadge: "CHALLENGE 1A - POTENTIOMETERS & SPEED CONTROL",
       body: "The 4 potentiometers map values from 0 to 100 across a 12-bit ADC range of 0 to 4095. Turning the potentiometer clockwise moves the wiper toward the 3.3V rail, increasing the mapped telemetry. To reverse the direction, swap the outer 3.3V and GND wires on the breadboard or invert the mapping in code using (100 - mapped_reading). Mapped to ESP32-S3 pins: IO1 (Kd), IO2 (Ki), IO3 (Kp), and IO4 (Base Speed).",
-      quote: "The potentiometers output values mapped from 0 to 100 across a 12-bit ADC range of 0 to 4095. Turning the potentiometer clockwise moves the wiper toward the 3.3v rail, which then increases the value that is printed to the serial monitor.",
       chips: ["IO1: Kd", "IO2: Ki", "IO3: Kp", "IO4: Speed", "12-bit ADC (0-4095)", "Mapped 0-100", "CW Wiper to 3.3V"],
       images: [
         {
@@ -143,7 +142,6 @@
       title: "7-Photoresistor Reflectance Sensor Bar",
       stepBadge: "CHALLENGE 1B - OPTOELECTRONIC SURFACE SENSING",
       body: "The 7-channel reflectance array utilizes 5mm CdS photoresistors paired with 10k Ohm pull-down resistors in voltage divider configurations. The calibrated ADC range for the white surface is roughly 2100-2400, while the black surface reads roughly 3000-3500. A height of 4-5 mm from the ground provides the optimal dynamic range and signal contrast.",
-      quote: "The range for the white surface is roughly 2100-2400 and for the black surface its roughly 3000-3500. 4-5cm would be the ideal height of the photoresistors from the ground.",
       chips: ["7x CdS Photoresistors", "10k Ohm Dividers", "White: 2100-2400 ADC", "Black: 3000-3500 ADC", "4-5 mm Height"],
       images: [
         {
@@ -165,7 +163,6 @@
       title: "L298N Dual H-Bridge Motor Driver & Actuation",
       stepBadge: "CHALLENGE 1C - PREPPING THE MOTORS & DRIVER",
       body: "The L298N motor driver allows the microcontroller to control the speed and direction of the motors while providing enough power from an external 9V battery pack to drive the DC motors. PWM on IO8/IO13 controls speed while IO9-IO12 control directional H-bridge logic. Hot glue is used to anchor motor brass terminals and prevent lead fatigue during driving. Textured tire treads provide high traction to prevent wheel slip.",
-      quote: "The motor driver allows the microcontroller to control the speed and direction of the motors while providing enough power for them to run. Hot glue is used to keep the motors in place so they do not move around when the RC car is driving.",
       chips: ["L298N Dual H-Bridge", "PWM IO8 / IO13", "DIR IO9-IO12", "9V Battery Isolation", "Hot Glue Strain Relief", "Textured Treads"],
       images: [
         {
@@ -193,7 +190,6 @@
       title: "Chassis CAD with 2 Functional Changes",
       stepBadge: "CHALLENGE 1D - ONSHAPE 3D CAD CHASSIS",
       body: "Engineered in Onshape with two critical functional changes: (1) a dedicated slot to securely hold the ESP32-S3 microcontroller in place without adhesive, and (2) a structural diagonal cross-beam to increase the torsional rigidity of the 3D-printed chassis. These modifications eliminate frame flex under high motor torques.",
-      quote: "The two function changes added are a slot to hold the ESP32 and a beam to increase the rigidity of the chassis. The slot is seen on the left image and the beam on the right.",
       chips: ["Onshape 3D CAD", "ESP32 Mounting Slot", "Rigidity Cross-Beam", "3D-Printed Chassis", "Anti-Flex Geometry"],
       images: [
         {
@@ -215,7 +211,6 @@
       title: "Systems Integration & Competition Readiness",
       stepBadge: "CHALLENGE 2 - FULL ELECTROMECHANICAL INTEGRATION",
       body: "Complete integration of all breadboard subsystems onto the 3D-printed chassis. Features strict electrical power isolation between the 9V motor pack and 3.3V ESP32 microcontroller, front ball caster balance, low-CG battery bay, and discrete PID control software tuned for the competition tournament.",
-      quote: "We then put those together on a chassis and implement closed loop PID control using C on the ESP32 to compute steering correction from tracking error.",
       chips: ["Full Integration", "Isolated 9V Rail", "Low-CG Battery Bay", "Front Ball Caster", "Closed-Loop PID Loop"],
       images: [
         {
@@ -260,7 +255,6 @@
     const panelStep = document.getElementById('timeline-step-badge');
     const panelTitle = document.getElementById('timeline-title');
     const panelBody = document.getElementById('timeline-body');
-    const panelQuote = document.getElementById('timeline-quote');
     const panelChips = document.getElementById('timeline-chips');
     const panelImages = document.getElementById('timeline-images');
 
@@ -268,7 +262,6 @@
     if (panelStep) panelStep.textContent = data.stepBadge || `CHALLENGE ${data.id} - STEP ${index + 1} OF ${timelineData.length}`;
     if (panelTitle) panelTitle.textContent = data.title;
     if (panelBody) panelBody.textContent = data.body;
-    if (panelQuote) panelQuote.textContent = `"${data.quote}"`;
     if (panelChips) {
       panelChips.innerHTML = data.chips
         .map(

@@ -145,8 +145,8 @@
                   <img id="main-robot-photo" src="images/placeholder_robot.svg" alt="ECE 5 Competition Robot Placeholder" class="h-64 sm:h-80 w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]">
                   <div class="absolute inset-0 bg-gradient-to-t from-carbon/90 via-transparent to-transparent"></div>
                   <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs">
-                    <span class="font-mono text-[11px] text-cyan font-medium">Final Robot Hardware Build</span>
-                    <span class="text-mute font-mono text-[10px]">Photo Slot: images/final_robot.jpg</span>
+                    <span class="font-mono text-[11px] text-cyan font-medium">Big Hero 6ix Autonomous Platform</span>
+                    <span class="text-mute font-mono text-[10px]">UC San Diego ECE 5</span>
                   </div>
                 </div>
               </div>
@@ -218,13 +218,6 @@
                 <div>
                   <p id="timeline-step-badge" class="font-mono text-[10px] tracking-[0.3em] text-mint">CHALLENGE 1A - POTENTIOMETERS & SPEED CONTROL</p>
                   <h3 id="timeline-title" class="mt-4 text-2xl font-bold tracking-tight text-cream sm:text-3xl">4-Potentiometer Real-Time Tuning Deck</h3>
-                  
-                  <!-- Verbatim Slide Submission Quote -->
-                  <div class="mt-4 rounded-xl border border-edge/80 bg-carbon/60 p-4 border-l-2 border-l-cyan">
-                    <p class="font-mono text-[9px] tracking-wider text-cyan uppercase font-semibold">Submitted Challenge Slide Quote</p>
-                    <p id="timeline-quote" class="mt-1.5 text-xs italic leading-relaxed text-cream/90 font-mono">"The potentiometers output values mapped from 0 to 100 across a 12-bit ADC range of 0 to 4095. Turning the potentiometer clockwise moves the wiper toward the 3.3v rail, which then increases the value that is printed to the serial monitor."</p>
-                  </div>
-
                   <p id="timeline-body" class="mt-5 text-[14px] leading-relaxed text-mute">The 4 potentiometers map values from 0 to 100 across a 12-bit ADC range of 0 to 4095. Turning the potentiometer clockwise moves the wiper toward the 3.3V rail, increasing the mapped telemetry. To reverse the direction, swap the outer 3.3V and GND wires on the breadboard or invert the mapping in code using (100 - mapped_reading). Mapped to ESP32-S3 pins: IO1 (Kd), IO2 (Ki), IO3 (Kp), and IO4 (Base Speed).</p>
                 </div>
 
@@ -283,8 +276,8 @@
       <div class="mx-auto max-w-7xl px-5 lg:px-8">
         <div class="flex max-w-3xl flex-col items-start">
           <p class="font-mono text-[11px] font-semibold tracking-[0.3em] text-cyan">HARDWARE ANATOMY</p>
-          <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-cream sm:text-4xl lg:text-5xl">Every Subsystem, Under the Spotlight</h2>
-          <p class="mt-5 text-[15px] leading-relaxed text-mute sm:text-base">Five bento cards, one machine. Click any card for the high-res diagram and exact pinout callouts.</p>
+          <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-cream sm:text-4xl lg:text-5xl">Subsystem Architecture</h2>
+          <p class="mt-5 text-[15px] leading-relaxed text-mute sm:text-base">Comprehensive architectural breakdown of core compute, optoelectronic reflectance sensing, bi-directional motor drive, and power distribution.</p>
         </div>
 
         <div class="mt-14 grid grid-cols-1 gap-4 md:grid-cols-12">
@@ -829,8 +822,8 @@
       <div class="mx-auto max-w-7xl px-5 lg:px-8">
         <div class="flex max-w-3xl flex-col items-start">
           <p class="font-mono text-[11px] font-semibold tracking-[0.3em] text-cyan">VIDEO & ACTION FOOTAGE</p>
-          <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-cream sm:text-4xl lg:text-5xl">Race-Day Action Documentation</h2>
-          <p class="mt-5 text-[15px] leading-relaxed text-mute sm:text-base">Official run footage from competition day across all three evaluation tracks. Video placeholders are pre-formatted for direct YouTube embeds or MP4 replay drops.</p>
+          <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-cream sm:text-4xl lg:text-5xl">Competition Run Documentation</h2>
+          <p class="mt-5 text-[15px] leading-relaxed text-mute sm:text-base">Run footage across all three competition disciplines will be recorded and linked directly during live tournament evaluation on Friday Week 10.</p>
         </div>
 
         <div class="mt-12 grid gap-5 md:grid-cols-3">
@@ -841,7 +834,7 @@
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
               </div>
               <span class="rounded-full border border-cyan/30 bg-carbon px-2.5 py-1 font-mono text-[9px] tracking-widest text-cyan uppercase font-semibold">TRACK 1 · 20-FT SPRINT</span>
-              <p class="mt-2 text-xs text-mute font-mono">Slot: Drag Race Heat Video</p>
+              <p class="mt-2 text-xs text-mute font-mono">Sprint Course Heat · Week 10 Trials</p>
             </div>
             <div class="p-5">
               <h3 class="text-[15px] font-bold text-cream">Drag Race - Official Sprint Run</h3>
@@ -860,7 +853,7 @@
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
               </div>
               <span class="rounded-full border border-mint/30 bg-carbon px-2.5 py-1 font-mono text-[9px] tracking-widest text-mint uppercase font-semibold">TRACK 2 · S-CURVES</span>
-              <p class="mt-2 text-xs text-mute font-mono">Slot: Frequency Sweep Heat Video</p>
+              <p class="mt-2 text-xs text-mute font-mono">Frequency Sweep Heat · Week 10 Trials</p>
             </div>
             <div class="p-5">
               <h3 class="text-[15px] font-bold text-cream">Frequency Sweep - Dynamic Steering</h3>
@@ -879,7 +872,7 @@
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
               </div>
               <span class="rounded-full border border-cyan/30 bg-carbon px-2.5 py-1 font-mono text-[9px] tracking-widest text-cyan uppercase font-semibold">TRACK 3 · ENDURANCE</span>
-              <p class="mt-2 text-xs text-mute font-mono">Slot: Loop Heat Video / MP4</p>
+              <p class="mt-2 text-xs text-mute font-mono">Continuous Loop Heat · Week 10 Trials</p>
             </div>
             <div class="p-5">
               <h3 class="text-[15px] font-bold text-cream">Continuous Loop - Multi-Lap Run</h3>
@@ -963,7 +956,7 @@
             <div class="relative h-64 sm:h-80 overflow-hidden bg-carbon/80 group">
               <img src="images/placeholder_team.svg" alt="Big Hero 6ix Team Placeholder" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]">
               <div class="absolute inset-0 bg-gradient-to-t from-carbon/90 via-transparent to-transparent"></div>
-              <span class="absolute bottom-4 left-4 rounded-full border border-mint/40 bg-carbon/80 px-3 py-1 font-mono text-[10px] text-mint">COMPETITION DAY TEAM PHOTO · SLOT: images/team_photo.jpg</span>
+              <span class="absolute bottom-4 left-4 rounded-full border border-mint/40 bg-carbon/80 px-3 py-1 font-mono text-[10px] text-mint">TEAM BIG HERO 6IX · ECE 5 FALL 2026</span>
             </div>
             <div class="p-8 sm:p-10">
               <span class="font-mono text-[10px] tracking-widest text-cyan uppercase font-semibold">UC SAN DIEGO · ECE 5</span>
@@ -1007,9 +1000,9 @@
             <div class="mt-4 flex flex-wrap items-center gap-2">
               <span class="font-mono text-[10px] tracking-wider text-mute">ECE 5 · Fall 2026</span>
             </div>
-            <span class="mt-3 flex items-center gap-2 font-mono text-[11px] text-mute/80">
-              ✉ [Email placeholder]
-            </span>
+            <div class="mt-3 text-[11px] font-mono text-mute">
+              UC San Diego Engineering
+            </div>
           </div>
 
           <!-- Gavin Huang -->
@@ -1023,9 +1016,9 @@
             <div class="mt-4 flex flex-wrap items-center gap-2">
               <span class="font-mono text-[10px] tracking-wider text-mute">ECE 5 · Fall 2026</span>
             </div>
-            <span class="mt-3 flex items-center gap-2 font-mono text-[11px] text-mute/80">
-              ✉ [Email placeholder]
-            </span>
+            <div class="mt-3 text-[11px] font-mono text-mute">
+              UC San Diego Engineering
+            </div>
           </div>
 
           <!-- John Barojas -->
@@ -1039,15 +1032,15 @@
             <div class="mt-4 flex flex-wrap items-center gap-2">
               <span class="font-mono text-[10px] tracking-wider text-mute">ECE 5 · Fall 2026</span>
             </div>
-            <span class="mt-3 flex items-center gap-2 font-mono text-[11px] text-mute/80">
-              ✉ [Email placeholder]
-            </span>
+            <div class="mt-3 text-[11px] font-mono text-mute">
+              UC San Diego Engineering
+            </div>
           </div>
         </div>
 
         <!-- Verbatim 5-Sentence Engineering Retrospective -->
         <div class="card-surface grain relative mt-16 overflow-hidden rounded-3xl p-8 sm:p-12 lg:p-16">
-          <p class="font-mono text-[10px] tracking-[0.3em] text-mint">ENGINEERING RETROSPECTIVE - 5 SENTENCES, VERBATIM</p>
+          <p class="font-mono text-[10px] tracking-[0.3em] text-mint">ENGINEERING RETROSPECTIVE & LESSONS LEARNED</p>
           <div class="mt-8 space-y-6">
             <p class="max-w-4xl text-[15px] leading-relaxed sm:text-lg text-cream">
               Over the final week of development, we significantly improved robot stability by designing a 3D-printed ambient light shroud that eliminated sensor saturation from overhead laboratory lighting.
@@ -1131,7 +1124,7 @@
         </button>
       </div>
       <div class="p-7 sm:p-9">
-        <p class="font-mono text-[10px] tracking-[0.3em] text-cyan">DIAGRAM CALLOUTS</p>
+        <p class="font-mono text-[10px] tracking-[0.3em] text-cyan">TECHNICAL SPECIFICATIONS</p>
         <h3 id="bento-modal-title" class="mt-3 text-2xl font-bold tracking-tight text-cream"></h3>
         <p id="bento-modal-sub" class="mt-1.5 text-sm text-mute"></p>
         <div id="bento-modal-callouts" class="mt-7 grid gap-3 sm:grid-cols-2"></div>
@@ -1172,7 +1165,7 @@
         </button>
       </div>
       <div class="border-t border-edge bg-surface p-6 sm:p-8">
-        <span id="image-modal-badge" class="font-mono text-[10px] tracking-[0.25em] text-cyan uppercase font-semibold">AUTHENTIC HARDWARE ARTIFACT</span>
+        <span id="image-modal-badge" class="font-mono text-[10px] tracking-[0.25em] text-cyan uppercase font-semibold">HARDWARE SUBSYSTEM & CIRCUIT SCHEMATIC</span>
         <h3 id="image-modal-title" class="mt-2 text-xl font-bold tracking-tight text-cream"></h3>
         <p id="image-modal-caption" class="mt-1.5 text-[13.5px] leading-relaxed text-mute"></p>
       </div>
