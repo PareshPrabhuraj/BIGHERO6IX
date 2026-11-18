@@ -1,5 +1,5 @@
 # ECE 5 Project 4: Robot Hardware BOM, Pinout & Interconnect Architecture
-**Principal:** Paresh Prabhu Raj (PID: A19386710 | Section: ECE5_FA26_A00)  
+**Principal:** Paresh Prabhu Raj (Section: ECE5_FA26_A00)  
 **Course:** ECE 5 (Prof. Karcher Morris)  
 **Target Platform:** ESP32-S3 Dev Board + L298N Dual H-Bridge Driver  
 

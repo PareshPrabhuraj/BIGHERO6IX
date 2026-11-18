@@ -4,7 +4,7 @@ export const SKETCHES = [
     label: "Main closed-loop PID navigation",
     code: `/* ============================================================
    ECE5_Robot_LineFollower_Production.ino
-   Team Big Hero 6ix — UC San Diego ECE 5, Lab 4 Finale
+   Team Big Hero 6ix - UC San Diego ECE 5, Lab 4 Finale
    Closed-loop PID line following on the ESP32-S3
    ------------------------------------------------------------
    7-sensor comb (LDR + 10k dividers): IO5, IO6, IO7, IO14..IO17
@@ -19,8 +19,8 @@ export const SKETCHES = [
 
 const uint8_t SENSORS[7] = {5, 6, 7, 14, 15, 16, 17};
 
-#define PWM_L  8      // L298N ENA — left wheel PWM
-#define PWM_R  13     // L298N ENB — right wheel PWM
+#define PWM_L  8      // L298N ENA - left wheel PWM
+#define PWM_R  13     // L298N ENB - right wheel PWM
 #define IN_L1  9
 #define IN_L2  10
 #define IN_R1  11
@@ -85,9 +85,9 @@ void loop() {
   },
   {
     name: "ESP32Potentiometer_Code.ino",
-    label: "Real-time gain tuning bank · IO1–IO4",
+    label: "Real-time gain tuning bank · IO1-IO4",
     code: `/* ============================================================
-   ESP32Potentiometer_Code.ino — Challenge 1A
+   ESP32Potentiometer_Code.ino - Challenge 1A
    4-potentiometer real-time tuning deck
    IO1 (Kd) · IO2 (Ki) · IO3 (Kp) · IO4 (Speed)
    ============================================================ */
@@ -117,9 +117,9 @@ void loop() {
   },
   {
     name: "ESP32Photoresistor_Code.ino",
-    label: "7-sensor LDR array normalization · IO1–IO7",
+    label: "7-sensor LDR array normalization · IO1-IO7",
     code: `/* ============================================================
-   ESP32Photoresistor_Code.ino — Challenge 1B
+   ESP32Photoresistor_Code.ino - Challenge 1B
    7-channel photoresistor reflectance bar with per-sensor
    normalization. 10k Ohm voltage dividers, 4 mm ride height.
    ============================================================ */
@@ -168,8 +168,8 @@ void loop() {
     name: "ESP32Motor_Driver_Code.ino",
     label: "L298N PWM + directional control",
     code: `/* ============================================================
-   ESP32Motor_Driver_Code.ino — Challenge 1C
-   L298N dual H-bridge: PWM on IO8/IO13, direction on IO9–IO12.
+   ESP32Motor_Driver_Code.ino - Challenge 1C
+   L298N dual H-bridge: PWM on IO8/IO13, direction on IO9-IO12.
    9V motor pack is strictly isolated from the ESP32 logic rail.
    ============================================================ */
 

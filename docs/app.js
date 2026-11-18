@@ -46,7 +46,7 @@
   window.scrollToSection = function (id) {
     const el = document.getElementById(id);
     if (!el) return;
-    const navHeight = 72;
+    const navHeight = 84;
     const pos = el.getBoundingClientRect().top + window.pageYOffset - navHeight;
     window.scrollTo({ top: pos, behavior: 'smooth' });
     const mobileMenu = document.getElementById('mobile-menu');
@@ -58,27 +58,27 @@
   // --- Navbar Scroll & Spy ---
   const header = document.querySelector('header');
   const navLinks = document.querySelectorAll('[data-nav-target]');
-  const sections = ['overview', 'timeline', 'anatomy', 'lab', 'competition', 'poster', 'team'];
+  const sections = ['overview', 'timeline', 'anatomy', 'slides', 'lab', 'competition', 'poster', 'team'];
 
   window.addEventListener('scroll', () => {
     if (window.scrollY > 20) {
       header.classList.add('glass', 'border-edge/70');
-      header.classList.remove('border-transparent');
+      header.classList.remove('border-edge/40');
     } else {
       header.classList.remove('glass', 'border-edge/70');
-      header.classList.add('border-transparent');
+      header.classList.add('border-edge/40');
     }
 
-    const scrollPos = window.scrollY + 200;
+    const scrollPos = window.scrollY + 220;
     for (let i = sections.length - 1; i >= 0; i--) {
       const sec = document.getElementById(sections[i]);
       if (sec && sec.offsetTop <= scrollPos) {
         navLinks.forEach((link) => {
           if (link.getAttribute('data-nav-target') === sections[i]) {
-            link.classList.add('bg-white/[0.06]', 'text-cyan');
+            link.classList.add('bg-cyan/15', 'text-cyan', 'shadow-[inset_0_0_0_1px_rgba(0,240,255,0.3)]');
             link.classList.remove('text-mute');
           } else {
-            link.classList.remove('bg-white/[0.06]', 'text-cyan');
+            link.classList.remove('bg-cyan/15', 'text-cyan', 'shadow-[inset_0_0_0_1px_rgba(0,240,255,0.3)]');
             link.classList.add('text-mute');
           }
         });

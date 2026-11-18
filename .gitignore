@@ -2,3 +2,5 @@
 *.swp
 *~
 build/
+scraped_site/
+preview_dump.html
