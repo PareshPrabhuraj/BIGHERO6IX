@@ -217,8 +217,8 @@
         },
         {
           src: "images/slides/slide_2_objective.png",
-          title: "Lab 4 Architecture Deliverable",
-          badge: "COURSE DELIVERABLE",
+          title: "Lab 4 Architecture Presentation",
+          badge: "LAB 4 PRESENTATION",
           desc: "Official Lab 4 Robotics engineering objective and system integration scope."
         }
       ]
