@@ -392,15 +392,7 @@
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       window.closeBentoModal();
-      window.closePosterLightbox();
       window.closeImageLightbox();
-    }
-  });
-  // Close modal on escape
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      window.closeBentoModal();
-      window.closePosterLightbox();
     }
   });
 
