@@ -194,9 +194,9 @@
     esp32: {
       img: 'images/part_esp32.jpeg',
       title: 'ESP32-S3 Core Compute Brain',
-      sub: '240 MHz dual-core Xtensa LX7 · 12-bit ADC · USB CDC telemetry',
+      sub: 'ESP32-S3 microcontroller with 12-bit ADC and USB CDC telemetry',
       callouts: [
-        ['MCU', 'Dual-core Xtensa LX7 @ 240 MHz'],
+        ['MCU', 'ESP32-S3 Microcontroller Brain'],
         ['ADC', '12-bit SAR: resolves the 3400 vs 420 count contrast'],
         ['COMMS', 'USB CDC serial telemetry active on boot'],
         ['LOGIC', 'Native 3.3 V rail, isolated from motor power'],
