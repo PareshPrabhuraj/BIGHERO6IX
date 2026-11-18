@@ -121,7 +121,7 @@
       id: "1A",
       title: "4-Potentiometer Real-Time Tuning Deck",
       stepBadge: "CHALLENGE 1A - POTENTIOMETERS & SPEED CONTROL",
-      body: "The 4 potentiometers map values from 0 to 100 across a 12-bit ADC range of 0 to 4095. Turning the potentiometer clockwise moves the wiper toward the 3.3V rail, increasing the mapped telemetry. To reverse the direction, swap the outer 3.3V and GND wires on the breadboard or invert the mapping in code using (100 - mapped_reading). Mapped to ESP32-S3 pins: IO1 (Kd), IO2 (Ki), IO3 (Kp), and IO4 (Base Speed).",
+      body: "The 4 potentiometers map values from 0 to 100 across a 12-bit ADC range of 0 to 4095. Turning the potentiometer clockwise moves the wiper toward the 3.3V rail, increasing the mapped reading. To reverse the direction, swap the outer 3.3V and GND wires on the breadboard or invert the mapping in code using (100 - mapped_reading). Mapped to ESP32-S3 pins: IO1 (Kd), IO2 (Ki), IO3 (Kp), and IO4 (Base Speed).",
       images: [
         {
           src: "images/hardware/ch1a_pots_breadboard.png",
@@ -187,7 +187,7 @@
       id: "1D",
       title: "Chassis CAD with 2 Functional Changes",
       stepBadge: "CHALLENGE 1D - ONSHAPE 3D CAD CHASSIS",
-      body: "Engineered in Onshape with two critical functional changes: (1) a dedicated slot to securely hold the ESP32-S3 microcontroller in place without adhesive, and (2) a structural diagonal cross-beam to increase the torsional rigidity of the 3D-printed chassis. These modifications eliminate frame flex under high motor torques.",
+      body: "Designed in Onshape with two functional changes: (1) a dedicated slot to hold the ESP32-S3 microcontroller securely in place, and (2) a diagonal structural beam to increase the rigidity of the 3D-printed chassis.",
       images: [
         {
           src: "images/hardware/ch1d_onshape_slot.png",
@@ -199,21 +199,21 @@
           src: "images/hardware/ch1d_onshape_beam.png",
           title: "Rigidity Cross-Beam CAD",
           badge: "ONSHAPE CAD MOD 2",
-          desc: "3D CAD model displaying the diagonal structural cross-beam engineered for chassis rigidity."
+          desc: "3D CAD model displaying the diagonal structural beam added for chassis rigidity."
         }
       ]
     },
     {
       id: "2",
-      title: "Systems Integration & Competition Readiness",
-      stepBadge: "CHALLENGE 2 - FULL ELECTROMECHANICAL INTEGRATION",
-      body: "Complete integration of all breadboard subsystems onto the 3D-printed chassis. Features strict electrical power isolation between the 9V motor pack and 3.3V ESP32 microcontroller, front ball caster balance, low-CG battery bay, and discrete closed-loop steering software tuned for the competition tournament.",
+      title: "Systems Integration & Final Robot Build",
+      stepBadge: "CHALLENGE 2 - FULL INTEGRATION",
+      body: "Assembly of all breadboard subsystems onto the 3D-printed chassis. Features separate power for the 9V motor battery pack and the 3.3V ESP32 microcontroller, front ball caster balance, low battery bay, and steering code tuned for track navigation.",
       images: [
         {
           src: "images/real_robot_hero.jpg",
           title: "Assembled Robot Platform",
           badge: "REAL HARDWARE",
-          desc: "Fully assembled two-wheel drive robot platform with 3D-printed chassis, breadboard electronics, and optoelectronic sensor bar."
+          desc: "Fully assembled two-wheel drive robot platform with 3D-printed chassis, breadboard electronics, and photoresistor sensor bar."
         },
         {
           src: "images/slides/slide_2_objective.png",
@@ -283,11 +283,11 @@
     esp32: {
       img: 'images/hardware/esp32_devboard_pinout.png',
       title: 'ESP32-S3 Microcontroller Board',
-      sub: 'ESP32-S3 microcontroller with 12-bit ADC and USB CDC telemetry',
+      sub: 'ESP32-S3 microcontroller with 12-bit ADC and USB serial communication',
       callouts: [
         ['MCU', 'ESP32-S3 DevBoard (EnVision Maker Studio edition)'],
         ['ADC', '12-bit SAR ADC resolving optical contrast between white floor and black line'],
-        ['COMMS', 'USB CDC serial telemetry active for real-time serial monitor debugging'],
+        ['COMMS', 'USB Serial Monitor active for live sensor readings and debugging'],
         ['LOGIC', 'Native 3.3V rail isolated from high-current motor power rails'],
       ],
     },
@@ -305,7 +305,7 @@
     l298n: {
       img: 'images/hardware/ch1c_l298n_wired.png',
       title: 'L298N Dual H-Bridge Motor Driver',
-      sub: 'Bi-directional high-current DC motor actuation with power isolation',
+      sub: 'Bi-directional DC motor control with power isolation',
       callouts: [
         ['OUTPUT', 'Dual H-Bridge driving two yellow TT DC gear motors'],
         ['PWM', 'Speed control via hardware PWM on IO8 and IO13'],
@@ -315,8 +315,8 @@
     },
     pots: {
       img: 'images/hardware/ch1a_pots_breadboard.png',
-      title: '4-Potentiometer Real-Time Tuning Deck',
-      sub: '4-channel potentiometer deck for real-time speed and gain calibration',
+      title: '4-Potentiometer Tuning Deck',
+      sub: '4-channel potentiometer deck for speed and gain calibration',
       callouts: [
         ['IO4', 'Base Speed potentiometer mapped from 0 to 100'],
         ['IO3', 'Proportional gain (Kp) potentiometer for error correction'],
@@ -327,12 +327,12 @@
     frame: {
       img: 'images/hardware/ch1d_onshape_slot.png',
       title: '3D-Printed Chassis & Power Assembly',
-      sub: 'Custom 3D-printed chassis with integrated ESP32 cradle slot and diagonal cross-beam',
+      sub: 'Custom 3D-printed chassis with integrated ESP32 slot and diagonal beam',
       callouts: [
-        ['MOD 1', 'Integrated snap-in cradle slot to firmly hold the ESP32-S3 board'],
-        ['MOD 2', 'Diagonal structural cross-beam engineered to maximize torsional rigidity'],
+        ['MOD 1', 'Dedicated slot to firmly hold the ESP32-S3 board'],
+        ['MOD 2', 'Diagonal structural beam added to improve chassis rigidity'],
         ['CASTER', 'Omnidirectional front ball caster providing smooth low-friction pivot'],
-        ['BATTERY', 'Low center-of-gravity battery bay preventing tip-over during rapid turns'],
+        ['BATTERY', 'Battery bay positioned low to keep the robot stable'],
       ],
     },
   };
@@ -403,7 +403,7 @@
   const sketches = [
     {
       name: "ECE5_Robot_LineFollower_Production.ino",
-      label: "Main closed-loop navigation",
+      label: "Main line following code",
       code: `/* ============================================================
    ECE5_Robot_LineFollower_Production.ino
    Team Big Hero 6ix - UC San Diego ECE 5, Lab 4 Finale

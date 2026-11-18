@@ -110,7 +110,7 @@
           <div class="mt-10 flex flex-wrap items-center gap-4">
             <button onclick="scrollToSection('anatomy')" class="group flex items-center gap-2.5 rounded-full bg-cyan px-7 py-3.5 text-sm font-bold text-carbon transition-all duration-300 hover:glow-cyan hover:brightness-110">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
-              Explore Hardware Architecture
+              Explore Robot Hardware
             </button>
             <button onclick="scrollToSection('slides')" class="flex items-center gap-2.5 rounded-full border border-edge bg-surface/70 px-7 py-3.5 text-sm font-semibold text-cream transition-all duration-300 hover:border-cyan/40 hover:text-cyan">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
@@ -162,7 +162,7 @@
         <div class="flex max-w-3xl flex-col items-start">
           <p class="font-mono text-[11px] font-semibold tracking-[0.3em] text-cyan">SUBSYSTEM PROTOTYPING</p>
           <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-cream sm:text-4xl lg:text-5xl">Build Timeline - Challenge 1A to 2</h2>
-          <p class="mt-5 text-[15.5px] leading-relaxed text-mute sm:text-base">Five sequential engineering challenges took Big Hero 6ix from a bare ESP32-S3 to a competition-locked autonomous platform.</p>
+          <p class="mt-5 text-[15.5px] leading-relaxed text-mute sm:text-base">Five sequential engineering challenges took Big Hero 6ix from individual breadboard circuits to a complete line following robot.</p>
         </div>
 
         <div class="mt-16 grid gap-10 lg:grid-cols-[340px_1fr]">
@@ -202,8 +202,8 @@
             <div class="flex flex-col gap-8">
               <!-- Top Narrative Block -->
               <div class="max-w-3xl">
-                <h3 id="timeline-title" class="text-2xl font-bold tracking-tight text-cream sm:text-3xl">4-Potentiometer Real-Time Tuning Deck</h3>
-                <p id="timeline-body" class="mt-4 text-[14.5px] leading-relaxed text-mute">The 4 potentiometers map values from 0 to 100 across a 12-bit ADC range of 0 to 4095. Turning the potentiometer clockwise moves the wiper toward the 3.3V rail, increasing the mapped telemetry. To reverse the direction, swap the outer 3.3V and GND wires on the breadboard or invert the mapping in code using (100 - mapped_reading). Mapped to ESP32-S3 pins: IO1 (Kd), IO2 (Ki), IO3 (Kp), and IO4 (Base Speed).</p>
+                <h3 id="timeline-title" class="text-2xl font-bold tracking-tight text-cream sm:text-3xl">4-Potentiometer Tuning Deck</h3>
+                <p id="timeline-body" class="mt-4 text-[14.5px] leading-relaxed text-mute">The 4 potentiometers map values from 0 to 100 across a 12-bit ADC range of 0 to 4095. Turning the potentiometer clockwise moves the wiper toward the 3.3V rail, increasing the mapped reading. To reverse the direction, swap the outer 3.3V and GND wires on the breadboard or invert the mapping in code using (100 - mapped_reading). Mapped to ESP32-S3 pins: IO1 (Kd), IO2 (Ki), IO3 (Kp), and IO4 (Base Speed).</p>
               </div>
 
               <!-- Bottom Image Gallery -->
@@ -237,9 +237,9 @@
       <div class="pointer-events-none absolute left-[-200px] top-1/3 h-[480px] w-[480px] rounded-full bg-cyan/[0.04] blur-[130px]"></div>
       <div class="mx-auto max-w-7xl px-6 lg:px-10">
         <div class="flex max-w-3xl flex-col items-start">
-          <p class="font-mono text-[11px] font-semibold tracking-[0.3em] text-cyan">HARDWARE ANATOMY</p>
-          <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-cream sm:text-4xl lg:text-5xl">Subsystem Architecture</h2>
-          <p class="mt-5 text-[15.5px] leading-relaxed text-mute sm:text-base">Comprehensive architectural breakdown of core compute, optoelectronic reflectance sensing, bi-directional motor drive, and power distribution.</p>
+          <p class="font-mono text-[11px] font-semibold tracking-[0.3em] text-cyan">HARDWARE OVERVIEW</p>
+          <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-cream sm:text-4xl lg:text-5xl">Robot Subsystems</h2>
+          <p class="mt-5 text-[15.5px] leading-relaxed text-mute sm:text-base">Overview of the microcontroller, photoresistor sensor array, motor driver, tuning potentiometers, and 3D-printed chassis.</p>
         </div>
 
         <div class="mt-16 grid grid-cols-1 gap-6 md:grid-cols-12 lg:gap-8">
@@ -250,7 +250,7 @@
             </div>
             <div class="relative border-t border-edge/60 bg-surface/90 p-7 sm:p-8">
               <h3 class="text-xl font-bold tracking-tight text-cream">ESP32-S3 Microcontroller Board</h3>
-              <p class="mt-2 text-[13.5px] text-mute leading-relaxed">ESP32-S3 microcontroller with 12-bit ADC and USB CDC telemetry</p>
+              <p class="mt-2 text-[13.5px] text-mute leading-relaxed">ESP32-S3 microcontroller with 12-bit ADC and USB serial communication</p>
             </div>
           </button>
 
@@ -329,8 +329,8 @@
               <img src="images/slides/slide_2_objective.png" alt="Slide 2: Objective" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]">
                           </div>
             <div class="p-6">
-              <h3 class="text-base font-bold text-cream">System Objective & Scope</h3>
-              <p class="mt-2 text-xs text-mute leading-relaxed">Autonomous optoelectronic line tracking across loop, sweep, and drag tracks</p>
+              <h3 class="text-base font-bold text-cream">Objective & Track Scope</h3>
+              <p class="mt-2 text-xs text-mute leading-relaxed">Two-wheel drive line tracking across loop, sweep, and drag tracks</p>
             </div>
           </div>
 
@@ -374,9 +374,9 @@
     <section id="code" class="relative py-28 lg:py-36">
       <div class="mx-auto max-w-7xl px-6 lg:px-10">
         <div class="flex max-w-3xl flex-col items-start">
-          <p class="font-mono text-[11px] font-semibold tracking-[0.3em] text-cyan">EMBEDDED CODE STUDIO</p>
-          <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-cream sm:text-4xl lg:text-5xl">Firmware Architecture & Production Code</h2>
-          <p class="mt-5 text-[15.5px] leading-relaxed text-mute sm:text-base">The four Arduino C++ sketches that bring Big Hero 6ix to life: from the production closed-loop navigation algorithm to the per-challenge bench verification routines.</p>
+          <p class="font-mono text-[11px] font-semibold tracking-[0.3em] text-cyan">FIRMWARE CODE</p>
+          <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-cream sm:text-4xl lg:text-5xl">Arduino Firmware & Code</h2>
+          <p class="mt-5 text-[15.5px] leading-relaxed text-mute sm:text-base">The four Arduino C++ sketches written for Big Hero 6ix: the line following navigation code and the lab challenge test sketches.</p>
         </div>
 
         <!-- Sleek IDE Container -->
@@ -398,11 +398,8 @@
                 <span class="h-1.5 w-1.5 rounded-full bg-cyan"></span>
                 Target: ESP32-S3 DevBoard
               </span>
-              <span class="hidden rounded-md border border-edge/80 bg-carbon/80 px-2.5 py-1 text-mint sm:inline-flex">
+              <span class="rounded-md border border-edge/80 bg-carbon/80 px-2.5 py-1 text-mint inline-flex">
                 Arduino C++
-              </span>
-              <span class="hidden rounded-md border border-edge/80 bg-carbon/80 px-2.5 py-1 text-mute md:inline-flex">
-                115200 Baud CDC
               </span>
             </div>
           </div>
@@ -430,7 +427,7 @@
                 <span class="rounded bg-mint/10 px-2 py-0.5 font-mono text-[10px] font-semibold text-mint">ACTIVE SOURCE</span>
                 <span id="code-header-name" class="font-mono text-[12px] text-cream font-medium">ECE5_Robot_LineFollower_Production.ino</span>
               </div>
-              <span id="code-header-label" class="font-mono text-[11px] tracking-wider text-mute">Main closed-loop navigation algorithm</span>
+              <span id="code-header-label" class="font-mono text-[11px] tracking-wider text-mute">Main line following code</span>
             </div>
 
             <!-- Code Viewer Pane -->
@@ -442,10 +439,6 @@
                 <span class="flex items-center gap-1.5"><span class="h-1.5 w-1.5 rounded-full bg-mint"></span> Ready</span>
                 <span class="hidden sm:inline">UTF-8</span>
                 <span>Arduino C++ (.ino)</span>
-              </div>
-              <div class="flex items-center gap-4">
-                <span class="hidden md:inline">EnVision MakerStudio · ECE 5</span>
-                <span class="text-cyan">ESP32-S3 Native CDC</span>
               </div>
             </div>
           </div>
@@ -555,7 +548,7 @@
             </div>
             <h3 class="mt-5 text-[15px] font-bold text-cream">Paresh Prabhu Raj</h3>
             <p class="mt-1.5 text-[12.5px] leading-snug text-mint">UC San Diego · ECE 5</p>
-            <p class="mt-3 text-[12px] leading-relaxed text-mute">Embedded C++ firmware, closed-loop steering algorithm implementation, real-time telemetry, and electrical power isolation.</p>
+            <p class="mt-3 text-[12px] leading-relaxed text-mute">Embedded C++ firmware, steering algorithm implementation, and electrical wiring.</p>
             <div class="mt-5 flex flex-wrap items-center gap-2">
               <span class="font-mono text-[10px] tracking-wider text-mute">ECE 5 · Fall 2026</span>
             </div>
@@ -571,7 +564,7 @@
             </div>
             <h3 class="mt-5 text-[15px] font-bold text-cream">Simar Singh</h3>
             <p class="mt-1.5 text-[12.5px] leading-snug text-mint">UC San Diego · ECE 5</p>
-            <p class="mt-3 text-[12px] leading-relaxed text-mute">7-channel photoresistor reflectance array, 10k voltage divider calibration, 4-potentiometer tuning deck wiring, and sensor ground clearance optimization.</p>
+            <p class="mt-3 text-[12px] leading-relaxed text-mute">7-channel photoresistor reflectance array, 10k voltage divider calibration, and 4-potentiometer tuning deck wiring.</p>
             <div class="mt-5 flex flex-wrap items-center gap-2">
               <span class="font-mono text-[10px] tracking-wider text-mute">ECE 5 · Fall 2026</span>
             </div>
@@ -587,7 +580,7 @@
             </div>
             <h3 class="mt-5 text-[15px] font-bold text-cream">Gavin Huang</h3>
             <p class="mt-1.5 text-[12.5px] leading-snug text-mint">UC San Diego · ECE 5</p>
-            <p class="mt-3 text-[12px] leading-relaxed text-mute">Onshape 3D CAD chassis modifications: custom integrated snap-in ESP32 mounting cradle, diagonal stiffening cross-beam, and front ball caster balance.</p>
+            <p class="mt-3 text-[12px] leading-relaxed text-mute">Onshape 3D CAD chassis modifications: custom ESP32 mounting slot, diagonal stiffening cross-beam, and front ball caster mount.</p>
             <div class="mt-5 flex flex-wrap items-center gap-2">
               <span class="font-mono text-[10px] tracking-wider text-mute">ECE 5 · Fall 2026</span>
             </div>
@@ -603,7 +596,7 @@
             </div>
             <h3 class="mt-5 text-[15px] font-bold text-cream">John Barojas</h3>
             <p class="mt-1.5 text-[12.5px] leading-snug text-mint">UC San Diego · ECE 5</p>
-            <p class="mt-3 text-[12px] leading-relaxed text-mute">Competition score logging, GitHub Pages deployment, run documentation, and 24x36 inch final project poster compilation.</p>
+            <p class="mt-3 text-[12px] leading-relaxed text-mute">Competition run documentation, GitHub Pages deployment, and 24x36 inch final project poster compilation.</p>
             <div class="mt-5 flex flex-wrap items-center gap-2">
               <span class="font-mono text-[10px] tracking-wider text-mute">ECE 5 · Fall 2026</span>
             </div>
@@ -626,7 +619,7 @@
             <span class="font-mono text-sm font-bold tracking-[0.22em] text-cream">BIG HERO <span class="text-cyan">6IX</span></span>
           </span>
           <p class="mt-5 max-w-md text-[13.5px] leading-relaxed text-mute">
-            A Line Following ECE 5 Robot: designed, machined, tuned and tested in one quarter for UC San Diego ECE 5.
+            A Line Following ECE 5 Robot: designed, built, and tested for UC San Diego ECE 5.
           </p>
           <p class="mt-6 font-mono text-[11px] leading-relaxed tracking-wider text-mute">
             UC SAN DIEGO JACOBS SCHOOL OF ENGINEERING<br>
