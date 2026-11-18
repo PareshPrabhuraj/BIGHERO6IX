@@ -39,30 +39,31 @@ Tested with `ESP32Motor_Driver_Code.ino` to verify both DC gear motors spin forw
 | Right Motor In 3 | `IN3` | `IO39` | Direction logic pin 1 |
 | Right Motor In 4 | `IN4` | `IO38` | Direction logic pin 2 |
 
-### B. Planned Full Integration Pinout (Challenge 2)
-When all circuits are mounted to the chassis for Challenge 2 line following, the pins are mapped as follows:
+### B. Challenge 2 Integrated Hardware Pinout (First Revision)
+When all circuits are mounted to the chassis for Challenge 2 line following, the physical pins wired on the robot are mapped as follows:
 
 | Subsystem | Function Name | ESP32-S3 Pin | Direction | Circuit Details and Notes |
 | :--- | :--- | :--- | :--- | :--- |
-| **Potentiometers** | Speed Trim | `IO47` | Analog In | Reads 0-4095; maps to nominal forward PWM (20-200) |
-| | Proportional Gain ($K_p$) | `IO35` | Analog In | Reads 0-4095; scales steering correction relative to line error |
-| | Integral Gain ($K_i$) | `IO39` | Analog In | Reads 0-4095; scales error accumulation over time |
-| | Derivative Gain ($K_d$) | `IO42` | Analog In | Reads 0-4095; dampens rapid steering oscillation |
-| **LDR Sensor Comb** | LDR 0 (Far Left) | `IO1` | Analog In | Midpoint between top LDR lead (3.3V) and 10k resistor to GND |
-| | LDR 1 (Mid Left) | `IO2` | Analog In | Midpoint between top LDR lead (3.3V) and 10k resistor to GND |
-| | LDR 2 (Inner Left) | `IO3` | Analog In | Midpoint between top LDR lead (3.3V) and 10k resistor to GND |
-| | LDR 3 (Center) | `IO4` | Analog In | Aligned with black line when robot is centered |
-| | LDR 4 (Inner Right) | `IO5` | Analog In | Midpoint between top LDR lead (3.3V) and 10k resistor to GND |
-| | LDR 5 (Mid Right) | `IO6` | Analog In | Midpoint between top LDR lead (3.3V) and 10k resistor to GND |
-| | LDR 6 (Far Right) | `IO7` | Analog In | Midpoint between top LDR lead (3.3V) and 10k resistor to GND |
-| **L298N Motor Driver** | Left Motor PWM (`ENA`) | `IO8` | Digital Out | PWM speed control signal for left motor (remove onboard jumper) |
-| | Left Motor Dir 1 (`IN1`) | `IO9` | Digital Out | Logic HIGH for forward rotation |
-| | Left Motor Dir 2 (`IN2`) | `IO10` | Digital Out | Logic LOW for forward rotation |
-| | Right Motor Dir 1 (`IN3`) | `IO11` | Digital Out | Logic HIGH for forward rotation |
-| | Right Motor Dir 2 (`IN4`) | `IO12` | Digital Out | Logic LOW for forward rotation |
-| | Right Motor PWM (`ENB`) | `IO13` | Digital Out | PWM speed control signal for right motor (remove onboard jumper) |
+| **L298N Motor Driver** | Left Motor PWM (`ENA`) | `IO42` | Digital Out | Hardware PWM speed signal for Left Motor (retains Ch 1C wiring) |
+| | Left Motor Dir 1 (`IN1`) | `IO41` | Digital Out | Left motor direction logic pin 1 |
+| | Left Motor Dir 2 (`IN2`) | `IO40` | Digital Out | Left motor direction logic pin 2 |
+| | Right Motor PWM (`ENB`) | `IO37` | Digital Out | Hardware PWM speed signal for Right Motor (retains Ch 1C wiring) |
+| | Right Motor Dir 1 (`IN3`) | `IO39` | Digital Out | Right motor direction logic pin 1 |
+| | Right Motor Dir 2 (`IN4`) | `IO38` | Digital Out | Right motor direction logic pin 2 |
+| **LDR Sensor Comb** | LDR 0 (Far Left) | `IO7` | Analog In | Left-to-right looking from rear (robot oriented with sensors forward) |
+| | LDR 1 (Mid Left) | `IO6` | Analog In | 10k Ohm pull-down divider midpoint to GND |
+| | LDR 2 (Inner Left) | `IO5` | Analog In | 10k Ohm pull-down divider midpoint to GND |
+| | LDR 3 (Center) | `IO4` | Analog In | Centerline tracking reference |
+| | LDR 4 (Inner Right) | `IO3` | Analog In | 10k Ohm pull-down divider midpoint to GND |
+| | LDR 5 (Mid Right) | `IO2` | Analog In | 10k Ohm pull-down divider midpoint to GND |
+| | LDR 6 (Far Right) | `IO1` | Analog In | Left-to-right looking from rear (robot oriented with sensors forward) |
+| **Potentiometers** | Speed Trim (`S_pin`) | `IO13` | Analog In | Reads 0-4095; maps to nominal speed (0-100 scale) |
+| | Proportional Gain ($K_p$, `P_pin`) | `IO12` | Analog In | Reads 0-4095; scales proportional steering response |
+| | Integral Gain ($K_i$, `I_pin`) | `IO11` | Analog In | Reads 0-4095; scales integral error accumulation |
+| | Derivative Gain ($K_d$, `D_pin`) | `IO10` | Analog In | Reads 0-4095; dampens steering oscillations |
+| **Status Indicator** | Calibration LED (`led_Pins`) | `IO46` | Digital Out | Visual feedback during White/Black calibration routines |
 
-*Note on Challenge 1A standalone test:* In the initial breadboard potentiometer lab prior to assembling the sensor comb, pots were wired to pins IO4 (Speed), IO3 (Kp), IO2 (Ki), and IO1 (Kd). In the final robot assembly, those pins are remapped to IO47, IO35, IO39, and IO42 so pins IO1 through IO7 can be used exclusively for the 7 photoresistors.
+*Hardware Architecture Note:* The integrated line follower retains the exact L298N motor driver wiring tested in Challenge 1C (pins IO37-IO42), allocates analog pins IO1-IO7 to the 7-sensor photoresistor comb (oriented left-to-right from rear as IO7 down to IO1), and remaps the 4 gain tuning potentiometers to pins IO10-IO13.
 
 ---
 
