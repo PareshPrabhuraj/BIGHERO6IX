@@ -251,13 +251,11 @@
     });
 
     const panelWatermark = document.getElementById('timeline-watermark');
-    const panelStep = document.getElementById('timeline-step-badge');
     const panelTitle = document.getElementById('timeline-title');
     const panelBody = document.getElementById('timeline-body');
     const panelImages = document.getElementById('timeline-images');
 
     if (panelWatermark) panelWatermark.textContent = data.id;
-    if (panelStep) panelStep.textContent = data.stepBadge || `CHALLENGE ${data.id} - STEP ${index + 1} OF ${timelineData.length}`;
     if (panelTitle) panelTitle.textContent = data.title;
     if (panelBody) panelBody.textContent = data.body;
     if (panelImages && data.images) {
@@ -268,9 +266,8 @@
             <div class="relative h-48 sm:h-56 bg-[#08090D] flex items-center justify-center p-3 overflow-hidden">
               <img src="${img.src}" alt="${img.title}" class="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-[1.04]">
             </div>
-            <div class="p-5">
-              <p class="text-[13.5px] font-bold text-cream">${img.title}</p>
-              <p class="mt-1 text-[12px] leading-relaxed text-mute">${img.desc}</p>
+            <div class="p-4">
+              <p class="text-[13px] font-bold text-cream">${img.title}</p>
             </div>
           </div>`
         )
