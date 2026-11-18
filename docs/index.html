@@ -211,13 +211,7 @@
                   <p id="timeline-body" class="mt-5 text-[14.5px] leading-relaxed text-mute">The 4 potentiometers map values from 0 to 100 across a 12-bit ADC range of 0 to 4095. Turning the potentiometer clockwise moves the wiper toward the 3.3V rail, increasing the mapped telemetry. To reverse the direction, swap the outer 3.3V and GND wires on the breadboard or invert the mapping in code using (100 - mapped_reading). Mapped to ESP32-S3 pins: IO1 (Kd), IO2 (Ki), IO3 (Kp), and IO4 (Base Speed).</p>
                 </div>
 
-                <div id="timeline-chips" class="mt-8 flex flex-wrap gap-2.5">
-                  <span class="rounded-full border border-edge bg-carbon/60 px-3.5 py-1.5 font-mono text-[10.5px] tracking-wider text-cyan">IO1: Kd</span>
-                  <span class="rounded-full border border-edge bg-carbon/60 px-3.5 py-1.5 font-mono text-[10.5px] tracking-wider text-cyan">IO2: Ki</span>
-                  <span class="rounded-full border border-edge bg-carbon/60 px-3.5 py-1.5 font-mono text-[10.5px] tracking-wider text-cyan">IO3: Kp</span>
-                  <span class="rounded-full border border-edge bg-carbon/60 px-3.5 py-1.5 font-mono text-[10.5px] tracking-wider text-cyan">IO4: Speed</span>
-                  <span class="rounded-full border border-edge bg-carbon/60 px-3.5 py-1.5 font-mono text-[10.5px] tracking-wider text-cyan">12-bit ADC (0-4095)</span>
-                </div>
+
               </div>
 
               <!-- Right Column: Interactive Hardware & Schematic Cards -->
@@ -231,8 +225,6 @@
                   <div class="group relative overflow-hidden rounded-2xl border border-edge bg-carbon/80 transition-all duration-300 hover:border-cyan/40 cursor-pointer" onclick="openImageLightbox('images/hardware/ch1a_pots_breadboard.png', 'Breadboard Hardware Build', '4-potentiometer tuning deck wired to ESP32-S3 DevBoard on breadboard.')">
                     <div class="relative h-48 sm:h-56 bg-[#08090D] flex items-center justify-center p-3 overflow-hidden">
                       <img src="images/hardware/ch1a_pots_breadboard.png" alt="Breadboard Build" class="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-[1.04]">
-                      <span class="absolute top-3 left-3 rounded-full border border-cyan/30 bg-carbon/85 px-2.5 py-1 font-mono text-[9px] font-semibold tracking-wider text-cyan backdrop-blur-md">REAL HARDWARE</span>
-                      <span class="absolute top-3 right-3 flex h-7 w-7 items-center justify-center rounded-full border border-edge bg-carbon/80 text-mute opacity-0 transition-opacity group-hover:opacity-100 group-hover:text-cyan">🔍</span>
                     </div>
                     <div class="p-5">
                       <p class="text-[13.5px] font-bold text-cream">Breadboard Hardware Build</p>
@@ -242,8 +234,6 @@
                   <div class="group relative overflow-hidden rounded-2xl border border-edge bg-carbon/80 transition-all duration-300 hover:border-cyan/40 cursor-pointer" onclick="openImageLightbox('images/hardware/ch1a_pots_schematic.png', 'Circuit Wiring Schematic', 'Potentiometer pinout schematic showing wiper lines to IO1-IO4 and 3.3V / GND rails.')">
                     <div class="relative h-48 sm:h-56 bg-[#08090D] flex items-center justify-center p-3 overflow-hidden">
                       <img src="images/hardware/ch1a_pots_schematic.png" alt="Wiring Schematic" class="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-[1.04]">
-                      <span class="absolute top-3 left-3 rounded-full border border-cyan/30 bg-carbon/85 px-2.5 py-1 font-mono text-[9px] font-semibold tracking-wider text-cyan backdrop-blur-md">WIRING DIAGRAM</span>
-                      <span class="absolute top-3 right-3 flex h-7 w-7 items-center justify-center rounded-full border border-edge bg-carbon/80 text-mute opacity-0 transition-opacity group-hover:opacity-100 group-hover:text-cyan">🔍</span>
                     </div>
                     <div class="p-5">
                       <p class="text-[13.5px] font-bold text-cream">Circuit Wiring Schematic</p>
@@ -610,11 +600,7 @@
               <span class="font-mono text-[10px] tracking-widest text-cyan uppercase font-semibold">UC SAN DIEGO · ECE 5</span>
               <h3 class="mt-2 text-2xl font-bold text-cream">Team Big Hero 6ix</h3>
               <p class="mt-3 text-sm leading-relaxed text-mute">EnVision Arts and Engineering Maker Studio. Engineered by Simar Singh, Gavin Huang, John Barojas, and Paresh Prabhu Raj under Prof. Karcher Morris.</p>
-              <div class="mt-6 flex flex-wrap gap-2">
-                <span class="rounded-full border border-edge bg-carbon/60 px-3 py-1 font-mono text-[10.5px] text-cream">4 Engineers</span>
-                <span class="rounded-full border border-edge bg-carbon/60 px-3 py-1 font-mono text-[10.5px] text-cyan">5 Subsystems</span>
-                <span class="rounded-full border border-edge bg-carbon/60 px-3 py-1 font-mono text-[10.5px] text-mint">Fall 2026</span>
-              </div>
+
             </div>
           </div>
         </div>

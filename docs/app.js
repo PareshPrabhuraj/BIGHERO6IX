@@ -121,7 +121,6 @@
       title: "4-Potentiometer Real-Time Tuning Deck",
       stepBadge: "CHALLENGE 1A - POTENTIOMETERS & SPEED CONTROL",
       body: "The 4 potentiometers map values from 0 to 100 across a 12-bit ADC range of 0 to 4095. Turning the potentiometer clockwise moves the wiper toward the 3.3V rail, increasing the mapped telemetry. To reverse the direction, swap the outer 3.3V and GND wires on the breadboard or invert the mapping in code using (100 - mapped_reading). Mapped to ESP32-S3 pins: IO1 (Kd), IO2 (Ki), IO3 (Kp), and IO4 (Base Speed).",
-      chips: ["IO1: Kd", "IO2: Ki", "IO3: Kp", "IO4: Speed", "12-bit ADC (0-4095)", "Mapped 0-100", "CW Wiper to 3.3V"],
       images: [
         {
           src: "images/hardware/ch1a_pots_breadboard.png",
@@ -142,7 +141,6 @@
       title: "7-Photoresistor Reflectance Sensor Bar",
       stepBadge: "CHALLENGE 1B - OPTOELECTRONIC SURFACE SENSING",
       body: "The 7-channel reflectance array utilizes 5mm CdS photoresistors paired with 10k Ohm pull-down resistors in voltage divider configurations. The calibrated ADC range for the white surface is roughly 2100-2400, while the black surface reads roughly 3000-3500. A height of 4-5 mm from the ground provides the optimal dynamic range and signal contrast.",
-      chips: ["7x CdS Photoresistors", "10k Ohm Dividers", "White: 2100-2400 ADC", "Black: 3000-3500 ADC", "4-5 mm Height"],
       images: [
         {
           src: "images/hardware/ch1b_ldr_breadboard.png",
@@ -163,7 +161,6 @@
       title: "L298N Dual H-Bridge Motor Driver & Actuation",
       stepBadge: "CHALLENGE 1C - PREPPING THE MOTORS & DRIVER",
       body: "The L298N motor driver allows the microcontroller to control the speed and direction of the motors while providing enough power from an external 9V battery pack to drive the DC motors. PWM on IO8/IO13 controls speed while IO9-IO12 control directional H-bridge logic. Hot glue is used to anchor motor brass terminals and prevent lead fatigue during driving. Textured tire treads provide high traction to prevent wheel slip.",
-      chips: ["L298N Dual H-Bridge", "PWM IO8 / IO13", "DIR IO9-IO12", "9V Battery Isolation", "Hot Glue Strain Relief", "Textured Treads"],
       images: [
         {
           src: "images/hardware/ch1c_l298n_wired.png",
@@ -190,7 +187,6 @@
       title: "Chassis CAD with 2 Functional Changes",
       stepBadge: "CHALLENGE 1D - ONSHAPE 3D CAD CHASSIS",
       body: "Engineered in Onshape with two critical functional changes: (1) a dedicated slot to securely hold the ESP32-S3 microcontroller in place without adhesive, and (2) a structural diagonal cross-beam to increase the torsional rigidity of the 3D-printed chassis. These modifications eliminate frame flex under high motor torques.",
-      chips: ["Onshape 3D CAD", "ESP32 Mounting Slot", "Rigidity Cross-Beam", "3D-Printed Chassis", "Anti-Flex Geometry"],
       images: [
         {
           src: "images/hardware/ch1d_onshape_slot.png",
@@ -211,7 +207,6 @@
       title: "Systems Integration & Competition Readiness",
       stepBadge: "CHALLENGE 2 - FULL ELECTROMECHANICAL INTEGRATION",
       body: "Complete integration of all breadboard subsystems onto the 3D-printed chassis. Features strict electrical power isolation between the 9V motor pack and 3.3V ESP32 microcontroller, front ball caster balance, low-CG battery bay, and discrete closed-loop steering software tuned for the competition tournament.",
-      chips: ["Full Integration", "Isolated 9V Rail", "Low-CG Battery Bay", "Front Ball Caster", "Closed-Loop Control"],
       images: [
         {
           src: "images/real_robot_hero.jpg",
@@ -228,6 +223,10 @@
       ]
     }
   ];
+
+  function escapeSingleQuotes(str) {
+    return (str || '').replace(/'/g, "\'");
+  }
 
   window.selectTimelineStep = function (index) {
     const data = timelineData[index];
@@ -255,33 +254,23 @@
     const panelStep = document.getElementById('timeline-step-badge');
     const panelTitle = document.getElementById('timeline-title');
     const panelBody = document.getElementById('timeline-body');
-    const panelChips = document.getElementById('timeline-chips');
     const panelImages = document.getElementById('timeline-images');
 
     if (panelWatermark) panelWatermark.textContent = data.id;
     if (panelStep) panelStep.textContent = data.stepBadge || `CHALLENGE ${data.id} - STEP ${index + 1} OF ${timelineData.length}`;
     if (panelTitle) panelTitle.textContent = data.title;
     if (panelBody) panelBody.textContent = data.body;
-    if (panelChips) {
-      panelChips.innerHTML = data.chips
-        .map(
-          (c) => `<span class="rounded-full border border-edge bg-carbon/60 px-3.5 py-1.5 font-mono text-[10.5px] tracking-wider text-cyan">${c}</span>`
-        )
-        .join('');
-    }
     if (panelImages && data.images) {
       panelImages.innerHTML = data.images
         .map(
           (img) => `
-          <div class="group relative overflow-hidden rounded-2xl border border-edge bg-carbon/80 transition-all duration-300 hover:border-cyan/40 cursor-pointer" onclick="openImageLightbox('${img.src}', '${img.title.replace(/'/g, "\'")}', '${img.desc.replace(/'/g, "\'")}')">
+          <div class="group relative overflow-hidden rounded-2xl border border-edge bg-carbon/80 transition-all duration-300 hover:border-cyan/40 cursor-pointer" onclick="openImageLightbox('${img.src}', '${escapeSingleQuotes(img.title)}', '${escapeSingleQuotes(img.desc)}')">
             <div class="relative h-48 sm:h-56 bg-[#08090D] flex items-center justify-center p-3 overflow-hidden">
               <img src="${img.src}" alt="${img.title}" class="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-[1.04]">
-              <span class="absolute top-3 left-3 rounded-full border border-cyan/30 bg-carbon/85 px-2.5 py-1 font-mono text-[9px] font-semibold tracking-wider text-cyan backdrop-blur-md">${img.badge}</span>
-              <span class="absolute top-3 right-3 flex h-7 w-7 items-center justify-center rounded-full border border-edge bg-carbon/80 text-mute opacity-0 transition-opacity group-hover:opacity-100 group-hover:text-cyan">🔍</span>
             </div>
-            <div class="p-4">
-              <p class="text-[13px] font-bold text-cream">${img.title}</p>
-              <p class="mt-1 text-[11.5px] leading-relaxed text-mute line-clamp-2">${img.desc}</p>
+            <div class="p-5">
+              <p class="text-[13.5px] font-bold text-cream">${img.title}</p>
+              <p class="mt-1 text-[12px] leading-relaxed text-mute">${img.desc}</p>
             </div>
           </div>`
         )
