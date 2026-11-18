@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#050507">
-  <meta name="description" content="Big Hero 6ix - Line Following ECE 5 Robot engineered for UC San Diego ECE 5: Making, Breaking, Hacking Stuff.">
+  <meta name="description" content="Big Hero 6ix - Line Following ECE 5 Robot designed and built for UC San Diego ECE 5: Making, Breaking, Hacking Stuff.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -104,7 +104,7 @@
           </h1>
 
           <p class="mt-8 max-w-xl text-[15.5px] leading-[1.75] text-mute sm:text-base">
-            Built by Simar Singh, Gavin Huang, John Barojas, and Paresh Prabhu Raj for UC San Diego ECE 5 (Prof. Karcher Morris). An autonomous two-wheel drive robot featuring an ESP32-S3 microcontroller, a 7-photoresistor reflectance array, real-time potentiometer gain tuning, and a custom 3D-printed chassis.
+            Built by Simar Singh, Gavin Huang, John Barojas, and Paresh Prabhu Raj for UC San Diego ECE 5 (Prof. Karcher Morris). A two-wheel drive line following robot built with an ESP32-S3 microcontroller, a 7-photoresistor reflectance array, real-time potentiometer gain tuning, and a custom 3D-printed chassis.
           </p>
 
           <div class="mt-10 flex flex-wrap items-center gap-4">
@@ -120,7 +120,7 @@
         </div>
 
         <!-- Real Robot Showcase Card (Authentic Engineering Presentation) -->
-        <div id="hero-tilt-card" class="relative transition-transform duration-300 ease-out cursor-pointer" style="perspective: 1200px;" onclick="openImageLightbox('images/real_robot_hero.jpg', 'Big Hero 6ix - Line Following ECE 5 Robot', 'Fully assembled robot platform with 3D-printed chassis, breadboard electronics, ESP32-S3 microcontroller, 7-photoresistor sensor array, L298N motor driver, and dual TT gear motors.')">
+        <div id="hero-tilt-card" class="relative transition-transform duration-300 ease-out cursor-pointer" style="perspective: 1200px;" onclick="openImageLightbox('images/real_robot_hero.jpg', 'Big Hero 6ix - Line Following ECE 5 Robot', 'Fully assembled robot with 3D-printed chassis, breadboard circuits, ESP32-S3 microcontroller, 7-photoresistor sensor array, L298N motor driver, and dual TT gear motors.')">
           <div class="grain relative overflow-hidden rounded-3xl border border-edge bg-surface shadow-2xl transition-all duration-300 hover:border-cyan/40 hover:glow-cyan group">
             <div class="relative overflow-hidden bg-carbon/60 flex flex-col justify-between p-6 sm:p-8">
               <div class="flex items-center justify-between border-b border-edge/60 pb-4">
@@ -139,7 +139,7 @@
               </div>
 
               <div class="border-t border-edge/60 pt-4 flex flex-wrap items-center justify-between gap-2 text-mute text-xs">
-                <span>Fully Assembled Hardware Platform</span>
+                <span>Fully Assembled Line Following Robot</span>
                 <span class="font-mono text-cyan text-[11px] font-semibold">Team Big Hero 6ix</span>
               </div>
             </div>
@@ -246,7 +246,7 @@
           <!-- Card 1: ESP32-S3 -->
           <button onclick="openBentoModal('esp32')" class="card-surface group relative overflow-hidden rounded-3xl text-left md:col-span-7 flex flex-col justify-between border border-edge transition-all duration-300 hover:border-cyan/40 hover:glow-cyan">
             <div class="relative overflow-hidden h-80 sm:h-96 w-full bg-[#08090D] flex items-center justify-center p-6">
-              <img src="images/hardware/esp32_devboard_pinout.png" alt="ESP32-S3 Compute Brain" class="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-[1.04]">
+              <img src="images/hardware/esp32_devboard_pinout.png" alt="ESP32-S3 Microcontroller Board" class="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-[1.04]">
             </div>
             <div class="relative border-t border-edge/60 bg-surface/90 p-7 sm:p-8">
               <h3 class="text-xl font-bold tracking-tight text-cream">ESP32-S3 Microcontroller Board</h3>
@@ -272,7 +272,7 @@
             </div>
             <div class="relative border-t border-edge/60 bg-surface/90 p-7 sm:p-8">
               <h3 class="text-xl font-bold tracking-tight text-cream">L298N Dual H-Bridge Motor Driver</h3>
-              <p class="mt-2 text-[13.5px] text-mute leading-relaxed">Bi-directional high-current DC motor drive with power isolation</p>
+              <p class="mt-2 text-[13.5px] text-mute leading-relaxed">Bi-directional DC motor control with separate 9V battery power</p>
             </div>
           </button>
 
@@ -324,7 +324,7 @@
           </div>
 
           <!-- Slide 2: Objective -->
-          <div class="card-surface group relative overflow-hidden rounded-3xl cursor-pointer border border-edge transition-all duration-300 hover:border-cyan/40 hover:glow-cyan" onclick="openImageLightbox('images/slides/slide_2_objective.png', 'Slide 2: Lab 4 Objective & Overview', 'Design, wire, program, and calibrate an autonomous two-wheel drive robot to track a high-contrast black line at top speed.')">
+          <div class="card-surface group relative overflow-hidden rounded-3xl cursor-pointer border border-edge transition-all duration-300 hover:border-cyan/40 hover:glow-cyan" onclick="openImageLightbox('images/slides/slide_2_objective.png', 'Slide 2: Lab 4 Objective & Overview', 'Design, wire, program, and calibrate a two-wheel drive robot to track a black electrical tape line on white track surfaces.')">
             <div class="relative aspect-video overflow-hidden bg-carbon/70">
               <img src="images/slides/slide_2_objective.png" alt="Slide 2: Objective" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]">
                           </div>
@@ -357,7 +357,7 @@
           </div>
 
           <!-- Slide 5: Challenge 1D -->
-          <div class="card-surface group relative overflow-hidden rounded-3xl cursor-pointer border border-edge transition-all duration-300 hover:border-cyan/40 hover:glow-cyan" onclick="openImageLightbox('images/slides/slide_5_ch1d.png', 'Slide 5: Challenge 1D CAD ONLY - Chassis CAD with 2 Functional Changes', 'Onshape 3D CAD design featuring integrated ESP32 mounting cradle and torsional stiffening cross-beam.')">
+          <div class="card-surface group relative overflow-hidden rounded-3xl cursor-pointer border border-edge transition-all duration-300 hover:border-cyan/40 hover:glow-cyan" onclick="openImageLightbox('images/slides/slide_5_ch1d.png', 'Slide 5: Challenge 1D CAD ONLY - Chassis CAD with 2 Functional Changes', 'Onshape 3D CAD design featuring an integrated ESP32 mounting slot and diagonal stiffening cross-beam.')">
             <div class="relative aspect-video overflow-hidden bg-carbon/70">
               <img src="images/slides/slide_5_ch1d.png" alt="Slide 5: Challenge 1D" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]">
                           </div>
@@ -379,7 +379,7 @@
           <p class="mt-5 text-[15.5px] leading-relaxed text-mute sm:text-base">Arduino C++ firmware sketches: real-time potentiometer calibration and 7-channel photoresistor reflectance sensing.</p>
         </div>
 
-        <!-- Sleek IDE Container -->
+        <!-- IDE Container -->
         <div class="mt-16 sm:mt-20 overflow-hidden rounded-3xl border border-edge bg-[#08090C] shadow-2xl">
           <!-- IDE Titlebar with macOS Window Controls & Environment Badges -->
           <div class="flex flex-wrap items-center justify-between gap-3 border-b border-edge/80 bg-[#0C0E14] px-5 py-3.5 sm:px-7">
@@ -482,7 +482,7 @@
           <div>
             <p class="font-mono text-[11px] font-semibold tracking-[0.3em] text-cyan">ECE 5 FINALE</p>
             <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-cream sm:text-4xl lg:text-5xl">Final Project Poster</h2>
-            <p class="mt-5 max-w-xl text-[15.5px] leading-relaxed text-mute">Our final project poster covers the foundational Labs 0-3: microcontrollers, ESP32, analog filters and DSP, and the Lab 4 finale: the design, build and competition validation of Big Hero 6ix.</p>
+            <p class="mt-5 max-w-xl text-[15.5px] leading-relaxed text-mute">Our final project poster covers the foundational Labs 0-3: microcontrollers, ESP32, analog filters and DSP, and the Lab 4 finale: the design, breadboard wiring, and track testing of Big Hero 6ix.</p>
 
             <div class="mt-10 grid max-w-xl grid-cols-2 gap-3.5 sm:gap-4">
               <div class="flex items-center rounded-2xl border border-edge bg-surface/60 p-4 sm:p-5 transition-all duration-300 hover:border-mint/40">
@@ -522,7 +522,7 @@
         <div class="flex max-w-3xl flex-col items-start">
           <p class="font-mono text-[11px] font-semibold tracking-[0.3em] text-cyan">TEAM ROSTER</p>
           <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-cream sm:text-4xl lg:text-5xl">Engineering Team & Contributions</h2>
-          <p class="mt-5 text-[15.5px] leading-relaxed text-mute sm:text-base">Four roles, one chassis: every subsystem on the robot has an owner who lived with it through every lab iteration in ECE 5.</p>
+          <p class="mt-5 text-[15.5px] leading-relaxed text-mute sm:text-base">Four roles, one chassis: each team member took ownership of specific hardware and firmware subsystems throughout our ECE 5 lab sessions.</p>
         </div>
 
         <div class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
@@ -629,7 +629,7 @@
               <li><a href="https://github.com/pitchfork650/BIGHERO6IX" target="_blank" rel="noreferrer" class="hover:text-cyan transition-colors">GitHub Team Repository</a></li>
               <li><a href="https://github.com/PareshPrabhuraj/BIGHERO6IX" target="_blank" rel="noreferrer" class="hover:text-cyan transition-colors">Personal Mirror Repo</a></li>
               <li><button onclick="scrollToSection('poster')" class="hover:text-cyan transition-colors">Final Project Poster</button></li>
-              <li><button onclick="scrollToSection('code')" class="hover:text-cyan transition-colors">Embedded Firmware Studio</button></li>
+              <li><button onclick="scrollToSection('code')" class="hover:text-cyan transition-colors">Embedded Firmware Code</button></li>
             </ul>
           </div>
         </div>
@@ -654,7 +654,7 @@
         </button>
       </div>
       <div class="p-7 sm:p-9">
-        <p class="font-mono text-[10px] tracking-[0.3em] text-cyan">TECHNICAL SPECIFICATIONS</p>
+        <p class="font-mono text-[10px] tracking-[0.3em] text-cyan">HARDWARE SUBSYSTEM DETAILS</p>
         <h3 id="bento-modal-title" class="mt-3 text-2xl font-bold tracking-tight text-cream"></h3>
         <p id="bento-modal-sub" class="mt-1.5 text-sm text-mute"></p>
         <div id="bento-modal-callouts" class="mt-7 grid gap-3 sm:grid-cols-2"></div>

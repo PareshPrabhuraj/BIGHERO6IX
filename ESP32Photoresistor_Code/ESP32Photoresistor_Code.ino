@@ -1,42 +1,45 @@
-/* Photoresistor Code UCSD ECE 5 Lab 4 */
-/* Variables for Light Sensors*/
+/*
+ * ECE 5 Project 4: Photoresistor Array Test (Challenge 1B)
+ * Team: Big Hero 6ix (Simar Singh, Gavin Huang, John Barojas, Paresh Prabhu Raj)
+ * Course: UC San Diego ECE 5 (Prof. Karcher Morris) - Fall Quarter 2026
+ *
+ * Reads raw analog voltage values from the 7 CdS photoresistor dividers on pins IO1-IO7.
+ * Used during breadboard assembly to verify optical contrast between white paper and black tape.
+ */
 
-// Initialize Photo Resistor Array
-int LDR_Pin[] = {1, 2, 3, 4, 5, 6, 7}; 
+#include <Arduino.h>
 
-int totalPhotoResistors = sizeof(LDR_Pin) / sizeof(LDR_Pin[0]);  
+// Photoresistor pin assignments (ESP32-S3 ADC1 pins IO1 through IO7)
+const int LDR_Pin[] = {1, 2, 3, 4, 5, 6, 7};
+const int totalPhotoResistors = sizeof(LDR_Pin) / sizeof(LDR_Pin[0]);
 
-int LDR[99];
+// Buffer for storing raw analog readings
+int LDR[totalPhotoResistors];
 
-void setup() {
-  Serial.begin(9600); // For serial communication set up
-}
-
-void loop() {
-  ReadPhotoResistors(); // Read photoresistors and map to 0-100 based on calibration
-
-  Print(); // Print values to serial monitor
-}
-
-// ************************************************************************************************* //
-// function to read photo resistors
+// Reads all 7 photoresistor voltage divider outputs
 void ReadPhotoResistors() {
-  // looping through analog pins 1-7 and storing their values into our LDR array
   for (int i = 0; i < totalPhotoResistors; i++) {
-    LDR[i] = analogRead(LDR_Pin[i]); // read analog pin
-    delay(2);
+    LDR[i] = analogRead(LDR_Pin[i]);
+    delay(2); // Short settling delay between ADC channel reads
   }
 }
 
-// ************************************************************************************************* //
-// function to print values of interest
+// Prints sensor readings to the Serial Monitor
 void Print() {
   for (int i = 0; i < totalPhotoResistors; i++) {
-    // Printing the photo resistor reading values one by one
     Serial.print(LDR[i]);
     Serial.print(" ");
   }
-  Serial.println(); // This just prints a new line, allowing the next set of readings to be on a new line
+  Serial.println();
+  delay(200); // 200 ms pacing delay for readable serial monitor streaming
+}
 
-  delay(200); //just here to slow down the output for easier reading if desired
+void setup() {
+  // Use 115200 baud for ESP32-S3 USB CDC serial communication
+  Serial.begin(115200);
+}
+
+void loop() {
+  ReadPhotoResistors();
+  Print();
 }

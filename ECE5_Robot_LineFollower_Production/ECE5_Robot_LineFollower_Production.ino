@@ -1,7 +1,7 @@
 /*
- * ECE 5 Project 4: Autonomous Line-Following Robot
+ * ECE 5 Project 4: Line-Following Robot
  * Team: Big Hero 6ix (Simar Singh, Gavin Huang, John Barojas, Paresh Prabhu Raj)
- * Course: ECE 5 (Prof. Karcher Morris) - Fall 2026
+ * Course: UC San Diego ECE 5 (Prof. Karcher Morris) - Fall Quarter 2026
  * 
  * Final Line Follower Robot Firmware
  * Control Flow:
@@ -15,8 +15,8 @@
 #include <Arduino.h>
 
 // Debug and Operational Toggles
-// Set to 1 when tethered via USB serial for calibration and diagnostics
-// Set to 0 when running untethered on competition track to eliminate serial latency
+// Set to 1 when connected via USB for bench calibration and testing
+// Set to 0 when running untethered on the track to avoid Serial print slowdowns
 #define PRINTALLDATA 0
 
 // Nominal base forward speed (0-255 PWM scale)
@@ -42,7 +42,7 @@ const int PIN_MOTOR_R_PWM = 13;
 
 const int ADC_MAX_VAL = 4095;
 #else
-// Arduino AVR (Uno) Pin Definitions for Cross-Platform Fallback
+// Fallback pin definitions for Arduino Uno boards used in early lab sessions
 const int PIN_POT_SPEED = A0;
 const int PIN_POT_KP    = A1;
 const int PIN_POT_KI    = A2;
@@ -62,20 +62,20 @@ const int PIN_MOTOR_R_PWM = 10;
 const int ADC_MAX_VAL = 1023;
 #endif
 
-// Sensor Raw Buffers & Calibration Stores
+// Sensor readings and calibration buffers
 int LDR[NUM_SENSORS];
 int white_vals[NUM_SENSORS];
 int black_vals[NUM_SENSORS];
 int delta_vals[NUM_SENSORS];
 
-// Potentiometer Mapped Readings (0 to 100 Scale)
+// Potentiometer readings (0 to 100 scale)
 int speedRead = DEFAULT_NOMINAL_SPEED;
 int kPRead = 25;
 int kIRead = 0;
 int kDRead = 12;
 
-// PID Controller Parameters and State Variables
-float kP = 0.25;
+// PID controller gains and state variables
+float kP = 25.0;
 float kI = 0.00;
 float kD = 0.12;
 
@@ -84,40 +84,41 @@ float lasterror = 0.0;
 float sumerror = 0.0;
 float Turn = 0.0;
 
-// Motor Actuation Variables
+// Motor speed outputs
 int nominalSpeed = DEFAULT_NOMINAL_SPEED;
-int M1SpeedtoMotor = 0; // Left Motor Speed
-int M2SpeedtoMotor = 0; // Right Motor Speed
+int M1SpeedtoMotor = 0; // Left motor PWM speed
+int M2SpeedtoMotor = 0; // Right motor PWM speed
 
-// Helper: Maps analog reading to 0-100 scale
+// Helper: maps raw analog reading to a clean 0-100 range
 int ReadPotentiometerHelper(int pin) {
     int raw = analogRead(pin);
     int mapped = map(raw, 0, ADC_MAX_VAL, 0, 100);
     return constrain(mapped, 0, 100);
 }
 
-// 1. Read Potentiometers for Real-Time Parameter Adjustment
+// 1. Read potentiometers for live tuning
 void ReadPotentiometers() {
     speedRead = ReadPotentiometerHelper(PIN_POT_SPEED);
     kPRead    = ReadPotentiometerHelper(PIN_POT_KP);
     kIRead    = ReadPotentiometerHelper(PIN_POT_KI);
     kDRead    = ReadPotentiometerHelper(PIN_POT_KD);
 
-    // Map 0-100 pot values to control gains
+    // Map pot values to usable motor speeds and PID gains
     nominalSpeed = map(speedRead, 0, 100, 20, 200);
     kP = (float)kPRead / 1.0;
     kI = (float)kIRead / 1000.0;
     kD = (float)kDRead / 100.0;
 }
 
-// 2. Read All Photoresistors into LDR Array
+// 2. Read all 7 photoresistors in the sensor comb
 void ReadPhotoresistors() {
     for (int i = 0; i < NUM_SENSORS; i++) {
         LDR[i] = analogRead(LDR_PINS[i]);
     }
 }
 
-// Helper: Identify Darkest Photoresistor with 2x Noise Threshold Check
+// Helper: find the sensor detecting the black tape
+// Checks that the darkest reading is at least 2x the sensor average
 int getDarkestIndex() {
     int darkestIndex = 0;
     int maxDarkValue = -1;
@@ -131,24 +132,23 @@ int getDarkestIndex() {
         }
     }
 
-    // Average sensor reading
+    // Average sensor reading across the comb
     long avgVal = totalVal / NUM_SENSORS;
 
-    // Check if the darkest reading is at least 2x the average to make sure we are actually on the black tape
+    // If the maximum reading is less than twice the average, we are not solidly on the line
     if (maxDarkValue < (avgVal * 2)) {
-        // Line lost or ambient lighting even: return -1 to signal no line lock
-        return -1;
+        return -1; // Line lost or even ambient background
     }
 
     return darkestIndex;
 }
 
-// 3. Calculate Line Tracking Error (-3.0 to +3.0)
+// 3. Calculate line tracking error (-3.0 to +3.0)
 void CalcError() {
     int darkestIdx = getDarkestIndex();
 
     if (darkestIdx == -1) {
-        // Line lost: retain direction of last known error to execute recovery turn
+        // Line lost: steer in the direction of the last known error to recover the track
         if (lasterror > 0) {
             error = 3.0;
         } else if (lasterror < 0) {
@@ -159,25 +159,24 @@ void CalcError() {
         return;
     }
 
-    // 7 sensors indexed 0 to 6. Centerline is index 3.
-    // Error is defined as (darkestIdx - 3)
-    // Left displacement gives negative error, Right displacement gives positive error
+    // 7 sensors indexed 0 to 6. Center sensor is index 3.
+    // Negative error = line is to the left; positive error = line is to the right
     error = (float)(darkestIdx - 3);
 }
 
-// 4. Calculate PID Steering Correction
+// 4. Calculate PID steering correction
 void PID_Turn() {
-    // Proportional, Integral, Derivative calculation
+    // Proportional, Integral, and Derivative terms
     float pTerm = error * kP;
     float iTerm = sumerror * kI;
     float dTerm = (error - lasterror) * kD;
 
     Turn = pTerm + iTerm + dTerm;
 
-    // Accumulate integral sum
+    // Accumulate error for the integral term
     sumerror = sumerror + error;
 
-    // Integrator Anti-Windup Clamping (limits saturation on sustained arcs)
+    // Anti-windup clamping to prevent the integral sum from growing unbounded
     if (sumerror > 5.0) {
         sumerror = 5.0;
     } else if (sumerror < -5.0) {
@@ -187,44 +186,47 @@ void PID_Turn() {
     lasterror = error;
 }
 
-// Helper: Drive Single Motor via L298N Channel
+// Helper: drive an individual motor channel on the L298N
 void runMotorAtSpeed(int pwmPin, int in1Pin, int in2Pin, int speedVal) {
     speedVal = constrain(speedVal, -255, 255);
 
     if (speedVal > 0) {
+        // Forward rotation
         digitalWrite(in1Pin, HIGH);
         digitalWrite(in2Pin, LOW);
         analogWrite(pwmPin, speedVal);
     } else if (speedVal < 0) {
+        // Reverse rotation
         digitalWrite(in1Pin, LOW);
         digitalWrite(in2Pin, HIGH);
         analogWrite(pwmPin, -speedVal);
     } else {
+        // Motor brake / stop
         digitalWrite(in1Pin, LOW);
         digitalWrite(in2Pin, LOW);
         analogWrite(pwmPin, 0);
     }
 }
 
-// 5. Differential Motor Actuation
+// 5. Differential motor steering control
 void RunMotors() {
-    // Differential speed steering
-    // Turn > 0 (track right): steer right by slowing down right motor, speeding up left
+    // Turn > 0 means the line shifted right, so turn right (speed up left, slow down right)
+    // Turn < 0 means the line shifted left, so turn left (slow down left, speed up right)
     M1SpeedtoMotor = nominalSpeed + (int)Turn;
     M2SpeedtoMotor = nominalSpeed - (int)Turn;
 
-    // Clamp to 8-bit PWM bounds
+    // Constrain PWM speeds to valid 8-bit range (0 to 255)
     M1SpeedtoMotor = constrain(M1SpeedtoMotor, 0, 255);
     M2SpeedtoMotor = constrain(M2SpeedtoMotor, 0, 255);
 
-    // Apply to H-Bridge
+    // Send PWM and direction signals to the L298N
     runMotorAtSpeed(PIN_MOTOR_L_PWM, PIN_MOTOR_L_IN1, PIN_MOTOR_L_IN2, M1SpeedtoMotor);
     runMotorAtSpeed(PIN_MOTOR_R_PWM, PIN_MOTOR_R_IN3, PIN_MOTOR_R_IN4, M2SpeedtoMotor);
 }
 
-// Calibration Sequence for Setup
+// Calibration sequence run during bench setup
 void calibrateSensors() {
-    Serial.println("Calibrating White (Place on white surface)...");
+    Serial.println("Calibrating white surface (place sensors over white posterboard)...");
     for (int i = 0; i < 20; i++) {
         for (int j = 0; j < NUM_SENSORS; j++) {
             if (i == 0) white_vals[j] = analogRead(LDR_PINS[j]);
@@ -237,7 +239,7 @@ void calibrateSensors() {
 
     delay(1000);
 
-    Serial.println("Calibrating Black (Place on black line)...");
+    Serial.println("Calibrating black line (place sensors directly over black tape)...");
     for (int i = 0; i < 20; i++) {
         for (int j = 0; j < NUM_SENSORS; j++) {
             if (i == 0) black_vals[j] = analogRead(LDR_PINS[j]);
@@ -248,19 +250,19 @@ void calibrateSensors() {
     }
     Serial.println(" Done!");
 
-    Serial.print("White Vals: ");
+    Serial.print("White readings: ");
     for (int j = 0; j < NUM_SENSORS; j++) {
         Serial.print(white_vals[j]); Serial.print(" ");
     }
     Serial.println();
 
-    Serial.print("Black Vals: ");
+    Serial.print("Black readings: ");
     for (int j = 0; j < NUM_SENSORS; j++) {
         Serial.print(black_vals[j]); Serial.print(" ");
     }
     Serial.println();
 
-    Serial.print("Delta Vals: ");
+    Serial.print("Delta (Black - White): ");
     for (int j = 0; j < NUM_SENSORS; j++) {
         delta_vals[j] = black_vals[j] - white_vals[j];
         Serial.print(delta_vals[j]); Serial.print(" ");
@@ -271,7 +273,7 @@ void calibrateSensors() {
 void setup() {
     Serial.begin(115200);
 
-    // Motor driver pin modes
+    // Motor driver pin configurations
     pinMode(PIN_MOTOR_L_PWM, OUTPUT);
     pinMode(PIN_MOTOR_L_IN1, OUTPUT);
     pinMode(PIN_MOTOR_L_IN2, OUTPUT);
@@ -279,15 +281,16 @@ void setup() {
     pinMode(PIN_MOTOR_R_IN3, OUTPUT);
     pinMode(PIN_MOTOR_R_IN4, OUTPUT);
 
-    // Initial stop
+    // Start with motors halted
     runMotorAtSpeed(PIN_MOTOR_L_PWM, PIN_MOTOR_L_IN1, PIN_MOTOR_L_IN2, 0);
     runMotorAtSpeed(PIN_MOTOR_R_PWM, PIN_MOTOR_R_IN3, PIN_MOTOR_R_IN4, 0);
 
-    // Sensor pin modes
+    // Sensor pin configurations
     for (int i = 0; i < NUM_SENSORS; i++) {
         pinMode(LDR_PINS[i], INPUT);
     }
 
+    // Potentiometer pin configurations
     pinMode(PIN_POT_SPEED, INPUT);
     pinMode(PIN_POT_KP, INPUT);
     pinMode(PIN_POT_KI, INPUT);
@@ -299,7 +302,12 @@ void setup() {
 }
 
 void loop() {
-    // Read sensors, compute PID turn, and update motors
+    // Main robot control sequence:
+    // 1. Read potentiometer adjustments
+    // 2. Sample photoresistors
+    // 3. Compute tracking error
+    // 4. Calculate PID steering value
+    // 5. Update motor PWM outputs
     ReadPotentiometers();
     ReadPhotoresistors();
     CalcError();
@@ -307,19 +315,19 @@ void loop() {
     RunMotors();
 
 #if PRINTALLDATA
-    // Print debug values to Serial Monitor when testing on the bench
-    Serial.print("Sp: "); Serial.print(speedRead);
-    Serial.print(" P: "); Serial.print(kPRead);
-    Serial.print(" I: "); Serial.print(kIRead);
-    Serial.print(" D: "); Serial.print(kDRead);
-    Serial.print(" | Error: "); Serial.print(error);
+    // Print telemetry to Serial Monitor during tethered bench testing
+    Serial.print("Speed: "); Serial.print(speedRead);
+    Serial.print(" | Kp: "); Serial.print(kPRead);
+    Serial.print(" | Ki: "); Serial.print(kIRead);
+    Serial.print(" | Kd: "); Serial.print(kDRead);
+    Serial.print(" | Err: "); Serial.print(error);
     Serial.print(" | Turn: "); Serial.print(Turn);
-    Serial.print(" | LMotor: "); Serial.print(M1SpeedtoMotor);
-    Serial.print(" | RMotor: "); Serial.print(M2SpeedtoMotor);
+    Serial.print(" | L_PWM: "); Serial.print(M1SpeedtoMotor);
+    Serial.print(" | R_PWM: "); Serial.print(M2SpeedtoMotor);
     Serial.println();
     delay(50);
 #else
-    // Small loop settling delay for untethered track operation
+    // Small loop settling delay during untethered track operation
     delay(5);
 #endif
 }

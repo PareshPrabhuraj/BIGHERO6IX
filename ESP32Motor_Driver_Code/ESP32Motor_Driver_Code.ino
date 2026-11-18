@@ -1,59 +1,66 @@
-/* Motor Driver Code UCSD ECE 5 Lab 4*/
+/*
+ * ECE 5 Project 4: L298N Motor Driver Test (Challenge 1C)
+ * Team: Big Hero 6ix (Simar Singh, Gavin Huang, John Barojas, Paresh Prabhu Raj)
+ * Course: UC San Diego ECE 5 (Prof. Karcher Morris) - Fall Quarter 2026
+ *
+ * Verifies bidirectional motor driving with the L298NX2 library.
+ * Tests forward, backward, and stop states on both DC gear motors.
+ */
 
-// Include the Motor driver library
+#include <Arduino.h>
 #include <L298NX2.h>
 
 enum side {LEFT, RIGHT};
 
-// Create instance of motors
+// Motor driver pin assignments
+// Note: Lab 4 default test pins shown below. In the final robot assembly,
+// motor driver control pins are mapped to IO8-IO13 (ENA=8, IN1=9, IN2=10, IN3=11, IN4=12, ENB=13)
+// so pins IO1-IO7 remain dedicated to the 7 LDR sensor array.
+//                  Left Motor     Right Motor
+L298NX2 DriveMotors(42, 41, 40,    37, 39, 38);
+//                  ENA, IN1, IN2, ENB, IN3, IN4
 
-//                  Left Motors   Right motors 
-L298NX2 DriveMotors(  42, 41, 40,      37, 39, 38); // Digital Pins on Arduino
-//                 ENA, IN1, IN2, ENB, IN3, IN4
+// Initial test PWM speed (0 to 255)
+int speed = 75;
 
-//Set Initial Speed of Motors
-int speed = 75;  // Speed inputs to motors go from 0 to 255
-
-// A function that commands a specified motor to move towards a given direction at a given speed
+// Commands a specified motor channel to rotate in a given direction at a given speed
 void runMotorAtSpeed(side _side, int speed) {
-
   if (_side == LEFT) {
     DriveMotors.setSpeedA(abs(speed));
-    if (speed > 0)                // swap direction if speed is negative
-      DriveMotors.forwardA(); // sets the direction of the motor from arguments
-    else
-      DriveMotors.backwardA(); // sets the direction of the motor from arguments
+    if (speed > 0) {
+      DriveMotors.forwardA();
+    } else {
+      DriveMotors.backwardA();
+    }
   }
   if (_side == RIGHT) {
     DriveMotors.setSpeedB(abs(speed));
-    if (speed > 0)                // swap direction if speed is negative
-      DriveMotors.forwardB();// sets the direction of the motor from arguments
-    else
-      DriveMotors.backwardB(); // sets the direction of the motor from arguments
+    if (speed > 0) {
+      DriveMotors.forwardB();
+    } else {
+      DriveMotors.backwardB();
+    }
   }
 }
 
-// setup - runs once
 void setup() {
-  delay(1500); // gives you a moment before tank actually moves 
-
+  // 1.5 second settling delay before motors spin up
+  delay(1500);
 }
 
-// loop - loops forever
 void loop() {
-
-  // Start Motors in forward direction
+  // Drive both motors forward for 3 seconds
   runMotorAtSpeed(LEFT, speed);
   runMotorAtSpeed(RIGHT, speed);
-  delay(3000); // let run forward for 3 seconds
+  delay(3000);
 
-  // Start Motors in backward direction
+  // Drive both motors backward for 3 seconds
   runMotorAtSpeed(LEFT, -speed);
   runMotorAtSpeed(RIGHT, -speed);
-  delay(3000); // let run backward for 3 seconds
+  delay(3000);
 
-  // Stop Motors
+  // Stop both motors for 3 seconds
   runMotorAtSpeed(LEFT, 0);
   runMotorAtSpeed(RIGHT, 0);
-  delay(3000); // stop for 3 seconds
+  delay(3000);
 }

@@ -1,8 +1,8 @@
 
 // ============================================================
-// Big Hero 6ix - Autonomous Line-Following Robot
+// Big Hero 6ix - Line Following ECE 5 Robot
 // UC San Diego ECE 5: Making, Breaking, Hacking Stuff
-// Team Big Hero 6ix - Robot Showcase & Interactive Gallery
+// Team Big Hero 6ix - ECE 5 Lab 4 Project Documentation
 // ============================================================
 
 (function () {
@@ -119,14 +119,14 @@
   const timelineData = [
     {
       id: "1A",
-      title: "4-Potentiometer Real-Time Tuning Deck",
+      title: "4-Potentiometer Gain Tuning Deck",
       stepBadge: "CHALLENGE 1A - POTENTIOMETERS & SPEED CONTROL",
       body: "The 4 potentiometers map values from 0 to 100 across a 12-bit ADC range of 0 to 4095. Turning the potentiometer clockwise moves the wiper toward the 3.3V rail, increasing the mapped reading. To reverse the direction, swap the outer 3.3V and GND wires on the breadboard or invert the mapping in code using (100 - mapped_reading). Mapped to ESP32-S3 pins: IO1 (Kd), IO2 (Ki), IO3 (Kp), and IO4 (Base Speed).",
       images: [
         {
           src: "images/hardware/ch1a_pots_breadboard.png",
           title: "Breadboard Hardware Build",
-          badge: "REAL HARDWARE",
+          badge: "BREADBOARD BUILD",
           desc: "4-potentiometer tuning deck wired to ESP32-S3 DevBoard on breadboard."
         },
         {
@@ -140,13 +140,13 @@
     {
       id: "1B",
       title: "7-Photoresistor Reflectance Sensor Bar",
-      stepBadge: "CHALLENGE 1B - OPTOELECTRONIC SURFACE SENSING",
-      body: "The 7-channel reflectance array utilizes 5mm CdS photoresistors paired with 10k Ohm pull-down resistors in voltage divider configurations. The calibrated ADC range for the white surface is roughly 2100-2400, while the black surface reads roughly 3000-3500. A height of 4-5 mm from the ground provides the optimal dynamic range and signal contrast.",
+      stepBadge: "CHALLENGE 1B - PHOTORESISTOR SENSING",
+      body: "The 7-channel reflectance array uses 5mm CdS photoresistors paired with 10k Ohm pull-down resistors in voltage divider circuits. The calibrated ADC range for the white poster board is roughly 2100-2400, while the black electrical tape reads roughly 3000-3500. A ground clearance of 4-5 mm gives clear contrast between the white track and the black line.",
       images: [
         {
           src: "images/hardware/ch1b_ldr_breadboard.png",
           title: "7-Sensor Breadboard Array",
-          badge: "REAL HARDWARE",
+          badge: "BREADBOARD ARRAY",
           desc: "7 photoresistors with 10k Ohm pull-down resistors wired to ESP32-S3 analog inputs."
         },
         {
@@ -159,14 +159,14 @@
     },
     {
       id: "1C",
-      title: "L298N Dual H-Bridge Motor Driver & Actuation",
+      title: "L298N Dual H-Bridge Motor Driver & Motors",
       stepBadge: "CHALLENGE 1C - PREPPING THE MOTORS & DRIVER",
-      body: "The L298N motor driver allows the microcontroller to control the speed and direction of the motors while providing enough power from an external 9V battery pack to drive the DC motors. PWM on IO8/IO13 controls speed while IO9-IO12 control directional H-bridge logic. Hot glue is used to anchor motor brass terminals and prevent lead fatigue during driving. Textured tire treads provide high traction to prevent wheel slip.",
+      body: "The L298N motor driver lets the ESP32-S3 control motor speed and direction while drawing motor power from an external 6xAA 9V battery pack. Hardware PWM on IO8 and IO13 controls speed, while IO9-IO12 control directional H-bridge logic. Hot glue secures the delicate motor brass tabs to prevent wires from snapping during test runs, and rubber tire treads minimize wheel slip.",
       images: [
         {
           src: "images/hardware/ch1c_l298n_wired.png",
           title: "L298N Driver Interface",
-          badge: "REAL HARDWARE",
+          badge: "MOTOR DRIVER WIRING",
           desc: "L298N dual full-bridge motor driver wired to ESP32-S3 DevBoard."
         },
         {
@@ -193,7 +193,7 @@
           src: "images/hardware/ch1d_onshape_slot.png",
           title: "ESP32 Mounting Slot CAD",
           badge: "ONSHAPE CAD MOD 1",
-          desc: "3D CAD model displaying the integrated mounting cradle designed to hold the ESP32 board."
+          desc: "3D CAD model displaying the custom slot designed to hold the ESP32 board securely."
         },
         {
           src: "images/hardware/ch1d_onshape_beam.png",
@@ -207,19 +207,19 @@
       id: "2",
       title: "Systems Integration & Final Robot Build",
       stepBadge: "CHALLENGE 2 - FULL INTEGRATION",
-      body: "Assembly of all breadboard subsystems onto the 3D-printed chassis. Features separate power for the 9V motor battery pack and the 3.3V ESP32 microcontroller, front ball caster balance, low battery bay, and steering code tuned for track navigation.",
+      body: "Full integration of the breadboard circuits onto the 3D-printed chassis. Features separate power rails for the 9V motor battery pack and the 3.3V ESP32 microcontroller, a front ball caster for smooth turning, a low battery bay for stability, and steering code calibrated for track runs.",
       images: [
         {
           src: "images/real_robot_hero.jpg",
-          title: "Assembled Robot Platform",
-          badge: "REAL HARDWARE",
-          desc: "Fully assembled two-wheel drive robot platform with 3D-printed chassis, breadboard electronics, and photoresistor sensor bar."
+          title: "Assembled Robot",
+          badge: "ASSEMBLED ROBOT",
+          desc: "Fully assembled two-wheel drive robot with 3D-printed chassis, breadboard circuits, and photoresistor sensor bar."
         },
         {
           src: "images/slides/slide_2_objective.png",
           title: "Lab 4 Presentation Slides",
           badge: "LAB 4 PRESENTATION",
-          desc: "Official Lab 4 Robotics engineering objective and system integration scope."
+          desc: "ECE 5 Lab 4 presentation slides documenting our build challenges and line tracking results."
         }
       ]
     }
@@ -286,9 +286,9 @@
       sub: 'ESP32-S3 microcontroller with 12-bit ADC and USB serial communication',
       callouts: [
         ['MCU', 'ESP32-S3 DevBoard (EnVision Maker Studio edition)'],
-        ['ADC', '12-bit SAR ADC resolving optical contrast between white floor and black line'],
+        ['ADC', '12-bit ADC reading analog voltages from photoresistors and potentiometers'],
         ['COMMS', 'USB Serial Monitor active for live sensor readings and debugging'],
-        ['LOGIC', 'Native 3.3V rail isolated from high-current motor power rails'],
+        ['LOGIC', '3.3V logic rail isolated from high-current 9V motor power rails'],
       ],
     },
     comb: {
@@ -299,7 +299,7 @@
         ['SENSORS', '7 discrete 5 mm CdS photoresistors mapped to analog inputs IO1 to IO7'],
         ['DIVIDERS', '10k Ohm pull-down resistor network converting resistance to analog voltage'],
         ['READINGS', 'White surface: 2100-2400 ADC | Black surface: 3000-3500 ADC'],
-        ['HEIGHT', 'Tuned to 4-5 mm ground clearance for optimal optical signal contrast'],
+        ['HEIGHT', '4-5 mm ground clearance calibrated for clear white-to-black surface contrast'],
       ],
     },
     l298n: {
@@ -430,7 +430,7 @@ void loop() {
   Serial.printf("Kp=%.2f  Ki=%.2f  Kd=%.2f  Speed=%d%%\n",
                 kp, ki, kd, speedPct);
 
-  delay(100);   // 10 Hz telemetry refresh
+  delay(100);   // 10 Hz serial print update
 }`
     },
     {
