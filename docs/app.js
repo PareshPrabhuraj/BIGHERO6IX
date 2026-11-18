@@ -313,7 +313,7 @@
     comb: {
       img: 'images/hardware/ch1b_ldr_breadboard.png',
       title: '7-Photoresistor Optoelectronic Sensor Array',
-      sub: 'CdS photoresistor reflectance array with 10k pull-down dividers',
+      sub: '7-channel optical reflectance array with 10k Ohm voltage dividers',
       callouts: [
         ['SENSORS', '7 discrete 5 mm CdS photoresistors mapped to analog inputs IO1 to IO7'],
         ['DIVIDERS', '10k Ohm pull-down resistor network converting resistance to analog voltage'],
@@ -335,7 +335,7 @@
     pots: {
       img: 'images/hardware/ch1a_pots_breadboard.png',
       title: '4-Potentiometer Real-Time Tuning Deck',
-      sub: 'Clockwise-increasing rotary potentiometers for on-the-fly parameter tuning',
+      sub: '4-channel potentiometer deck for real-time speed and gain calibration',
       callouts: [
         ['IO4', 'Base Speed potentiometer mapped from 0 to 100'],
         ['IO3', 'Proportional gain (Kp) potentiometer for error correction'],
@@ -1013,52 +1013,31 @@ void loop() {
     if (code) code.innerHTML = highlightCode(sketch.code);
   };
 
-  window.copyActiveSketch = async function () {
-    const sketch = sketches[currentSketchIndex];
-    try {
-      await navigator.clipboard.writeText(sketch.code);
-      const btn = document.getElementById('code-copy-btn');
-      if (btn) btn.innerHTML = '✓ COPIED';
-      showToast(`${sketch.name} copied to clipboard`);
-      setTimeout(() => {
-        if (btn) btn.innerHTML = '📋 COPY';
-      }, 1800);
-    } catch {
-      showToast('Clipboard error', 'err');
-    }
-  };
-
-  // --- Track Adaptation Matrix & Competition Tabs ---
+  // --- Tournament Readiness & Competition Track Disciplines ---
   const compTracks = [
     {
       id: "drag",
       name: "Track 1: Drag Race",
       speed: 85, kp: 18, ki: 2, kd: 24,
-      metric: "Official Run Time",
-      outcome: "4.82 s",
-      rank: "Rank 2nd in class",
-      rankTone: "cyan",
-      rationale: "Low Kp prevents divergent high-speed over-correction, while heavy Kd dampens high-speed wobble.",
+      metricTarget: "Sub-5.0s Sprint Target",
+      statusBadge: "⏳ Trials: Friday Week 10",
+      rationale: "20-foot straight course on white poster board with 3/4-inch black electrical tape. Low Kp prevents divergent high-speed over-correction, while heavy Kd dampens high-speed wobble along the straight line.",
     },
     {
       id: "sweep",
       name: "Track 2: Frequency Sweep",
       speed: 48, kp: 46, ki: 4, kd: 32,
-      metric: "Course Completion",
-      outcome: "100%",
-      rank: "Rank 1st in class",
-      rankTone: "mint",
-      rationale: "Reduced forward speed maximizes available cornering friction, while aggressive Kp snaps into rapid alternating S-bends and high Kd prevents overshooting.",
+      metricTarget: "100% Course Completion",
+      statusBadge: "⏳ Trials: Friday Week 10",
+      rationale: "Progressively tighter alternating S-curves. Reduced forward speed maximizes available cornering friction, while aggressive Kp snaps into rapid turns and high Kd prevents overshooting.",
     },
     {
       id: "loop",
       name: "Track 3: Continuous Loop",
       speed: 62, kp: 30, ki: 12, kd: 18,
-      metric: "Loop Count",
-      outcome: "14 loops",
-      rank: "Rank 1st in class",
-      rankTone: "mint",
-      rationale: "Tuned Ki counters steady-state drift toward the outer rail on constant-radius curves, sustaining loop after loop without operator touch.",
+      metricTarget: "10+ Consecutive Loops",
+      statusBadge: "⏳ Trials: Friday Week 10",
+      rationale: "Constant curvature closed-circuit track. Tuned Ki counters steady-state centrifugal drift toward the outer tape edge, sustaining loop after loop without operator intervention.",
     },
   ];
 
@@ -1069,22 +1048,39 @@ void loop() {
     const t = compTracks[idx];
 
     document.querySelectorAll('[data-comp-tab]').forEach((tab, i) => {
+      const nameEl = tab.querySelector('p.text-\\[15px\\]');
       if (i === idx) {
         tab.classList.add('border-cyan/45', 'bg-surface', 'glow-cyan');
         tab.classList.remove('border-edge', 'bg-surface/50');
+        if (nameEl) {
+          nameEl.classList.remove('text-cream');
+          nameEl.classList.add('text-cyan');
+        }
       } else {
         tab.classList.remove('border-cyan/45', 'bg-surface', 'glow-cyan');
         tab.classList.add('border-edge', 'bg-surface/50');
+        if (nameEl) {
+          nameEl.classList.remove('text-cyan');
+          nameEl.classList.add('text-cream');
+        }
       }
     });
 
-    document.getElementById('comp-speed-val').textContent = t.speed;
-    document.getElementById('comp-kp-val').textContent = t.kp;
-    document.getElementById('comp-ki-val').textContent = t.ki;
-    document.getElementById('comp-kd-val').textContent = t.kd;
-    document.getElementById('comp-outcome-val').textContent = t.outcome;
-    document.getElementById('comp-rank-badge').textContent = t.rank;
-    document.getElementById('comp-rationale-body').textContent = t.rationale;
+    const speedEl = document.getElementById('comp-speed-val');
+    const kpEl = document.getElementById('comp-kp-val');
+    const kiEl = document.getElementById('comp-ki-val');
+    const kdEl = document.getElementById('comp-kd-val');
+    const metricTargetEl = document.getElementById('comp-metric-target');
+    const statusBadgeEl = document.getElementById('comp-status-badge');
+    const rationaleEl = document.getElementById('comp-rationale-body');
+
+    if (speedEl) speedEl.textContent = t.speed;
+    if (kpEl) kpEl.textContent = t.kp;
+    if (kiEl) kiEl.textContent = t.ki;
+    if (kdEl) kdEl.textContent = t.kd;
+    if (metricTargetEl) metricTargetEl.textContent = t.metricTarget;
+    if (statusBadgeEl) statusBadgeEl.textContent = t.statusBadge;
+    if (rationaleEl) rationaleEl.textContent = t.rationale;
   };
 
   window.loadCompTuneToSim = function () {
