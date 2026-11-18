@@ -103,11 +103,12 @@
       const rect = heroCard.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width - 0.5;
       const y = (e.clientY - rect.top) / rect.height - 0.5;
-      heroCard.style.transform = `perspective(1200px) rotateX(${-y * 12}deg) rotateY(${x * 12}deg)`;
+      heroCard.style.transition = 'transform 0.08s ease-out';
+      heroCard.style.transform = `perspective(1200px) rotateX(${-y * 10}deg) rotateY(${x * 10}deg)`;
     });
     heroCard.addEventListener('mouseleave', () => {
+      heroCard.style.transition = 'transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1)';
       heroCard.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg)';
-      heroCard.style.transition = 'transform 0.4s ease';
     });
     heroCard.addEventListener('mouseenter', () => {
       heroCard.style.transition = 'none';
@@ -259,14 +260,16 @@
     if (panelTitle) panelTitle.textContent = data.title;
     if (panelBody) panelBody.textContent = data.body;
     if (panelImages && data.images) {
+      const colClass = data.images.length === 3 ? 'grid-cols-1 sm:grid-cols-3' : 'grid-cols-1 sm:grid-cols-2';
+      panelImages.className = `grid ${colClass} gap-5`;
       panelImages.innerHTML = data.images
         .map(
           (img) => `
           <div class="group relative overflow-hidden rounded-2xl border border-edge bg-carbon/80 transition-all duration-300 hover:border-cyan/40 cursor-pointer" onclick="openImageLightbox('${img.src}', '${escapeSingleQuotes(img.title)}', '${escapeSingleQuotes(img.desc)}')">
-            <div class="relative h-48 sm:h-56 bg-[#08090D] flex items-center justify-center p-3 overflow-hidden">
+            <div class="relative h-48 sm:h-56 bg-[#08090D] flex items-center justify-center p-4 overflow-hidden">
               <img src="${img.src}" alt="${img.title}" class="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-[1.04]">
             </div>
-            <div class="p-4">
+            <div class="p-4 border-t border-edge/60 bg-surface/50">
               <p class="text-[13px] font-bold text-cream">${img.title}</p>
             </div>
           </div>`
@@ -639,6 +642,7 @@ void loop() {
   };
 
 
+  
   // Initialize Code Studio Tab 0
   window.selectSketchTab(0);
 })();
