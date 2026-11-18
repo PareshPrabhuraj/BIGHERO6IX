@@ -219,7 +219,7 @@
       chips: ["Full Integration", "Isolated 9V Rail", "Low-CG Battery Bay", "Front Ball Caster", "Closed-Loop PID Loop"],
       images: [
         {
-          src: "images/part_chassis.jpeg",
+          src: "images/placeholder_chassis.svg",
           title: "Integrated Mobile Robot Prototype",
           badge: "SYSTEM PROTOTYPE",
           desc: "Complete autonomous mobile robot platform with breadboard, sensors, and drive assembly."

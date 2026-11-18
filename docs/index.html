@@ -142,7 +142,7 @@
               <!-- Main Real Robot Photo Container -->
               <div class="my-auto py-4">
                 <div class="relative overflow-hidden rounded-2xl border border-edge bg-carbon/80 group">
-                  <img id="main-robot-photo" src="images/final_robot.jpg" onerror="this.onerror=null; this.src='images/part_chassis.jpeg';" alt="ECE 5 Competition Robot" class="h-64 sm:h-80 w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]">
+                  <img id="main-robot-photo" src="images/final_robot.jpg" onerror="this.onerror=null; this.src='images/placeholder_robot.svg';" alt="ECE 5 Competition Robot" class="h-64 sm:h-80 w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]">
                   <div class="absolute inset-0 bg-gradient-to-t from-carbon/90 via-transparent to-transparent"></div>
                   <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs">
                     <span class="font-mono text-[11px] text-cyan font-medium">Final Robot Hardware Build</span>
@@ -838,7 +838,7 @@
           <div class="relative mx-auto w-full max-w-md cursor-pointer" onclick="openPosterLightbox()">
             <div class="absolute -inset-4 rounded-[28px] bg-gradient-to-br from-cyan/15 via-transparent to-mint/15 blur-2xl"></div>
             <div class="group relative overflow-hidden rounded-2xl border border-edge shadow-2xl">
-              <img src="images/poster_preview.jpeg" alt="Big Hero 6ix academic research poster" class="w-full">
+              <img src="images/placeholder_poster.svg" alt="Big Hero 6ix academic research poster" class="w-full">
               <div class="absolute inset-0 flex items-center justify-center bg-carbon/0 transition-colors duration-300 group-hover:bg-carbon/40">
                 <span class="flex h-14 w-14 items-center justify-center rounded-full border border-cyan/60 bg-carbon/70 text-cyan opacity-0 backdrop-blur-md transition-all duration-300 group-hover:opacity-100">
                   🔍
@@ -897,7 +897,7 @@
         <div class="mt-12 rounded-3xl border border-edge bg-surface overflow-hidden">
           <div class="grid lg:grid-cols-[1.2fr_0.8fr] items-center">
             <div class="relative h-64 sm:h-80 overflow-hidden bg-carbon/80 group">
-              <img src="images/team_photo.jpg" onerror="this.onerror=null; this.src='images/slides/slide_1_roster.png';" alt="Big Hero 6ix Team" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]">
+              <img src="images/team_photo.jpg" onerror="this.onerror=null; this.src='images/placeholder_team.svg';" alt="Big Hero 6ix Team" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]">
               <div class="absolute inset-0 bg-gradient-to-t from-carbon/90 via-transparent to-transparent"></div>
               <span class="absolute bottom-4 left-4 rounded-full border border-mint/40 bg-carbon/80 px-3 py-1 font-mono text-[10px] text-mint">COMPETITION DAY TEAM PHOTO · SLOT: images/team_photo.jpg</span>
             </div>
@@ -1078,7 +1078,7 @@
   <div id="poster-lightbox" class="fixed inset-0 z-[90] hidden items-center justify-center bg-carbon/90 p-4 backdrop-blur-xl sm:p-10" onclick="closePosterLightbox()">
     <div class="relative flex max-h-full flex-col overflow-hidden rounded-2xl border border-edge bg-surface glow-cyan" onclick="event.stopPropagation()">
       <div class="relative flex-1 overflow-hidden flex items-center justify-center min-h-[60vh] max-h-[76vh]">
-        <img id="poster-zoom-img" src="images/poster_preview.jpeg" alt="Big Hero 6ix research poster" draggable="false" class="mx-auto block max-h-[76vh] w-auto select-none transition-transform duration-100 ease-out">
+        <img id="poster-zoom-img" src="images/placeholder_poster.svg" alt="Big Hero 6ix research poster" draggable="false" class="mx-auto block max-h-[76vh] w-auto select-none transition-transform duration-100 ease-out">
         <button onclick="closePosterLightbox()" class="absolute right-4 top-4 rounded-full border border-edge bg-carbon/80 p-3 text-cream transition-colors hover:text-cyan" aria-label="Close poster">
           ✕
         </button>
