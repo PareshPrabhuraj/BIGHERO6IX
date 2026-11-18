@@ -55,6 +55,7 @@
         <button data-nav-target="overview" onclick="scrollToSection('overview')" class="rounded-full px-3.5 py-2 text-[13px] font-medium transition-colors duration-300 text-mute hover:text-cream">Overview</button>
         <button data-nav-target="timeline" onclick="scrollToSection('timeline')" class="rounded-full px-3.5 py-2 text-[13px] font-medium transition-colors duration-300 text-mute hover:text-cream">Build Timeline</button>
         <button data-nav-target="anatomy" onclick="scrollToSection('anatomy')" class="rounded-full px-3.5 py-2 text-[13px] font-medium transition-colors duration-300 text-mute hover:text-cream">Hardware Anatomy</button>
+        <button data-nav-target="slides" onclick="scrollToSection('slides')" class="rounded-full px-3.5 py-2 text-[13px] font-medium transition-colors duration-300 text-mute hover:text-cream">Submission Slides</button>
         <button data-nav-target="lab" onclick="scrollToSection('lab')" class="rounded-full px-3.5 py-2 text-[13px] font-medium transition-colors duration-300 text-mute hover:text-cream">PID Lab</button>
         <button data-nav-target="competition" onclick="scrollToSection('competition')" class="rounded-full px-3.5 py-2 text-[13px] font-medium transition-colors duration-300 text-mute hover:text-cream">Competition</button>
         <button data-nav-target="poster" onclick="scrollToSection('poster')" class="rounded-full px-3.5 py-2 text-[13px] font-medium transition-colors duration-300 text-mute hover:text-cream">Poster</button>
@@ -78,6 +79,7 @@
       <button onclick="scrollToSection('overview')" class="block w-full rounded-lg px-3 py-2.5 text-left text-sm font-medium text-mute hover:text-cyan">Overview</button>
       <button onclick="scrollToSection('timeline')" class="block w-full rounded-lg px-3 py-2.5 text-left text-sm font-medium text-mute hover:text-cyan">Build Timeline</button>
       <button onclick="scrollToSection('anatomy')" class="block w-full rounded-lg px-3 py-2.5 text-left text-sm font-medium text-mute hover:text-cyan">Hardware Anatomy</button>
+      <button onclick="scrollToSection('slides')" class="block w-full rounded-lg px-3 py-2.5 text-left text-sm font-medium text-mute hover:text-cyan">Submission Slides</button>
       <button onclick="scrollToSection('lab')" class="block w-full rounded-lg px-3 py-2.5 text-left text-sm font-medium text-mute hover:text-cyan">PID Lab</button>
       <button onclick="scrollToSection('competition')" class="block w-full rounded-lg px-3 py-2.5 text-left text-sm font-medium text-mute hover:text-cyan">Competition</button>
       <button onclick="scrollToSection('poster')" class="block w-full rounded-lg px-3 py-2.5 text-left text-sm font-medium text-mute hover:text-cyan">Poster</button>
@@ -207,16 +209,68 @@
           </div>
 
           <!-- Detail Panel -->
-          <div class="card-surface grain relative min-h-[320px] overflow-hidden rounded-3xl p-8 sm:p-10">
+          <div class="card-surface grain relative min-h-[380px] overflow-hidden rounded-3xl p-7 sm:p-10 lg:p-12">
             <span id="timeline-watermark" class="pointer-events-none absolute -right-4 -top-10 select-none text-[11rem] font-black leading-none text-white/[0.035] sm:text-[15rem]">1A</span>
-            <p id="timeline-step-badge" class="font-mono text-[10px] tracking-[0.3em] text-mint">CHALLENGE 1A - STEP 1 OF 5</p>
-            <h3 id="timeline-title" class="mt-5 max-w-xl text-2xl font-bold tracking-tight text-cream sm:text-3xl">4-Potentiometer Real-Time Tuning Deck</h3>
-            <p id="timeline-body" class="mt-5 max-w-2xl text-[15px] leading-relaxed text-mute">Mapped to ESP32-S3 pins IO1 (Kd), IO2 (Ki), IO3 (Kp), and IO4 (Speed). Allows on-the-fly gain calibration without recompilation: twist a knob, watch the loop respond in milliseconds.</p>
-            <div id="timeline-chips" class="mt-8 flex flex-wrap gap-2.5">
-              <span class="rounded-full border border-edge bg-carbon/60 px-4 py-2 font-mono text-[11px] tracking-wider text-cyan">IO1: Kd</span>
-              <span class="rounded-full border border-edge bg-carbon/60 px-4 py-2 font-mono text-[11px] tracking-wider text-cyan">IO2: Ki</span>
-              <span class="rounded-full border border-edge bg-carbon/60 px-4 py-2 font-mono text-[11px] tracking-wider text-cyan">IO3: Kp</span>
-              <span class="rounded-full border border-edge bg-carbon/60 px-4 py-2 font-mono text-[11px] tracking-wider text-cyan">IO4: Speed</span>
+            
+            <div class="grid gap-8 lg:grid-cols-12 items-start">
+              <!-- Left Column: Narrative & Technical Specifications -->
+              <div class="lg:col-span-7 flex flex-col justify-between">
+                <div>
+                  <p id="timeline-step-badge" class="font-mono text-[10px] tracking-[0.3em] text-mint">CHALLENGE 1A - POTENTIOMETERS & SPEED CONTROL</p>
+                  <h3 id="timeline-title" class="mt-4 text-2xl font-bold tracking-tight text-cream sm:text-3xl">4-Potentiometer Real-Time Tuning Deck</h3>
+                  
+                  <!-- Verbatim Slide Submission Quote -->
+                  <div class="mt-4 rounded-xl border border-edge/80 bg-carbon/60 p-4 border-l-2 border-l-cyan">
+                    <p class="font-mono text-[9px] tracking-wider text-cyan uppercase font-semibold">Submitted Challenge Slide Quote</p>
+                    <p id="timeline-quote" class="mt-1.5 text-xs italic leading-relaxed text-cream/90 font-mono">"The potentiometers output values mapped from 0 to 100 across a 12-bit ADC range of 0 to 4095. Turning the potentiometer clockwise moves the wiper toward the 3.3v rail, which then increases the value that is printed to the serial monitor."</p>
+                  </div>
+
+                  <p id="timeline-body" class="mt-5 text-[14px] leading-relaxed text-mute">The 4 potentiometers map values from 0 to 100 across a 12-bit ADC range of 0 to 4095. Turning the potentiometer clockwise moves the wiper toward the 3.3V rail, increasing the mapped telemetry. To reverse the direction, swap the outer 3.3V and GND wires on the breadboard or invert the mapping in code using (100 - mapped_reading). Mapped to ESP32-S3 pins: IO1 (Kd), IO2 (Ki), IO3 (Kp), and IO4 (Base Speed).</p>
+                </div>
+
+                <div id="timeline-chips" class="mt-6 flex flex-wrap gap-2">
+                  <span class="rounded-full border border-edge bg-carbon/60 px-3.5 py-1.5 font-mono text-[10.5px] tracking-wider text-cyan">IO1: Kd</span>
+                  <span class="rounded-full border border-edge bg-carbon/60 px-3.5 py-1.5 font-mono text-[10.5px] tracking-wider text-cyan">IO2: Ki</span>
+                  <span class="rounded-full border border-edge bg-carbon/60 px-3.5 py-1.5 font-mono text-[10.5px] tracking-wider text-cyan">IO3: Kp</span>
+                  <span class="rounded-full border border-edge bg-carbon/60 px-3.5 py-1.5 font-mono text-[10.5px] tracking-wider text-cyan">IO4: Speed</span>
+                  <span class="rounded-full border border-edge bg-carbon/60 px-3.5 py-1.5 font-mono text-[10.5px] tracking-wider text-cyan">12-bit ADC (0-4095)</span>
+                </div>
+              </div>
+
+              <!-- Right Column: Interactive Hardware & Schematic Cards -->
+              <div class="lg:col-span-5">
+                <div class="flex items-center justify-between pb-3 border-b border-edge/60 mb-4">
+                  <span class="font-mono text-[10px] tracking-wider text-cyan uppercase font-semibold">Hardware & Wiring Schematics</span>
+                  <span class="text-mute font-mono text-[9.5px]">Click to inspect full-res</span>
+                </div>
+                <div id="timeline-images" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
+                  <!-- Dynamically populated by app.js selectTimelineStep -->
+                  <div class="group relative overflow-hidden rounded-2xl border border-edge bg-carbon/80 transition-all duration-300 hover:border-cyan/40 cursor-pointer" onclick="openImageLightbox('images/hardware/ch1a_pots_breadboard.png', 'Breadboard Hardware Build', '4-potentiometer tuning deck wired to ESP32-S3 DevBoard on breadboard.')">
+                    <div class="relative h-44 sm:h-52 overflow-hidden">
+                      <img src="images/hardware/ch1a_pots_breadboard.png" alt="Breadboard Build" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]">
+                      <div class="absolute inset-0 bg-gradient-to-t from-carbon/90 via-transparent to-transparent"></div>
+                      <span class="absolute top-3 left-3 rounded-full border border-cyan/30 bg-carbon/80 px-2.5 py-1 font-mono text-[9px] font-semibold tracking-wider text-cyan backdrop-blur-md">REAL HARDWARE</span>
+                      <span class="absolute top-3 right-3 flex h-7 w-7 items-center justify-center rounded-full border border-edge bg-carbon/70 text-mute opacity-0 transition-opacity group-hover:opacity-100 group-hover:text-cyan">🔍</span>
+                    </div>
+                    <div class="p-4">
+                      <p class="text-[13px] font-bold text-cream">Breadboard Hardware Build</p>
+                      <p class="mt-1 text-[11.5px] leading-relaxed text-mute">4-potentiometer tuning deck wired to ESP32-S3 DevBoard on breadboard.</p>
+                    </div>
+                  </div>
+                  <div class="group relative overflow-hidden rounded-2xl border border-edge bg-carbon/80 transition-all duration-300 hover:border-cyan/40 cursor-pointer" onclick="openImageLightbox('images/hardware/ch1a_pots_schematic.png', 'Circuit Wiring Schematic', 'Potentiometer pinout schematic showing wiper lines to IO1-IO4 and 3.3V / GND rails.')">
+                    <div class="relative h-44 sm:h-52 overflow-hidden">
+                      <img src="images/hardware/ch1a_pots_schematic.png" alt="Wiring Schematic" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]">
+                      <div class="absolute inset-0 bg-gradient-to-t from-carbon/90 via-transparent to-transparent"></div>
+                      <span class="absolute top-3 left-3 rounded-full border border-cyan/30 bg-carbon/80 px-2.5 py-1 font-mono text-[9px] font-semibold tracking-wider text-cyan backdrop-blur-md">WIRING DIAGRAM</span>
+                      <span class="absolute top-3 right-3 flex h-7 w-7 items-center justify-center rounded-full border border-edge bg-carbon/70 text-mute opacity-0 transition-opacity group-hover:opacity-100 group-hover:text-cyan">🔍</span>
+                    </div>
+                    <div class="p-4">
+                      <p class="text-[13px] font-bold text-cream">Circuit Wiring Schematic</p>
+                      <p class="mt-1 text-[11.5px] leading-relaxed text-mute">Potentiometer pinout schematic showing wiper lines to IO1-IO4 and 3.3V / GND rails.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -237,7 +291,7 @@
           <!-- Card 1: ESP32-S3 -->
           <button onclick="openBentoModal('esp32')" class="card-surface group relative overflow-hidden rounded-3xl text-left md:col-span-7">
             <div class="relative overflow-hidden h-60">
-              <img src="images/part_esp32.jpeg" alt="ESP32-S3 Compute Brain" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]">
+              <img src="images/hardware/esp32_devboard_pinout.png" alt="ESP32-S3 Compute Brain" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]">
               <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/25 to-transparent"></div>
               <span class="absolute right-4 top-4 flex items-center gap-1.5 rounded-full glass border border-edge px-3 py-1.5 font-mono text-[10px] tracking-widest text-cyan opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                 🔍 OPEN SCHEMATIC
@@ -252,7 +306,7 @@
           <!-- Card 2: 7-LDR Sensor Comb -->
           <button onclick="openBentoModal('comb')" class="card-surface group relative overflow-hidden rounded-3xl text-left md:col-span-5">
             <div class="relative overflow-hidden h-60">
-              <img src="images/part_sensor_comb.jpeg" alt="7-LDR Sensor Comb" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]">
+              <img src="images/hardware/ch1b_ldr_breadboard.png" alt="7-LDR Sensor Comb" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]">
               <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/25 to-transparent"></div>
               <span class="absolute right-4 top-4 flex items-center gap-1.5 rounded-full glass border border-edge px-3 py-1.5 font-mono text-[10px] tracking-widest text-cyan opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                 🔍 OPEN SCHEMATIC
@@ -267,7 +321,7 @@
           <!-- Card 3: L298N Motor Driver -->
           <button onclick="openBentoModal('l298n')" class="card-surface group relative overflow-hidden rounded-3xl text-left md:col-span-5">
             <div class="relative overflow-hidden h-60">
-              <img src="images/part_l298n.jpeg" alt="L298N Dual H-Bridge Driver" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]">
+              <img src="images/hardware/ch1c_l298n_wired.png" alt="L298N Dual H-Bridge Driver" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]">
               <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/25 to-transparent"></div>
               <span class="absolute right-4 top-4 flex items-center gap-1.5 rounded-full glass border border-edge px-3 py-1.5 font-mono text-[10px] tracking-widest text-cyan opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                 🔍 OPEN SCHEMATIC
@@ -282,7 +336,7 @@
           <!-- Card 4: 4-Channel Analog Potentiometer Bank -->
           <button onclick="openBentoModal('pots')" class="card-surface group relative overflow-hidden rounded-3xl text-left md:col-span-7">
             <div class="relative overflow-hidden h-60">
-              <img src="images/part_pots.jpeg" alt="4-Channel Tuning Deck" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]">
+              <img src="images/hardware/ch1a_pots_breadboard.png" alt="4-Channel Tuning Deck" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]">
               <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/25 to-transparent"></div>
               <span class="absolute right-4 top-4 flex items-center gap-1.5 rounded-full glass border border-edge px-3 py-1.5 font-mono text-[10px] tracking-widest text-cyan opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                 🔍 OPEN SCHEMATIC
@@ -297,7 +351,7 @@
           <!-- Card 5: Low-CG Power & Frame -->
           <button onclick="openBentoModal('frame')" class="card-surface group relative overflow-hidden rounded-3xl text-left md:col-span-12">
             <div class="relative overflow-hidden h-64 md:h-72">
-              <img src="images/part_chassis.jpeg" alt="Low-CG Chassis Frame" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]">
+              <img src="images/hardware/ch1d_onshape_slot.png" alt="Onshape 3D CAD Chassis" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]">
               <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/25 to-transparent"></div>
               <span class="absolute right-4 top-4 flex items-center gap-1.5 rounded-full glass border border-edge px-3 py-1.5 font-mono text-[10px] tracking-widest text-cyan opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                 🔍 OPEN SCHEMATIC
@@ -308,6 +362,90 @@
               <p class="mt-1.5 text-[13px] text-mute">Custom 6×AA 9V battery bay and front ball caster</p>
             </div>
           </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- COURSE SUBMISSION SLIDE DECK (CHALLENGES 1A TO 1D) -->
+    <section id="slides" class="relative py-24 lg:py-32">
+      <div class="pointer-events-none absolute right-[-150px] top-1/4 h-[420px] w-[420px] rounded-full bg-mint/[0.04] blur-[120px]"></div>
+      <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="flex max-w-3xl flex-col items-start">
+          <p class="font-mono text-[11px] font-semibold tracking-[0.3em] text-cyan">COURSE DELIVERABLES</p>
+          <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-cream sm:text-4xl lg:text-5xl">Official Submission Slide Deck</h2>
+          <p class="mt-5 text-[15px] leading-relaxed text-mute sm:text-base">The complete five-slide technical dossier submitted for grading in ECE 5: Making, Breaking, Hacking Stuff. Click any slide to inspect the schematics, breadboard builds, and Onshape CAD models in full 200 DPI resolution.</p>
+        </div>
+
+        <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <!-- Slide 1: Team Roster -->
+          <div class="card-surface group relative overflow-hidden rounded-3xl cursor-pointer border border-edge transition-all duration-300 hover:border-cyan/40 hover:glow-cyan" onclick="openImageLightbox('images/slides/slide_1_roster.png', 'Slide 1: Team & Lab Section Roster', 'Simar Singh, Gavin Huang, John Barojas, Paresh Prabhu Raj · ECE 5 - UC San Diego')">
+            <div class="relative aspect-video overflow-hidden bg-carbon/70">
+              <img src="images/slides/slide_1_roster.png" alt="Slide 1: Team Roster" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]">
+              <div class="absolute inset-0 bg-gradient-to-t from-carbon/80 via-transparent to-transparent"></div>
+              <span class="absolute top-3 left-3 rounded-full border border-cyan/30 bg-carbon/80 px-2.5 py-1 font-mono text-[9.5px] font-semibold text-cyan">SLIDE 1 · ROSTER</span>
+              <span class="absolute top-3 right-3 flex h-7 w-7 items-center justify-center rounded-full border border-edge bg-carbon/70 text-mute opacity-0 transition-opacity group-hover:opacity-100 group-hover:text-cyan">🔍</span>
+            </div>
+            <div class="p-5">
+              <h3 class="text-base font-bold text-cream">Lab 4: Robotics Roster</h3>
+              <p class="mt-1.5 text-xs text-mute">Simar Singh, Gavin Huang, John Barojas, Paresh Prabhu Raj</p>
+            </div>
+          </div>
+
+          <!-- Slide 2: Objective -->
+          <div class="card-surface group relative overflow-hidden rounded-3xl cursor-pointer border border-edge transition-all duration-300 hover:border-cyan/40 hover:glow-cyan" onclick="openImageLightbox('images/slides/slide_2_objective.png', 'Slide 2: Lab 4 Objective & Architecture', 'Design, wire, program, and calibrate an autonomous two-wheel drive robot to track a high-contrast black line at top speed.')">
+            <div class="relative aspect-video overflow-hidden bg-carbon/70">
+              <img src="images/slides/slide_2_objective.png" alt="Slide 2: Objective" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]">
+              <div class="absolute inset-0 bg-gradient-to-t from-carbon/80 via-transparent to-transparent"></div>
+              <span class="absolute top-3 left-3 rounded-full border border-cyan/30 bg-carbon/80 px-2.5 py-1 font-mono text-[9.5px] font-semibold text-cyan">SLIDE 2 · OBJECTIVE</span>
+              <span class="absolute top-3 right-3 flex h-7 w-7 items-center justify-center rounded-full border border-edge bg-carbon/70 text-mute opacity-0 transition-opacity group-hover:opacity-100 group-hover:text-cyan">🔍</span>
+            </div>
+            <div class="p-5">
+              <h3 class="text-base font-bold text-cream">System Objective & Scope</h3>
+              <p class="mt-1.5 text-xs text-mute">Closed-loop PID line tracking across loop, sweep, and drag tracks</p>
+            </div>
+          </div>
+
+          <!-- Slide 3: Challenges 1A & 1B -->
+          <div class="card-surface group relative overflow-hidden rounded-3xl cursor-pointer border border-edge transition-all duration-300 hover:border-cyan/40 hover:glow-cyan" onclick="openImageLightbox('images/slides/slide_3_ch1a_1b.png', 'Slide 3: Challenges 1A & 1B - Potentiometers & Photoresistors', 'Wiring schematics and breadboard builds for the 4-potentiometer tuning deck and 7-photoresistor optical reflectance array.')">
+            <div class="relative aspect-video overflow-hidden bg-carbon/70">
+              <img src="images/slides/slide_3_ch1a_1b.png" alt="Slide 3: Challenges 1A and 1B" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]">
+              <div class="absolute inset-0 bg-gradient-to-t from-carbon/80 via-transparent to-transparent"></div>
+              <span class="absolute top-3 left-3 rounded-full border border-cyan/30 bg-carbon/80 px-2.5 py-1 font-mono text-[9.5px] font-semibold text-cyan">SLIDE 3 · CH 1A & 1B</span>
+              <span class="absolute top-3 right-3 flex h-7 w-7 items-center justify-center rounded-full border border-edge bg-carbon/70 text-mute opacity-0 transition-opacity group-hover:opacity-100 group-hover:text-cyan">🔍</span>
+            </div>
+            <div class="p-5">
+              <h3 class="text-base font-bold text-cream">Potentiometers & Photoresistors</h3>
+              <p class="mt-1.5 text-xs text-mute">12-bit ADC mapping and calibrated 2100-3500 optical surface thresholds</p>
+            </div>
+          </div>
+
+          <!-- Slide 4: Challenge 1C -->
+          <div class="card-surface group relative overflow-hidden rounded-3xl cursor-pointer border border-edge transition-all duration-300 hover:border-cyan/40 hover:glow-cyan" onclick="openImageLightbox('images/slides/slide_4_ch1c.png', 'Slide 4: Challenge 1C - Prepping the Motors', 'L298N dual motor driver interfacing, ESP32 DevBoard pinout, and TT DC gearmotors with hot glue strain relief.')">
+            <div class="relative aspect-video overflow-hidden bg-carbon/70">
+              <img src="images/slides/slide_4_ch1c.png" alt="Slide 4: Challenge 1C" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]">
+              <div class="absolute inset-0 bg-gradient-to-t from-carbon/80 via-transparent to-transparent"></div>
+              <span class="absolute top-3 left-3 rounded-full border border-cyan/30 bg-carbon/80 px-2.5 py-1 font-mono text-[9.5px] font-semibold text-cyan">SLIDE 4 · CH 1C</span>
+              <span class="absolute top-3 right-3 flex h-7 w-7 items-center justify-center rounded-full border border-edge bg-carbon/70 text-mute opacity-0 transition-opacity group-hover:opacity-100 group-hover:text-cyan">🔍</span>
+            </div>
+            <div class="p-5">
+              <h3 class="text-base font-bold text-cream">Motor Driver & Gearmotors</h3>
+              <p class="mt-1.5 text-xs text-mute">Isolated 9V battery power rail and terminal strain relief</p>
+            </div>
+          </div>
+
+          <!-- Slide 5: Challenge 1D -->
+          <div class="card-surface group relative overflow-hidden rounded-3xl cursor-pointer border border-edge transition-all duration-300 hover:border-cyan/40 hover:glow-cyan sm:col-span-2 lg:col-span-2" onclick="openImageLightbox('images/slides/slide_5_ch1d.png', 'Slide 5: Challenge 1D CAD ONLY - Chassis CAD with 2 Functional Changes', 'Onshape 3D CAD design featuring integrated ESP32 mounting cradle and torsional stiffening cross-beam.')">
+            <div class="relative aspect-video overflow-hidden bg-carbon/70">
+              <img src="images/slides/slide_5_ch1d.png" alt="Slide 5: Challenge 1D" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]">
+              <div class="absolute inset-0 bg-gradient-to-t from-carbon/80 via-transparent to-transparent"></div>
+              <span class="absolute top-3 left-3 rounded-full border border-cyan/30 bg-carbon/80 px-2.5 py-1 font-mono text-[9.5px] font-semibold text-cyan">SLIDE 5 · CH 1D CAD</span>
+              <span class="absolute top-3 right-3 flex h-7 w-7 items-center justify-center rounded-full border border-edge bg-carbon/70 text-mute opacity-0 transition-opacity group-hover:opacity-100 group-hover:text-cyan">🔍</span>
+            </div>
+            <div class="p-5">
+              <h3 class="text-base font-bold text-cream">Onshape CAD: 2 Functional Changes</h3>
+              <p class="mt-1.5 text-xs text-mute">Custom slot to firmly seat the ESP32 and diagonal structural beam for rigidity</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -623,48 +761,69 @@
     </section>
 
     <!-- VIDEO & ACTION FOOTAGE -->
-    <section class="relative py-24 lg:py-32">
+    <section id="video" class="relative py-24 lg:py-32">
       <div class="mx-auto max-w-7xl px-5 lg:px-8">
         <div class="flex max-w-3xl flex-col items-start">
           <p class="font-mono text-[11px] font-semibold tracking-[0.3em] text-cyan">VIDEO & ACTION FOOTAGE</p>
-          <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-cream sm:text-4xl lg:text-5xl">Race-Day Proof</h2>
-          <p class="mt-5 text-[15px] leading-relaxed text-mute sm:text-base">Run footage from the lab and the official course: the robot doing exactly what the firmware was tuned to do.</p>
+          <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-cream sm:text-4xl lg:text-5xl">Race-Day Action Documentation</h2>
+          <p class="mt-5 text-[15px] leading-relaxed text-mute sm:text-base">Official run footage from competition day across all three evaluation tracks. Video placeholders are pre-formatted for direct YouTube embeds or MP4 replay drops.</p>
         </div>
 
         <div class="mt-12 grid gap-5 md:grid-cols-3">
-          <!-- Video 1: YouTube -->
-          <div class="group overflow-hidden rounded-3xl border border-edge bg-surface transition-shadow duration-500 hover:glow-cyan">
-            <div class="relative aspect-video">
-              <iframe src="https://www.youtube-nocookie.com/embed/ZM8ECpBuQYE" title="Drag Race Run" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="absolute inset-0 h-full w-full"></iframe>
+          <!-- Video 1: Drag Race -->
+          <div class="group overflow-hidden rounded-3xl border border-edge bg-surface transition-shadow duration-500 hover:glow-cyan flex flex-col justify-between">
+            <div class="relative aspect-video bg-carbon/80 flex flex-col items-center justify-center p-6 text-center border-b border-edge/60">
+              <div class="flex h-14 w-14 items-center justify-center rounded-2xl border border-cyan/40 bg-cyan/10 text-cyan mb-3 transition-transform duration-300 group-hover:scale-110">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              </div>
+              <span class="rounded-full border border-cyan/30 bg-carbon px-2.5 py-1 font-mono text-[9px] tracking-widest text-cyan uppercase font-semibold">TRACK 1 · 20-FT SPRINT</span>
+              <p class="mt-2 text-xs text-mute font-mono">Slot: Drag Race Heat Video</p>
             </div>
             <div class="p-5">
-              <h3 class="text-[15px] font-bold text-cream">Drag Race - Official Run</h3>
-              <p class="mt-1 text-[12.5px] text-mute">Onboard the 4.82-second full-throttle sprint</p>
+              <h3 class="text-[15px] font-bold text-cream">Drag Race - Official Sprint Run</h3>
+              <p class="mt-1 text-[12.5px] leading-relaxed text-mute">Full-throttle straightaway acceleration run. High Kd damping prevents wobble at peak speed.</p>
+              <div class="mt-4 flex items-center justify-between text-[11px] font-mono text-cyan/80">
+                <span>Course Length: 20 ft</span>
+                <span class="rounded bg-cyan/10 px-2 py-0.5 text-cyan">Queued for Race Day</span>
+              </div>
             </div>
           </div>
 
-          <!-- Video 2: YouTube -->
-          <div class="group overflow-hidden rounded-3xl border border-edge bg-surface transition-shadow duration-500 hover:glow-cyan">
-            <div class="relative aspect-video">
-              <iframe src="https://www.youtube-nocookie.com/embed/IXDD0cY0MnE" title="Frequency Sweep Run" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="absolute inset-0 h-full w-full"></iframe>
+          <!-- Video 2: Frequency Sweep -->
+          <div class="group overflow-hidden rounded-3xl border border-edge bg-surface transition-shadow duration-500 hover:glow-cyan flex flex-col justify-between">
+            <div class="relative aspect-video bg-carbon/80 flex flex-col items-center justify-center p-6 text-center border-b border-edge/60">
+              <div class="flex h-14 w-14 items-center justify-center rounded-2xl border border-mint/40 bg-mint/10 text-mint mb-3 transition-transform duration-300 group-hover:scale-110">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+              </div>
+              <span class="rounded-full border border-mint/30 bg-carbon px-2.5 py-1 font-mono text-[9px] tracking-widest text-mint uppercase font-semibold">TRACK 2 · S-CURVES</span>
+              <p class="mt-2 text-xs text-mute font-mono">Slot: Frequency Sweep Heat Video</p>
             </div>
             <div class="p-5">
-              <h3 class="text-[15px] font-bold text-cream">Frequency Sweep - Bench Session</h3>
-              <p class="mt-1 text-[12.5px] text-mute">Kp 46 snapping through alternating S-curves</p>
+              <h3 class="text-[15px] font-bold text-cream">Frequency Sweep - Dynamic Steering</h3>
+              <p class="mt-1 text-[12.5px] leading-relaxed text-mute">Tight S-curve tracking demonstrating proportional gain responsiveness and differential turn authority.</p>
+              <div class="mt-4 flex items-center justify-between text-[11px] font-mono text-mint/80">
+                <span>Sweep: Alternating Rad</span>
+                <span class="rounded bg-mint/10 px-2 py-0.5 text-mint">Queued for Race Day</span>
+              </div>
             </div>
           </div>
 
-          <!-- Video 3: Local MP4 -->
-          <div class="group overflow-hidden rounded-3xl border border-edge bg-surface transition-shadow duration-500 hover:glow-mint">
-            <div class="relative aspect-video">
-              <video src="demo-clip.mp4" poster="images/part_chassis.jpeg" controls playsinline preload="metadata" class="absolute inset-0 h-full w-full object-cover"></video>
-              <span class="pointer-events-none absolute left-4 top-4 rounded-full border border-mint/40 bg-carbon/70 px-3 py-1 font-mono text-[9px] tracking-[0.25em] text-mint backdrop-blur-md">
-                LOCAL · BENCH REPLAY
-              </span>
+          <!-- Video 3: Continuous Loop -->
+          <div class="group overflow-hidden rounded-3xl border border-edge bg-surface transition-shadow duration-500 hover:glow-mint flex flex-col justify-between">
+            <div class="relative aspect-video bg-carbon/80 flex flex-col items-center justify-center p-6 text-center border-b border-edge/60">
+              <div class="flex h-14 w-14 items-center justify-center rounded-2xl border border-cyan/40 bg-cyan/10 text-cyan mb-3 transition-transform duration-300 group-hover:scale-110">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              </div>
+              <span class="rounded-full border border-cyan/30 bg-carbon px-2.5 py-1 font-mono text-[9px] tracking-widest text-cyan uppercase font-semibold">TRACK 3 · ENDURANCE</span>
+              <p class="mt-2 text-xs text-mute font-mono">Slot: Loop Heat Video / MP4</p>
             </div>
             <div class="p-5">
-              <h3 class="text-[15px] font-bold text-cream">Chassis Walkaround - Local Clip</h3>
-              <p class="mt-1 text-[12.5px] text-mute">Low-CG battery bay, caster and cantilever comb up close</p>
+              <h3 class="text-[15px] font-bold text-cream">Continuous Loop - Multi-Lap Run</h3>
+              <p class="mt-1 text-[12.5px] leading-relaxed text-mute">Multi-lap endurance tracking verifying integral anti-windup clamping and battery rail consistency.</p>
+              <div class="mt-4 flex items-center justify-between text-[11px] font-mono text-cyan/80">
+                <span>Target: Maximum Loops</span>
+                <span class="rounded bg-cyan/10 px-2 py-0.5 text-cyan">Queued for Race Day</span>
+              </div>
             </div>
           </div>
         </div>
@@ -731,10 +890,31 @@
         <div class="flex max-w-3xl flex-col items-start">
           <p class="font-mono text-[11px] font-semibold tracking-[0.3em] text-cyan">TEAM ROSTER</p>
           <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-cream sm:text-4xl lg:text-5xl">The Engineers Behind 6ix</h2>
-          <p class="mt-5 text-[15px] leading-relaxed text-mute sm:text-base">Four roles, one chassis: every subsystem on the robot has an owner who lived with it through every iteration.</p>
+          <p class="mt-5 text-[15px] leading-relaxed text-mute sm:text-base">Four roles, one chassis: every subsystem on the robot has an owner who lived with it through every lab iteration in ECE 5.</p>
         </div>
 
-        <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <!-- Competition Day Team Photo Slot -->
+        <div class="mt-12 rounded-3xl border border-edge bg-surface overflow-hidden">
+          <div class="grid lg:grid-cols-[1.2fr_0.8fr] items-center">
+            <div class="relative h-64 sm:h-80 overflow-hidden bg-carbon/80 group">
+              <img src="images/team_photo.jpg" onerror="this.onerror=null; this.src='images/slides/slide_1_roster.png';" alt="Big Hero 6ix Team" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]">
+              <div class="absolute inset-0 bg-gradient-to-t from-carbon/90 via-transparent to-transparent"></div>
+              <span class="absolute bottom-4 left-4 rounded-full border border-mint/40 bg-carbon/80 px-3 py-1 font-mono text-[10px] text-mint">COMPETITION DAY TEAM PHOTO · SLOT: images/team_photo.jpg</span>
+            </div>
+            <div class="p-8 sm:p-10">
+              <span class="font-mono text-[10px] tracking-widest text-cyan uppercase font-semibold">UC SAN DIEGO · ECE 5</span>
+              <h3 class="mt-2 text-2xl font-bold text-cream">Team Big Hero 6ix</h3>
+              <p class="mt-3 text-sm leading-relaxed text-mute">EnVision Arts and Engineering Maker Studio. Engineered by Simar Singh, Gavin Huang, John Barojas, and Paresh Prabhu Raj under Prof. Karcher Morris.</p>
+              <div class="mt-6 flex flex-wrap gap-2">
+                <span class="rounded-full border border-edge bg-carbon/60 px-3 py-1 font-mono text-[10.5px] text-cream">4 Engineers</span>
+                <span class="rounded-full border border-edge bg-carbon/60 px-3 py-1 font-mono text-[10.5px] text-cyan">5 Subsystems</span>
+                <span class="rounded-full border border-edge bg-carbon/60 px-3 py-1 font-mono text-[10.5px] text-mint">Fall 2026</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <!-- Paresh Prabhu Raj -->
           <div class="card-surface group rounded-3xl p-6">
             <div class="flex h-14 w-14 items-center justify-center rounded-2xl border border-cyan/30 bg-gradient-to-br from-cyan/15 to-mint/10 font-mono text-sm font-bold text-cyan">
@@ -752,51 +932,51 @@
             </a>
           </div>
 
-          <!-- Teammate 2 -->
+          <!-- Simar Singh -->
           <div class="card-surface group rounded-3xl p-6">
             <div class="flex h-14 w-14 items-center justify-center rounded-2xl border border-cyan/30 bg-gradient-to-br from-cyan/15 to-mint/10 font-mono text-sm font-bold text-cyan">
-              T2
+              SS
             </div>
-            <h3 class="mt-5 text-[15px] font-bold text-cream">Circuit & Sensor Lead</h3>
-            <p class="mt-1.5 text-[12.5px] leading-snug text-mint">Hardware & Wiring Engineer</p>
-            <p class="mt-2.5 text-[12px] leading-relaxed text-mute">7-LDR optical reflectance voltage divider array, 4-potentiometer control bank wiring, and continuity testing.</p>
+            <h3 class="mt-5 text-[15px] font-bold text-cream">Simar Singh</h3>
+            <p class="mt-1.5 text-[12.5px] leading-snug text-mint">Circuit & Sensor Lead</p>
+            <p class="mt-2.5 text-[12px] leading-relaxed text-mute">7-channel photoresistor reflectance array, 10k voltage divider calibration, 4-potentiometer tuning deck wiring, and sensor ground clearance optimization.</p>
             <div class="mt-4 flex flex-wrap items-center gap-2">
               <span class="font-mono text-[10px] tracking-wider text-mute">ECE 5 · Fall 2026</span>
             </div>
-            <a href="mailto:ece5-circuit@ucsd.edu" class="mt-3 flex items-center gap-2 font-mono text-[11px] text-mute transition-colors hover:text-cyan">
-              ✉ ece5-circuit@ucsd.edu
+            <a href="mailto:simar-singh@ucsd.edu" class="mt-3 flex items-center gap-2 font-mono text-[11px] text-mute transition-colors hover:text-cyan">
+              ✉ simar-singh@ucsd.edu
             </a>
           </div>
 
-          <!-- Teammate 3 -->
+          <!-- Gavin Huang -->
           <div class="card-surface group rounded-3xl p-6">
             <div class="flex h-14 w-14 items-center justify-center rounded-2xl border border-cyan/30 bg-gradient-to-br from-cyan/15 to-mint/10 font-mono text-sm font-bold text-cyan">
-              T3
+              GH
             </div>
-            <h3 class="mt-5 text-[15px] font-bold text-cream">CAD Mechanical Lead</h3>
-            <p class="mt-1.5 text-[12.5px] leading-snug text-mint">Mechanical & 3D Fabrication</p>
-            <p class="mt-2.5 text-[12px] leading-relaxed text-mute">Onshape CAD chassis modifications: custom 3D-printed black PLA ambient light shroud and rigid sensor comb.</p>
+            <h3 class="mt-5 text-[15px] font-bold text-cream">Gavin Huang</h3>
+            <p class="mt-1.5 text-[12.5px] leading-snug text-mint">CAD Mechanical Lead</p>
+            <p class="mt-2.5 text-[12px] leading-relaxed text-mute">Onshape 3D CAD chassis modifications: custom integrated snap-in ESP32 mounting cradle, diagonal stiffening cross-beam, and front ball caster balance.</p>
             <div class="mt-4 flex flex-wrap items-center gap-2">
               <span class="font-mono text-[10px] tracking-wider text-mute">ECE 5 · Fall 2026</span>
             </div>
-            <a href="mailto:ece5-cad@ucsd.edu" class="mt-3 flex items-center gap-2 font-mono text-[11px] text-mute transition-colors hover:text-cyan">
-              ✉ ece5-cad@ucsd.edu
+            <a href="mailto:gavin-huang@ucsd.edu" class="mt-3 flex items-center gap-2 font-mono text-[11px] text-mute transition-colors hover:text-cyan">
+              ✉ gavin-huang@ucsd.edu
             </a>
           </div>
 
-          <!-- Teammate 4 -->
+          <!-- John Barojas -->
           <div class="card-surface group rounded-3xl p-6">
             <div class="flex h-14 w-14 items-center justify-center rounded-2xl border border-cyan/30 bg-gradient-to-br from-cyan/15 to-mint/10 font-mono text-sm font-bold text-cyan">
-              T4
+              JB
             </div>
-            <h3 class="mt-5 text-[15px] font-bold text-cream">Systems & Web Lead</h3>
-            <p class="mt-1.5 text-[12.5px] leading-snug text-mint">Documentation & Scoring</p>
-            <p class="mt-2.5 text-[12px] leading-relaxed text-mute">Competition heat logging, video documentation, and 2x3 academic poster compilation.</p>
+            <h3 class="mt-5 text-[15px] font-bold text-cream">John Barojas</h3>
+            <p class="mt-1.5 text-[12.5px] leading-snug text-mint">Systems & Web Documentation Lead</p>
+            <p class="mt-2.5 text-[12px] leading-relaxed text-mute">Competition score logging, GitHub Pages deployment, run documentation, and 24x36 inch academic research conference poster compilation.</p>
             <div class="mt-4 flex flex-wrap items-center gap-2">
               <span class="font-mono text-[10px] tracking-wider text-mute">ECE 5 · Fall 2026</span>
             </div>
-            <a href="mailto:ece5-systems@ucsd.edu" class="mt-3 flex items-center gap-2 font-mono text-[11px] text-mute transition-colors hover:text-cyan">
-              ✉ ece5-systems@ucsd.edu
+            <a href="mailto:john-barojas@ucsd.edu" class="mt-3 flex items-center gap-2 font-mono text-[11px] text-mute transition-colors hover:text-cyan">
+              ✉ john-barojas@ucsd.edu
             </a>
           </div>
         </div>
@@ -916,5 +1096,22 @@
   </div>
 
   <script src="app.js"></script>
+
+  <!-- UNIVERSAL IMAGE LIGHTBOX -->
+  <div id="image-modal" class="fixed inset-0 z-[95] hidden items-center justify-center bg-carbon/90 p-4 backdrop-blur-2xl sm:p-8" onclick="closeImageLightbox()">
+    <div class="relative max-h-[92vh] w-full max-w-5xl overflow-hidden rounded-3xl border border-edge bg-surface shadow-2xl" onclick="event.stopPropagation()">
+      <div class="relative max-h-[72vh] overflow-auto flex items-center justify-center bg-carbon/90 p-3 sm:p-6">
+        <img id="image-modal-img" src="" alt="" class="max-h-[68vh] w-auto max-w-full rounded-2xl object-contain shadow-2xl">
+        <button onclick="closeImageLightbox()" class="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-edge bg-carbon/80 text-cream transition-colors hover:text-cyan" aria-label="Close">
+          ✕
+        </button>
+      </div>
+      <div class="border-t border-edge bg-surface p-6 sm:p-8">
+        <span id="image-modal-badge" class="font-mono text-[10px] tracking-[0.25em] text-cyan uppercase font-semibold">AUTHENTIC HARDWARE ARTIFACT</span>
+        <h3 id="image-modal-title" class="mt-2 text-xl font-bold tracking-tight text-cream"></h3>
+        <p id="image-modal-caption" class="mt-1.5 text-[13.5px] leading-relaxed text-mute"></p>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

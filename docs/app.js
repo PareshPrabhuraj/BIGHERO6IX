@@ -119,33 +119,119 @@
     {
       id: "1A",
       title: "4-Potentiometer Real-Time Tuning Deck",
-      body: "Mapped to ESP32-S3 pins IO1 (Kd), IO2 (Ki), IO3 (Kp), and IO4 (Speed). Allows on-the-fly gain calibration without recompilation: twist a knob, watch the loop respond in milliseconds.",
-      chips: ["IO1: Kd", "IO2: Ki", "IO3: Kp", "IO4: Speed"],
+      stepBadge: "CHALLENGE 1A - POTENTIOMETERS & SPEED CONTROL",
+      body: "The 4 potentiometers map values from 0 to 100 across a 12-bit ADC range of 0 to 4095. Turning the potentiometer clockwise moves the wiper toward the 3.3V rail, increasing the mapped telemetry. To reverse the direction, swap the outer 3.3V and GND wires on the breadboard or invert the mapping in code using (100 - mapped_reading). Mapped to ESP32-S3 pins: IO1 (Kd), IO2 (Ki), IO3 (Kp), and IO4 (Base Speed).",
+      quote: "The potentiometers output values mapped from 0 to 100 across a 12-bit ADC range of 0 to 4095. Turning the potentiometer clockwise moves the wiper toward the 3.3v rail, which then increases the value that is printed to the serial monitor.",
+      chips: ["IO1: Kd", "IO2: Ki", "IO3: Kp", "IO4: Speed", "12-bit ADC (0-4095)", "Mapped 0-100", "CW Wiper to 3.3V"],
+      images: [
+        {
+          src: "images/hardware/ch1a_pots_breadboard.png",
+          title: "Breadboard Hardware Build",
+          badge: "REAL HARDWARE",
+          desc: "4-potentiometer tuning deck wired to ESP32-S3 DevBoard on breadboard."
+        },
+        {
+          src: "images/hardware/ch1a_pots_schematic.png",
+          title: "Circuit Wiring Schematic",
+          badge: "WIRING DIAGRAM",
+          desc: "Potentiometer pinout schematic showing wiper lines to IO1-IO4 and 3.3V / GND rails."
+        }
+      ]
     },
     {
       id: "1B",
       title: "7-Photoresistor Reflectance Sensor Bar",
-      body: "Built with 10k Ohm voltage dividers. Height optimized to 4 mm for an 800% signal contrast boost (3400 ADC on black tape vs 420 ADC on white floor).",
-      chips: ["10 kΩ dividers", "4 mm clearance", "3400 vs 420 ADC", "+800% contrast"],
+      stepBadge: "CHALLENGE 1B - OPTOELECTRONIC SURFACE SENSING",
+      body: "The 7-channel reflectance array utilizes 5mm CdS photoresistors paired with 10k Ohm pull-down resistors in voltage divider configurations. The calibrated ADC range for the white surface is roughly 2100-2400, while the black surface reads roughly 3000-3500. A height of 4-5 mm from the ground provides the optimal dynamic range and signal contrast.",
+      quote: "The range for the white surface is roughly 2100-2400 and for the black surface its roughly 3000-3500. 4-5cm would be the ideal height of the photoresistors from the ground.",
+      chips: ["7x CdS Photoresistors", "10k Ohm Dividers", "White: 2100-2400 ADC", "Black: 3000-3500 ADC", "4-5 mm Height"],
+      images: [
+        {
+          src: "images/hardware/ch1b_ldr_breadboard.png",
+          title: "7-Sensor Breadboard Array",
+          badge: "REAL HARDWARE",
+          desc: "7 photoresistors with 10k Ohm pull-down resistors wired to ESP32-S3 analog inputs."
+        },
+        {
+          src: "images/hardware/ch1b_ldr_schematic.png",
+          title: "Sensor Array Schematic",
+          badge: "WIRING DIAGRAM",
+          desc: "7-channel voltage divider schematic mapping sensor nodes to ESP32-S3 pins IO1-IO7."
+        }
+      ]
     },
     {
       id: "1C",
-      title: "L298N Dual H-Bridge Motor Driver",
-      body: "PWM on IO8/IO13 and direction logic on IO9-IO12. Features strict power isolation between the 9V motor pack and ESP32 logic rail.",
-      chips: ["PWM IO8/IO13", "DIR IO9-IO12", "Isolated 9V rails"],
+      title: "L298N Dual H-Bridge Motor Driver & Actuation",
+      stepBadge: "CHALLENGE 1C - PREPPING THE MOTORS & DRIVER",
+      body: "The L298N motor driver allows the microcontroller to control the speed and direction of the motors while providing enough power from an external 9V battery pack to drive the DC motors. PWM on IO8/IO13 controls speed while IO9-IO12 control directional H-bridge logic. Hot glue is used to anchor motor brass terminals and prevent lead fatigue during driving. Textured tire treads provide high traction to prevent wheel slip.",
+      quote: "The motor driver allows the microcontroller to control the speed and direction of the motors while providing enough power for them to run. Hot glue is used to keep the motors in place so they do not move around when the RC car is driving.",
+      chips: ["L298N Dual H-Bridge", "PWM IO8 / IO13", "DIR IO9-IO12", "9V Battery Isolation", "Hot Glue Strain Relief", "Textured Treads"],
+      images: [
+        {
+          src: "images/hardware/ch1c_l298n_wired.png",
+          title: "L298N Driver Interface",
+          badge: "REAL HARDWARE",
+          desc: "L298N dual full-bridge motor driver wired to ESP32-S3 DevBoard."
+        },
+        {
+          src: "images/hardware/ch1c_tt_motors_glue.png",
+          title: "TT DC Gear Motors",
+          badge: "STRAIN RELIEF",
+          desc: "Yellow TT DC gear motors with hot glue strain relief on solder contacts."
+        },
+        {
+          src: "images/hardware/esp32_devboard_pinout.png",
+          title: "ESP32-S3 DevBoard Pinout",
+          badge: "PINOUT SILKSCREEN",
+          desc: "Maker Studio DevBoard back silkscreen showing IO pin mapping."
+        }
+      ]
     },
     {
       id: "1D",
-      title: "Onshape CAD Chassis Re-Engineering",
-      body: "Custom 3D-printed black PLA ambient light shroud (eliminating fluorescent glare) and rigid cantilever sensor comb.",
-      chips: ["Black PLA", "Ambient light shroud", "Cantilever comb"],
+      title: "Chassis CAD with 2 Functional Changes",
+      stepBadge: "CHALLENGE 1D - ONSHAPE 3D CAD CHASSIS",
+      body: "Engineered in Onshape with two critical functional changes: (1) a dedicated slot to securely hold the ESP32-S3 microcontroller in place without adhesive, and (2) a structural diagonal cross-beam to increase the torsional rigidity of the 3D-printed chassis. These modifications eliminate frame flex under high motor torques.",
+      quote: "The two function changes added are a slot to hold the ESP32 and a beam to increase the rigidity of the chassis. The slot is seen on the left image and the beam on the right.",
+      chips: ["Onshape 3D CAD", "ESP32 Mounting Slot", "Rigidity Cross-Beam", "3D-Printed Chassis", "Anti-Flex Geometry"],
+      images: [
+        {
+          src: "images/hardware/ch1d_onshape_slot.png",
+          title: "ESP32 Mounting Slot CAD",
+          badge: "ONSHAPE CAD MOD 1",
+          desc: "3D CAD model displaying the integrated mounting cradle designed to hold the ESP32 board."
+        },
+        {
+          src: "images/hardware/ch1d_onshape_beam.png",
+          title: "Rigidity Cross-Beam CAD",
+          badge: "ONSHAPE CAD MOD 2",
+          desc: "3D CAD model displaying the diagonal structural cross-beam engineered for chassis rigidity."
+        }
+      ]
     },
     {
       id: "2",
-      title: "Systems Integration & Wire Harnessing",
-      body: "Hot-glue strain relief on motor brass tabs, vibration-damped breadboard sleds, and front caster balance.",
-      chips: ["Strain relief", "Damped sleds", "Caster balance"],
-    },
+      title: "Systems Integration & Competition Readiness",
+      stepBadge: "CHALLENGE 2 - FULL ELECTROMECHANICAL INTEGRATION",
+      body: "Complete integration of all breadboard subsystems onto the 3D-printed chassis. Features strict electrical power isolation between the 9V motor pack and 3.3V ESP32 microcontroller, front ball caster balance, low-CG battery bay, and discrete PID control software tuned for the competition tournament.",
+      quote: "We then put those together on a chassis and implement closed loop PID control using C on the ESP32 to compute steering correction from tracking error.",
+      chips: ["Full Integration", "Isolated 9V Rail", "Low-CG Battery Bay", "Front Ball Caster", "Closed-Loop PID Loop"],
+      images: [
+        {
+          src: "images/part_chassis.jpeg",
+          title: "Integrated Mobile Robot Prototype",
+          badge: "SYSTEM PROTOTYPE",
+          desc: "Complete autonomous mobile robot platform with breadboard, sensors, and drive assembly."
+        },
+        {
+          src: "images/slides/slide_2_objective.png",
+          title: "Lab 4 Architecture Deliverable",
+          badge: "COURSE DELIVERABLE",
+          desc: "Official Lab 4 Robotics engineering objective and system integration scope."
+        }
+      ]
+    }
   ];
 
   window.selectTimelineStep = function (index) {
@@ -174,16 +260,38 @@
     const panelStep = document.getElementById('timeline-step-badge');
     const panelTitle = document.getElementById('timeline-title');
     const panelBody = document.getElementById('timeline-body');
+    const panelQuote = document.getElementById('timeline-quote');
     const panelChips = document.getElementById('timeline-chips');
+    const panelImages = document.getElementById('timeline-images');
 
     if (panelWatermark) panelWatermark.textContent = data.id;
-    if (panelStep) panelStep.textContent = `CHALLENGE ${data.id} - STEP ${index + 1} OF ${timelineData.length}`;
+    if (panelStep) panelStep.textContent = data.stepBadge || `CHALLENGE ${data.id} - STEP ${index + 1} OF ${timelineData.length}`;
     if (panelTitle) panelTitle.textContent = data.title;
     if (panelBody) panelBody.textContent = data.body;
+    if (panelQuote) panelQuote.textContent = `"${data.quote}"`;
     if (panelChips) {
       panelChips.innerHTML = data.chips
         .map(
-          (c) => `<span class="rounded-full border border-edge bg-carbon/60 px-4 py-2 font-mono text-[11px] tracking-wider text-cyan">${c}</span>`
+          (c) => `<span class="rounded-full border border-edge bg-carbon/60 px-3.5 py-1.5 font-mono text-[10.5px] tracking-wider text-cyan">${c}</span>`
+        )
+        .join('');
+    }
+    if (panelImages && data.images) {
+      panelImages.innerHTML = data.images
+        .map(
+          (img) => `
+          <div class="group relative overflow-hidden rounded-2xl border border-edge bg-carbon/80 transition-all duration-300 hover:border-cyan/40 cursor-pointer" onclick="openImageLightbox('${img.src}', '${img.title.replace(/'/g, "\'")}', '${img.desc.replace(/'/g, "\'")}')">
+            <div class="relative h-44 sm:h-52 overflow-hidden">
+              <img src="${img.src}" alt="${img.title}" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]">
+              <div class="absolute inset-0 bg-gradient-to-t from-carbon/90 via-transparent to-transparent"></div>
+              <span class="absolute top-3 left-3 rounded-full border border-cyan/30 bg-carbon/80 px-2.5 py-1 font-mono text-[9px] font-semibold tracking-wider text-cyan backdrop-blur-md">${img.badge}</span>
+              <span class="absolute top-3 right-3 flex h-7 w-7 items-center justify-center rounded-full border border-edge bg-carbon/70 text-mute opacity-0 transition-opacity group-hover:opacity-100 group-hover:text-cyan">🔍</span>
+            </div>
+            <div class="p-4">
+              <p class="text-[13px] font-bold text-cream">${img.title}</p>
+              <p class="mt-1 text-[11.5px] leading-relaxed text-mute line-clamp-2">${img.desc}</p>
+            </div>
+          </div>`
         )
         .join('');
     }
@@ -192,58 +300,58 @@
   // --- Hardware Bento Modal Lightbox ---
   const bentoData = {
     esp32: {
-      img: 'images/part_esp32.jpeg',
+      img: 'images/hardware/esp32_devboard_pinout.png',
       title: 'ESP32-S3 Core Compute Brain',
       sub: 'ESP32-S3 microcontroller with 12-bit ADC and USB CDC telemetry',
       callouts: [
-        ['MCU', 'ESP32-S3 Microcontroller Brain'],
-        ['ADC', '12-bit SAR: resolves the 3400 vs 420 count contrast'],
-        ['COMMS', 'USB CDC serial telemetry active on boot'],
-        ['LOGIC', 'Native 3.3 V rail, isolated from motor power'],
+        ['MCU', 'ESP32-S3 DevBoard (EnVision Maker Studio edition)'],
+        ['ADC', '12-bit SAR ADC resolving optical contrast between white floor and black line'],
+        ['COMMS', 'USB CDC serial telemetry active for real-time serial monitor debugging'],
+        ['LOGIC', 'Native 3.3V rail isolated from high-current motor power rails'],
       ],
     },
     comb: {
-      img: 'images/part_sensor_comb.jpeg',
-      title: '7-LDR Optoelectronic Comb',
-      sub: 'Infrared/visible optical reflectance array · 5 mm CdS cells',
+      img: 'images/hardware/ch1b_ldr_breadboard.png',
+      title: '7-Photoresistor Optoelectronic Sensor Array',
+      sub: 'CdS photoresistor reflectance array with 10k pull-down dividers',
       callouts: [
-        ['SENSORS', '7 × 5 mm CdS photoresistors'],
-        ['DIVIDERS', '10 kΩ pull-down network per channel'],
-        ['HEIGHT', 'Calibrated to 4 mm ground clearance'],
-        ['CONTRAST', '+800% signal swing, tape vs floor'],
+        ['SENSORS', '7 discrete 5 mm CdS photoresistors mapped to analog inputs IO1 to IO7'],
+        ['DIVIDERS', '10k Ohm pull-down resistor network converting resistance to analog voltage'],
+        ['READINGS', 'White surface: 2100-2400 ADC | Black surface: 3000-3500 ADC'],
+        ['HEIGHT', 'Tuned to 4-5 mm ground clearance for optimal optical signal contrast'],
       ],
     },
     l298n: {
-      img: 'images/part_l298n.jpeg',
-      title: 'L298N Dual H-Bridge Driver',
-      sub: 'Bi-directional high-current DC motor drive',
+      img: 'images/hardware/ch1c_l298n_wired.png',
+      title: 'L298N Dual H-Bridge Motor Driver',
+      sub: 'Bi-directional high-current DC motor actuation with power isolation',
       callouts: [
-        ['OUTPUT', 'Dual 2 A full-bridge channels'],
-        ['PWM', 'Speed control on IO8 / IO13'],
-        ['DIR', 'Direction logic on IO9-IO12'],
-        ['POWER', '5 V regulator jumper isolated from USB-C logic'],
+        ['OUTPUT', 'Dual H-Bridge driving two yellow TT DC gear motors'],
+        ['PWM', 'Speed control via hardware PWM on IO8 and IO13'],
+        ['DIR', 'Direction logic control on IO9, IO10, IO11, and IO12'],
+        ['POWER', 'Dedicated 9V external battery pack with common ground isolation'],
       ],
     },
     pots: {
-      img: 'images/part_pots.jpeg',
-      title: '4-Channel Analog Tuning Cockpit',
-      sub: 'Clockwise-increasing rotary pots for live gain trimming',
+      img: 'images/hardware/ch1a_pots_breadboard.png',
+      title: '4-Potentiometer Real-Time Tuning Deck',
+      sub: 'Clockwise-increasing rotary potentiometers for on-the-fly parameter tuning',
       callouts: [
-        ['IO4', 'Base Speed'],
-        ['IO3', 'Proportional gain: Kp'],
-        ['IO2', 'Integral gain: Ki'],
-        ['IO1', 'Derivative gain: Kd'],
+        ['IO4', 'Base Speed potentiometer mapped from 0 to 100'],
+        ['IO3', 'Proportional gain (Kp) potentiometer for error correction'],
+        ['IO2', 'Integral gain (Ki) potentiometer for steady-state error elimination'],
+        ['IO1', 'Derivative gain (Kd) potentiometer for oscillation damping'],
       ],
     },
     frame: {
-      img: 'images/part_chassis.jpeg',
-      title: 'Low-CG Power & Frame',
-      sub: 'Custom 6×AA 9V battery bay and front ball caster',
+      img: 'images/hardware/ch1d_onshape_slot.png',
+      title: 'Onshape CAD 3D-Printed Chassis',
+      sub: 'Custom 3D-printed chassis with 2 critical functional engineering improvements',
       callouts: [
-        ['POWER', '6×AA pack: 9.0 V nominal, mounted low-CG'],
-        ['CASTER', 'Omnidirectional front ball caster'],
-        ['SHROUD', '3D-printed black PLA ambient light shroud'],
-        ['COMB', 'Rigid cantilever sensor comb'],
+        ['MOD 1', 'Integrated snap-in cradle slot to firmly hold the ESP32-S3 board'],
+        ['MOD 2', 'Diagonal structural cross-beam engineered to maximize torsional rigidity'],
+        ['CASTER', 'Omnidirectional front ball caster providing smooth low-friction pivot'],
+        ['BATTERY', 'Low center-of-gravity battery bay preventing tip-over during rapid turns'],
       ],
     },
   };
@@ -281,6 +389,35 @@
     document.body.style.overflow = '';
   };
 
+  // --- Universal Image Lightbox Modal ---
+  window.openImageLightbox = function (src, title, caption) {
+    const modal = document.getElementById('image-modal');
+    if (!modal) return;
+    document.getElementById('image-modal-img').src = src;
+    document.getElementById('image-modal-img').alt = title || 'Hardware Photo';
+    document.getElementById('image-modal-title').textContent = title || '';
+    document.getElementById('image-modal-caption').textContent = caption || '';
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.closeImageLightbox = function () {
+    const modal = document.getElementById('image-modal');
+    if (!modal) return;
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.style.overflow = '';
+  };
+
+  // Close modals on escape
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      window.closeBentoModal();
+      window.closePosterLightbox();
+      window.closeImageLightbox();
+    }
+  });
   // Close modal on escape
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
