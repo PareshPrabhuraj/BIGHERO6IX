@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#050507">
-  <meta name="description" content="Big Hero 6ix - Autonomous optoelectronic line-following robot engineered for UC San Diego ECE 5: Making, Breaking, Hacking Stuff.">
+  <meta name="description" content="Big Hero 6ix - Line Following ECE 5 Robot engineered for UC San Diego ECE 5: Making, Breaking, Hacking Stuff.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -91,7 +91,7 @@
       <div class="mx-auto grid max-w-7xl items-center gap-16 px-6 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14 lg:px-10">
         <div>
           <p class="font-mono text-[11px] font-semibold tracking-[0.3em] text-cyan">
-            UC SAN DIEGO · ECE 5 AUTONOMOUS MOBILE ROBOTICS
+            UC SAN DIEGO · ECE 5 LINE FOLLOWING ROBOT
           </p>
 
           <h1 class="mt-6 text-[2.85rem] font-extrabold leading-[1.04] tracking-tight text-cream sm:text-6xl xl:text-[4.75rem]">
@@ -99,7 +99,7 @@
               Big Hero <span class="text-glow-cyan text-cyan">6ix</span>
             </span>
             <span class="block mt-3 text-xl sm:text-2xl xl:text-[1.85rem] font-medium tracking-tight text-cream/80 font-mono">
-              Autonomous Optoelectronic Mobile Robot
+              Line Following ECE 5 Robot
             </span>
           </h1>
 
@@ -120,13 +120,13 @@
         </div>
 
         <!-- Real Robot Showcase Card (Authentic Engineering Presentation) -->
-        <div id="hero-tilt-card" class="relative transition-transform duration-300 ease-out cursor-pointer" style="perspective: 1200px;" onclick="openImageLightbox('images/real_robot_hero.jpg', 'Big Hero 6ix - Autonomous Line-Following Robot', 'Fully assembled robot platform with 3D-printed chassis, breadboard electronics, ESP32-S3 microcontroller, 7-photoresistor sensor array, L298N motor driver, and dual TT gear motors.')">
+        <div id="hero-tilt-card" class="relative transition-transform duration-300 ease-out cursor-pointer" style="perspective: 1200px;" onclick="openImageLightbox('images/real_robot_hero.jpg', 'Big Hero 6ix - Line Following ECE 5 Robot', 'Fully assembled robot platform with 3D-printed chassis, breadboard electronics, ESP32-S3 microcontroller, 7-photoresistor sensor array, L298N motor driver, and dual TT gear motors.')">
           <div class="grain relative overflow-hidden rounded-3xl border border-edge bg-surface shadow-2xl transition-all duration-300 hover:border-cyan/40 hover:glow-cyan group">
             <div class="relative overflow-hidden bg-carbon/60 flex flex-col justify-between p-6 sm:p-8">
               <div class="flex items-center justify-between border-b border-edge/60 pb-4">
                 <div class="flex items-center gap-2.5">
                   <span class="h-2 w-2 rounded-full bg-mint animate-pulse"></span>
-                  <span class="font-mono text-[11px] tracking-wider text-mint uppercase font-semibold">Autonomous Mobile Robot</span>
+                  <span class="font-mono text-[11px] tracking-wider text-mint uppercase font-semibold">Line Following ECE 5 Robot</span>
                 </div>
                 <span class="font-mono text-[10px] tracking-widest text-mute">ECE 5 · FALL 2026</span>
               </div>
@@ -134,7 +134,7 @@
               <!-- Main Real Robot Photo Container -->
               <div class="my-auto py-4">
                 <div class="relative overflow-hidden rounded-2xl border border-edge bg-[#08090D] flex items-center justify-center">
-                  <img id="main-robot-photo" src="images/real_robot_hero.jpg" alt="Big Hero 6ix Autonomous Mobile Robot" class="max-h-80 w-full object-contain p-2 transition-transform duration-500 group-hover:scale-[1.03]">
+                  <img id="main-robot-photo" src="images/real_robot_hero.jpg" alt="Big Hero 6ix Line Following ECE 5 Robot" class="max-h-80 w-full object-contain p-2 transition-transform duration-500 group-hover:scale-[1.03]">
                   <span class="absolute right-4 top-4 flex items-center gap-1.5 rounded-full glass border border-edge px-3 py-1.5 font-mono text-[10px] tracking-widest text-cyan opacity-0 transition-opacity duration-300 group-hover:opacity-100 shadow-lg">
                     🔍 INSPECT
                   </span>
@@ -514,14 +514,43 @@
       <div class="pointer-events-none absolute left-1/2 top-0 h-[420px] w-[700px] -translate-x-1/2 rounded-full bg-cyan/[0.04] blur-[130px]"></div>
       <div class="mx-auto max-w-7xl px-6 lg:px-10">
         <div class="grid items-center gap-16 lg:grid-cols-[0.9fr_1.1fr]">
-          <div class="relative mx-auto w-full max-w-md cursor-pointer" onclick="openPosterLightbox()">
-            <div class="absolute -inset-4 rounded-[28px] bg-gradient-to-br from-cyan/15 via-transparent to-mint/15 blur-2xl"></div>
-            <div class="group relative overflow-hidden rounded-2xl border border-edge shadow-2xl">
-              <img src="images/poster_preview.png" alt="Big Hero 6ix Academic Research Poster (24x36 Conference Format)" class="w-full rounded-xl shadow-lg">
-              <div class="absolute inset-0 flex items-center justify-center bg-carbon/0 transition-colors duration-300 group-hover:bg-carbon/40">
-                <span class="flex h-14 w-14 items-center justify-center rounded-full border border-cyan/60 bg-carbon/70 text-cyan opacity-0 backdrop-blur-md transition-all duration-300 group-hover:opacity-100">
-                  🔍
-                </span>
+          <!-- Sleek Grey Academic Poster Placeholder Card -->
+          <div class="relative mx-auto w-full max-w-md">
+            <div class="absolute -inset-4 rounded-[28px] bg-gradient-to-br from-white/[0.04] via-transparent to-white/[0.02] blur-2xl"></div>
+            <div class="relative aspect-[2/3] w-full overflow-hidden rounded-2xl border-2 border-dashed border-edge/80 bg-[#101217] p-8 flex flex-col justify-between shadow-2xl transition-all duration-300 hover:border-cyan/30">
+              <!-- Top Header Bar -->
+              <div class="flex items-center justify-between border-b border-edge/60 pb-4">
+                <div class="flex items-center gap-2">
+                  <span class="h-2 w-2 rounded-full bg-cyan/70"></span>
+                  <span class="font-mono text-[10px] tracking-widest text-mute uppercase font-semibold">24" × 36" CONFERENCE FORMAT</span>
+                </div>
+                <span class="rounded border border-edge/70 bg-carbon/80 px-2 py-0.5 font-mono text-[9px] text-mute">2:3 RATIO</span>
+              </div>
+
+              <!-- Center Placeholder Content -->
+              <div class="my-auto flex flex-col items-center justify-center text-center px-4 py-8">
+                <div class="flex h-16 w-16 items-center justify-center rounded-2xl border border-edge/80 bg-carbon/70 text-cyan mb-5 shadow-inner">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="3" y1="9" x2="21" y2="9"></line>
+                    <line x1="9" y1="21" x2="9" y2="9"></line>
+                  </svg>
+                </div>
+                <p class="font-mono text-[11px] font-bold tracking-[0.2em] text-cream/90 uppercase">ACADEMIC RESEARCH POSTER</p>
+                <p class="mt-2 text-xs leading-relaxed text-mute max-w-xs">
+                  Official 24×36 inch presentation poster deliverable for ECE 5.
+                </p>
+                <div class="mt-6 flex flex-wrap items-center justify-center gap-2">
+                  <span class="rounded-full border border-edge/70 bg-carbon/80 px-3 py-1 font-mono text-[9.5px] text-mute">System Schematics</span>
+                  <span class="rounded-full border border-edge/70 bg-carbon/80 px-3 py-1 font-mono text-[9.5px] text-mute">Onshape CAD</span>
+                  <span class="rounded-full border border-edge/70 bg-carbon/80 px-3 py-1 font-mono text-[9.5px] text-mute">Labs 0-4</span>
+                </div>
+              </div>
+
+              <!-- Bottom Footer Bar -->
+              <div class="border-t border-edge/60 pt-4 flex items-center justify-between font-mono text-[10px] text-mute">
+                <span>TEAM BIG HERO 6IX</span>
+                <span>FALL 2026</span>
               </div>
             </div>
           </div>
@@ -551,19 +580,16 @@
             </div>
 
             <div class="mt-10 flex flex-wrap gap-4">
-              <a href="poster.pdf" download="BigHero6ix_ECE5_Poster_2x3.pdf" onclick="showToast('Downloading poster PDF')" class="flex items-center gap-2.5 rounded-full bg-cyan px-7 py-3.5 text-sm font-bold text-carbon transition-all duration-300 hover:glow-cyan hover:brightness-110">
-                📥 Download Full 2x3 Poster PDF
-              </a>
-              <button onclick="openPosterLightbox()" class="flex items-center gap-2.5 rounded-full border border-edge bg-surface/70 px-7 py-3.5 text-sm font-semibold text-cream transition-all duration-300 hover:border-cyan/40 hover:text-cyan">
-                🔍 Interactive Zoom
-              </button>
+              <span class="flex items-center gap-2 rounded-full border border-edge/80 bg-surface/80 px-6 py-3 font-mono text-[11px] font-semibold text-cream">
+                📐 Official 24" × 36" Conference Format Deliverable
+              </span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- TEAM ROSTER & ENGINEERING RETROSPECTIVE -->
+    <!-- TEAM ROSTER -->
     <section id="team" class="relative py-28 lg:py-36">
       <div class="mx-auto max-w-7xl px-6 lg:px-10">
         <div class="flex max-w-3xl flex-col items-start">
@@ -658,28 +684,6 @@
             </a>
           </div>
         </div>
-
-        <!-- Verbatim 5-Sentence Engineering Retrospective -->
-        <div class="card-surface grain relative mt-20 overflow-hidden rounded-3xl p-10 sm:p-14 lg:p-16">
-          <p class="font-mono text-[10px] tracking-[0.3em] text-mint">ENGINEERING RETROSPECTIVE & LESSONS LEARNED</p>
-          <div class="mt-8 space-y-8">
-            <p class="max-w-4xl text-[15.5px] leading-relaxed sm:text-lg text-cream">
-              Over the final week of development, we significantly improved robot stability by designing a 3D-printed ambient light shroud that eliminated sensor saturation from overhead laboratory lighting.
-            </p>
-            <p class="max-w-4xl text-[15.5px] leading-relaxed sm:text-lg text-cream/85">
-              Concurrently, we tuned our derivative gain Kd to provide critical counter-torque damping, preventing the robot from oscillating off the track during rapid transitions on the Frequency Sweep course.
-            </p>
-            <p class="max-w-4xl text-[15.5px] leading-relaxed sm:text-lg text-cream/85">
-              We also lowered our 7-sensor reflectance comb to a 4 mm ground clearance, expanding the dynamic signal contrast between black electrical tape and white poster board by over 800 percent.
-            </p>
-            <p class="max-w-4xl text-[15.5px] leading-relaxed sm:text-lg text-cream/85">
-              If granted additional development time, we would replace the analog CdS photoresistors with digital infrared phototransistor arrays to eliminate photo-conductive latency and enable significantly higher cruise velocities.
-            </p>
-            <p class="max-w-4xl text-[15.5px] leading-relaxed sm:text-lg text-cream/85">
-              Furthermore, integrating optical wheel encoders for closed-loop motor speed regulation would prevent battery voltage sag from altering our calibrated turn rate over extended competition runs.
-            </p>
-          </div>
-        </div>
       </div>
     </section>
   </main>
@@ -694,7 +698,7 @@
             <span class="font-mono text-sm font-bold tracking-[0.22em] text-cream">BIG HERO <span class="text-cyan">6IX</span></span>
           </span>
           <p class="mt-5 max-w-md text-[13.5px] leading-relaxed text-mute">
-            An autonomous optoelectronic line-following robot: designed, machined, tuned and raced in one quarter for UC San Diego ECE 5.
+            A Line Following ECE 5 Robot: designed, machined, tuned and tested in one quarter for UC San Diego ECE 5.
           </p>
           <p class="mt-6 font-mono text-[11px] leading-relaxed tracking-wider text-mute">
             UC SAN DIEGO JACOBS SCHOOL OF ENGINEERING<br>
@@ -718,7 +722,7 @@
             <ul class="mt-5 space-y-3 font-mono text-[12.5px] text-mute">
               <li><a href="https://github.com/pitchfork650/BIGHERO6IX" target="_blank" rel="noreferrer" class="hover:text-cyan transition-colors">GitHub Team Repository</a></li>
               <li><a href="https://github.com/PareshPrabhuraj/BIGHERO6IX" target="_blank" rel="noreferrer" class="hover:text-cyan transition-colors">Personal Mirror Repo</a></li>
-              <li><a href="poster.pdf" download class="hover:text-cyan transition-colors">Project Documentation (PDF)</a></li>
+              <li><button onclick="scrollToSection('poster')" class="hover:text-cyan transition-colors">Conference Research Poster</button></li>
               <li><button onclick="scrollToSection('code')" class="hover:text-cyan transition-colors">Embedded Firmware Studio</button></li>
             </ul>
           </div>
@@ -752,26 +756,7 @@
     </div>
   </div>
 
-  <!-- POSTER LIGHTBOX -->
-  <div id="poster-lightbox" class="fixed inset-0 z-[90] hidden items-center justify-center bg-carbon/90 p-4 backdrop-blur-xl sm:p-10" onclick="closePosterLightbox()">
-    <div class="relative flex max-h-full flex-col overflow-hidden rounded-2xl border border-edge bg-surface glow-cyan" onclick="event.stopPropagation()">
-      <div class="relative flex-1 overflow-hidden flex items-center justify-center min-h-[60vh] max-h-[76vh]">
-        <img id="poster-zoom-img" src="images/poster_preview.png" alt="Big Hero 6ix Academic Research Poster (24x36 Conference Format)" draggable="false" class="mx-auto block max-h-[76vh] w-auto select-none transition-transform duration-100 ease-out">
-        <button onclick="closePosterLightbox()" class="absolute right-4 top-4 rounded-full border border-edge bg-carbon/80 p-3 text-cream transition-colors hover:text-cyan" aria-label="Close poster">
-          ✕
-        </button>
-      </div>
-      <div class="flex flex-wrap items-center justify-between gap-3 border-t border-edge bg-carbon/60 px-4 py-3">
-        <span class="font-mono text-[10px] tracking-[0.2em] text-mute">DRAG TO PAN · DOUBLE-CLICK TO ZOOM</span>
-        <div class="flex items-center gap-2">
-          <button onclick="zoomPoster(-0.5)" class="rounded-lg border border-edge px-3 py-1.5 text-cream hover:border-cyan/40 hover:text-cyan" aria-label="Zoom out">−</button>
-          <span id="poster-zoom-level" class="w-14 text-center font-mono text-xs text-cyan">100%</span>
-          <button onclick="zoomPoster(0.5)" class="rounded-lg border border-edge px-3 py-1.5 text-cream hover:border-cyan/40 hover:text-cyan" aria-label="Zoom in">+</button>
-          <button onclick="resetPosterZoom()" class="flex items-center gap-1.5 rounded-lg border border-edge px-3 py-1.5 font-mono text-[10px] tracking-wider text-mute hover:text-cream">↺ RESET</button>
-        </div>
-      </div>
-    </div>
-  </div>
+
 
   <script src="app.js"></script>
 
