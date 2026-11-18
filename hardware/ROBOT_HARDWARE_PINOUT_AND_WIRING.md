@@ -3,6 +3,7 @@
 **Team:** Big Hero 6ix (Simar Singh, Gavin Huang, John Barojas, Paresh Prabhu Raj)  
 **Course:** UC San Diego ECE 5 (Prof. Karcher Morris) - Fall Quarter 2026  
 **Platform:** ESP32-S3 Dev Module + L298N Dual H-Bridge Motor Driver  
+**Current Milestone:** Hardware Bring-Up & Motor Validation (Challenge 1C Complete; Line Following Code Planned for Challenge 2)  
 
 ---
 
@@ -25,9 +26,21 @@
 
 ---
 
-## 2. ESP32-S3 Pin Mapping Table
+## 2. ESP32-S3 Pin Mapping Tables
 
-All analog inputs are connected to ESP32-S3 ADC1 channels to ensure reliable `analogRead()` readings during operation.
+### A. Challenge 1C Motor Driver Test Pinout (Current Verified State)
+Tested with `ESP32Motor_Driver_Code.ino` to verify both DC gear motors spin forward, backward, and stop:
+| Function | Motor Driver Pin | ESP32-S3 Test Pin | Notes |
+| :--- | :--- | :--- | :--- |
+| Left Motor Speed (PWM) | `ENA` | `IO42` | PWM speed signal from ESP32 |
+| Left Motor In 1 | `IN1` | `IO41` | Direction logic pin 1 |
+| Left Motor In 2 | `IN2` | `IO40` | Direction logic pin 2 |
+| Right Motor Speed (PWM) | `ENB` | `IO37` | PWM speed signal from ESP32 |
+| Right Motor In 3 | `IN3` | `IO39` | Direction logic pin 1 |
+| Right Motor In 4 | `IN4` | `IO38` | Direction logic pin 2 |
+
+### B. Planned Full Integration Pinout (Challenge 2)
+When all circuits are mounted to the chassis for Challenge 2 line following, the pins are mapped as follows:
 
 | Subsystem | Function Name | ESP32-S3 Pin | Direction | Circuit Details and Notes |
 | :--- | :--- | :--- | :--- | :--- |

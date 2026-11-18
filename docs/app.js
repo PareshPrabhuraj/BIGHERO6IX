@@ -205,21 +205,21 @@
     },
     {
       id: "2",
-      title: "Systems Integration & Final Robot Build",
-      stepBadge: "CHALLENGE 2 - FULL INTEGRATION",
-      body: "Full integration of the breadboard circuits onto the 3D-printed chassis. Features separate power rails for the 9V motor battery pack and the 3.3V ESP32 microcontroller, a front ball caster for smooth turning, a low battery bay for stability, and steering code calibrated for track runs.",
+      title: "Systems Integration & Line Following (Upcoming)",
+      stepBadge: "CHALLENGE 2 - UPCOMING MILESTONE",
+      body: "Upcoming phase: Mounting the calibrated photoresistor sensor comb, potentiometer tuning deck, and tested L298N motor driver onto the 3D-printed chassis. Challenge 2 will focus on developing the closed-loop line following steering algorithm, sensor calibration on the competition track, and live PID gain tuning.",
       images: [
         {
           src: "images/real_robot_hero.jpg",
-          title: "Assembled Robot",
-          badge: "ASSEMBLED ROBOT",
-          desc: "Fully assembled two-wheel drive robot with 3D-printed chassis, breadboard circuits, and photoresistor sensor bar."
+          title: "Assembled Chassis & Circuits",
+          badge: "HARDWARE CHASSIS",
+          desc: "Two-wheel drive chassis with dual DC gear motors, front ball caster, and breadboard circuit bays."
         },
         {
           src: "images/slides/slide_2_objective.png",
           title: "Lab 4 Presentation Slides",
           badge: "LAB 4 PRESENTATION",
-          desc: "ECE 5 Lab 4 presentation slides documenting our build challenges and line tracking results."
+          desc: "ECE 5 Lab 4 presentation slides documenting our build challenges and line tracking goals."
         }
       ]
     }

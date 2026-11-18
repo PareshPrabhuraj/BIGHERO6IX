@@ -3,8 +3,9 @@
  * Team: Big Hero 6ix (Simar Singh, Gavin Huang, John Barojas, Paresh Prabhu Raj)
  * Course: UC San Diego ECE 5 (Prof. Karcher Morris) - Fall Quarter 2026
  *
- * Course starter template for basic line tracking with weighted-average sensor calculations
- * and PID steering control.
+ * Course starter template for upcoming Challenge 2 (line following implementation).
+ * Current project status: Hardware bring-up and motor spin testing (Challenge 1C) complete.
+ * Closed-loop line following and PID tuning will be built out in this template during Challenge 2.
  */
 
 #include <Arduino.h>

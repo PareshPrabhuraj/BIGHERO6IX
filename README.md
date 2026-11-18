@@ -8,19 +8,19 @@
 
 ---
 
-## 1. Project Overview
+## 1. Project Status & Current Milestone
 
-This repository contains the Arduino firmware, circuit wiring diagrams, and lab documentation for Team **Big Hero 6ix** in UC San Diego ECE 5 (Project 4: Line-Following Robot).
+**Current Milestone:** Hardware Bring-Up & Motor Validation (Challenge 1C Complete)  
+**Next Milestone:** Challenge 2 - Full Chassis Integration & Line Following Implementation
 
-Our robot uses differential drive steering to follow a black electrical tape track on a white surface. The system runs on an ESP32-S3 microcontroller, reading a 7-photoresistor sensor comb across the front bumper and driving two DC gear motors through an L298N dual H-bridge motor driver. Four potentiometers on the top breadboard let us tune base speed and PID control gains directly on the track without re-flashing code over USB.
+### What We Have Physically Completed So Far:
+1. **Challenge 1A (Potentiometers):** Wired 4 rotary 10k potentiometers on a breadboard to analog input pins on the ESP32-S3 DevBoard. Verified live analog reads mapped from 0 to 100 on the Serial Monitor (`ESP32Potentiometer_Code.ino`).
+2. **Challenge 1B (Photoresistors):** Built and calibrated a 7-channel CdS photoresistor (LDR) reflectance comb using 10k Ohm pull-down resistors in voltage divider circuits. Measured surface reflectance contrast between white poster board and black electrical tape (`ESP32Photoresistor_Code.ino`).
+3. **Challenge 1C (Motor Driver Spin Test):** Wired our L298N dual H-bridge motor driver to an external 6xAA (9V) battery pack and two yellow 1:48 TT DC gear motors. Successfully ran our motor test sketch (`ESP32Motor_Driver_Code.ino`) to verify that both left and right motors spin forward, spin backward, and stop cleanly.
+4. **Challenge 1D (Chassis CAD):** Modeled two functional chassis modifications in Onshape: a dedicated recessed slot to hold the ESP32-S3 board securely, and a diagonal cross-beam to prevent frame flex.
 
-### Robot Hardware Summary:
-- **Microcontroller:** ESP32-S3 Dev Module (dual-core, 12-bit ADC, USB-C)
-- **Motor Driver:** L298N Dual H-Bridge Driver module (jumpers removed on ENA and ENB for PWM speed control)
-- **Motors & Chassis:** Two yellow 1:48 TT DC gear motors with 65 mm rubber wheels, front ball caster, and 3D-printed chassis
-- **Track Sensors:** 7 CdS photoresistors (LDRs) in a front-mounted sensor comb with 10k Ohm voltage divider resistors to GND
-- **Tuning Potentiometers:** 4 rotary 10k Ohm potentiometers for live Speed, Kp, Ki, and Kd gain adjustments
-- **Power:** 6xAA battery pack (9.0V nominal) powering the L298N motor driver rail, with onboard 5V regulator powering the ESP32 during untethered track runs
+### Current Project State & Next Steps:
+Physically, we have completed bench testing our sensor dividers, potentiometers, and motor driver. Both DC motors are confirmed spinning under driver control. **We have not yet implemented or tested the closed-loop line following steering code.** Our next step for Challenge 2 is to mount all subsystems onto the 3D-printed chassis and build out the line tracking algorithm starting from `Robot_LineFollower_Template.ino`.
 
 ---
 
@@ -28,28 +28,26 @@ Our robot uses differential drive steering to follow a black electrical tape tra
 
 ```
 BIGHERO6IX/
-├── README.md                                 # Project overview, pinouts, and build instructions
-├── docs/                                     # GitHub Pages site and lab documentation
+├── README.md                                 # Project status, hardware pinouts, and test instructions
+├── docs/                                     # GitHub Pages project showcase and lab documentation
 ├── hardware/
-│   └── ROBOT_HARDWARE_PINOUT_AND_WIRING.md   # Complete BOM, breadboard wiring, and power safety rules
+│   └── ROBOT_HARDWARE_PINOUT_AND_WIRING.md   # Circuit wiring, BOM, and motor driver pinouts
 ├── ESP32Potentiometer_Code/
 │   └── ESP32Potentiometer_Code.ino           # Challenge 1A: 4-potentiometer tuning bank test
 ├── ESP32Photoresistor_Code/
 │   └── ESP32Photoresistor_Code.ino           # Challenge 1B: 7-LDR sensor array calibration test
 ├── ESP32Motor_Driver_Code/
-│   └── ESP32Motor_Driver_Code.ino            # Challenge 1C: L298N motor driver test
-├── Robot_LineFollower_Template/
-│   └── Robot_LineFollower_Template.ino       # Course starter template code
-└── ECE5_Robot_LineFollower_Production/
-    └── ECE5_Robot_LineFollower_Production.ino # Complete competition robot firmware with live PID tuning
+│   └── ESP32Motor_Driver_Code.ino            # Challenge 1C: L298N motor driver spin test (current state)
+└── Robot_LineFollower_Template/
+    └── Robot_LineFollower_Template.ino       # Course starter template for upcoming Challenge 2
 ```
 
 ---
 
-## 3. Hardware Pinout Tables
+## 3. Hardware Subsystems & Test Pinouts
 
 ### Challenge 1A: Standalone Potentiometer Breadboard Test
-During the initial Challenge 1A lab bench exercise, the 4 potentiometers were wired to pins IO1 through IO4 to verify analog reads:
+During Challenge 1A bench testing, the 4 potentiometers were wired to pins IO1 through IO4 to verify analog reads:
 | Parameter | Function | Standalone Lab Pin | Notes |
 | :--- | :--- | :--- | :--- |
 | **Speed** | Base Motor Speed (0-100) | `IO4` | Clockwise increases nominal forward PWM |
@@ -57,64 +55,51 @@ During the initial Challenge 1A lab bench exercise, the 4 potentiometers were wi
 | **$K_i$** | Integral Gain (0-100) | `IO2` | Corrects steady-state drift on wide turns |
 | **$K_d$** | Derivative Gain (0-100) | `IO1` | Dampens oscillations and reduces wobble |
 
-### Final Robot Production Pinout
-On the assembled robot, the 7 LDRs take pins IO1 through IO7, so the 4 potentiometers are moved to ADC1 pins IO47, IO35, IO39, and IO42:
-
-#### Potentiometers (Gain Bank)
-| Parameter | Function | Production Pin | Mapping Range |
+### Challenge 1B: 7-Photoresistor (LDR) Reflectance Array
+The 7 sensors use 10k Ohm resistors to GND to form voltage dividers:
+| Sensor | Position on Bumper | Standalone Lab Pin | Notes |
 | :--- | :--- | :--- | :--- |
-| **Speed** | Nominal Forward Speed | `IO47` | Mapped to PWM 20-200 |
-| **$K_p$** | Proportional Gain | `IO35` | Scaled for steering turn differential |
-| **$K_i$** | Integral Gain | `IO39` | Scaled with anti-windup clamp |
-| **$K_d$** | Derivative Gain | `IO42` | Scaled for rate-of-change damping |
+| **LDR 0** | Far Left | `IO1` | Higher reading on dark line, lower on white board |
+| **LDR 1** | Mid Left | `IO2` | Calibrated ground clearance: 4-5 mm |
+| **LDR 2** | Inner Left | `IO3` | 10k Ohm pull-down resistor to GND |
+| **LDR 3** | Center | `IO4` | Centerline reference sensor |
+| **LDR 4** | Inner Right | `IO5` | 10k Ohm pull-down resistor to GND |
+| **LDR 5** | Mid Right | `IO6` | Calibrated ground clearance: 4-5 mm |
+| **LDR 6** | Far Right | `IO7` | Higher reading on dark line, lower on white board |
 
-#### Photoresistor (LDR) Sensor Comb
-The 7 sensors are mounted side-by-side along the front bumper breadboard across the black tape track:
-| Sensor | Position on Bumper | ESP32-S3 Pin | Circuit Connection |
+### Challenge 1C: L298N Motor Driver Spin Test (Current Verified State)
+Tested with `ESP32Motor_Driver_Code.ino` using the `L298NX2` Arduino library:
+| Function | Motor Driver Pin | ESP32-S3 Lab Test Pin | Description |
 | :--- | :--- | :--- | :--- |
-| **LDR 0** | Far Left | `IO1` | Midpoint between LDR and 10k resistor to GND |
-| **LDR 1** | Mid Left | `IO2` | Midpoint between LDR and 10k resistor to GND |
-| **LDR 2** | Inner Left | `IO3` | Midpoint between LDR and 10k resistor to GND |
-| **LDR 3** | Center | `IO4` | Midpoint between LDR and 10k resistor to GND |
-| **LDR 4** | Inner Right | `IO5` | Midpoint between LDR and 10k resistor to GND |
-| **LDR 5** | Mid Right | `IO6` | Midpoint between LDR and 10k resistor to GND |
-| **LDR 6** | Far Right | `IO7` | Midpoint between LDR and 10k resistor to GND |
+| Left Motor Speed (PWM) | `ENA` | `IO42` | Controls left motor speed |
+| Left Motor In 1 | `IN1` | `IO41` | Left motor direction pin 1 |
+| Left Motor In 2 | `IN2` | `IO40` | Left motor direction pin 2 |
+| Right Motor Speed (PWM) | `ENB` | `IO37` | Controls right motor speed |
+| Right Motor In 3 | `IN3` | `IO39` | Right motor direction pin 1 |
+| Right Motor In 4 | `IN4` | `IO38` | Right motor direction pin 2 |
 
-#### L298N Motor Driver Connections
-*Note: Remove the factory black jumpers on ENA and ENB so the ESP32 can send analogWrite PWM signals.*
-| Driver Pin | ESP32-S3 Pin | Function |
-| :--- | :--- | :--- |
-| `ENA` | `IO8` | Left motor PWM speed |
-| `IN1` | `IO9` | Left motor direction 1 (HIGH for forward) |
-| `IN2` | `IO10` | Left motor direction 2 (LOW for forward) |
-| `IN3` | `IO11` | Right motor direction 1 (HIGH for forward) |
-| `IN4` | `IO12` | Right motor direction 2 (LOW for forward) |
-| `ENB` | `IO13` | Right motor PWM speed |
+*Note: For final full integration (Challenge 2), motor driver control pins are planned for IO8-IO13 so pins IO1-IO7 remain dedicated to the 7 LDR sensor array.*
 
 ---
 
-## 4. Building and Flashing the Code
+## 4. Building and Flashing the Test Sketches
 
-### Using the Arduino IDE
-1. Open the Arduino IDE and install the ESP32 board package by Espressif (`esp32` version 2.0.x or 3.x).
+### Flashing the Motor Spin Test (`ESP32Motor_Driver_Code`)
+1. Open the Arduino IDE and ensure the **ESP32 by Espressif** board package is installed.
 2. Under **Tools > Board**, select **ESP32S3 Dev Module**.
-3. Set the following board settings:
-   - **USB CDC On Boot:** `Enabled` (required to see `Serial.print()` output in the Serial Monitor)
-   - **Flash Mode:** `QIO 80MHz`
-   - **Partition Scheme:** `Default 4MB with spiffs`
-   - **Upload Speed:** `921600`
-4. Select the serial port matching your USB-C cable (for example `/dev/cu.usbmodem*` on macOS).
-5. Open `ECE5_Robot_LineFollower_Production/ECE5_Robot_LineFollower_Production.ino` and click **Upload**.
+3. Install the **L298NX2** library via **Tools > Manage Libraries...** (search `L298NX2` by Andrea Lombardo).
+4. Connect the ESP32-S3 via USB-C (ensure battery power to the ESP32 5V rail is disconnected while USB is connected).
+5. Open `ESP32Motor_Driver_Code/ESP32Motor_Driver_Code.ino`.
+6. Click **Upload**. After flashing, elevate the robot chassis so the wheels spin freely in the air, connect battery power, and observe:
+   - Both motors spin forward for 3 seconds.
+   - Both motors spin backward for 3 seconds.
+   - Both motors stop for 3 seconds.
 
-### Using the Command Line (`arduino-cli`)
-```bash
-# Compile with USB CDC enabled (ESP32-S3 board option CDCOnBoot=cdc)
-arduino-cli compile --fqbn esp32:esp32:esp32s3:CDCOnBoot=cdc ECE5_Robot_LineFollower_Production
-
-# Upload to the ESP32-S3
-arduino-cli upload -p /dev/cu.usbmodem* --fqbn esp32:esp32:esp32s3:CDCOnBoot=cdc ECE5_Robot_LineFollower_Production
-```
+### Flashing Sensor & Potentiometer Calibration Sketches
+- `ESP32Potentiometer_Code/ESP32Potentiometer_Code.ino`: Open Serial Monitor at 115200 baud to observe real-time mapped readings (0-100) as you turn each potentiometer.
+- `ESP32Photoresistor_Code/ESP32Photoresistor_Code.ino`: Open Serial Monitor at 115200 baud to view raw ADC readings across all 7 photoresistors over light and dark surfaces.
 
 ### Lab Safety Reminders
-- **Disconnect the 5V power wire** from the L298N to the ESP32 before plugging the ESP32 into a computer USB port. Having battery power and USB power connected simultaneously can damage your computer port or the board regulator.
-- When ready for track testing: unplug the USB cable, set the robot on the starting line, reconnect the 5V jumper, and turn on the battery pack switch.
+- **Prevent Dual Power Back-Feeding:** Never connect the 6xAA battery pack to the ESP32 5V pin while the USB-C cable is connected to a computer. Disconnect the 5V jumper before plugging in USB.
+- **Strain Relief:** Yellow TT DC motor solder tabs are fragile. Ensure hot glue is applied over the wire solder joints before testing wheel rotation.
+- **Bench Safety:** Always place the robot on a stand or block so the wheels are off the table when testing motor driver code.
