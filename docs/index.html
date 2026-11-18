@@ -106,7 +106,7 @@
           </h1>
 
           <p class="mt-8 max-w-xl text-[15.5px] leading-[1.75] text-mute sm:text-base">
-            Engineered by Team Big Hero 6ix for UC San Diego ECE 5: Making, Breaking, Hacking Stuff (Prof. Karcher Morris). Featuring dual-core ESP32-S3 processing, 7-channel optoelectronic reflectance sensing, real-time analog steering parameter calibration, and high-traction differential drive actuation.
+            Built by Simar Singh, Gavin Huang, John Barojas, and Paresh Prabhu Raj for UC San Diego ECE 5 (Prof. Karcher Morris). An autonomous two-wheel drive robot featuring an ESP32-S3 microcontroller, a 7-photoresistor reflectance array, real-time potentiometer gain tuning, and a custom 3D-printed chassis.
           </p>
 
           <div class="mt-10 flex flex-wrap items-center gap-4">
@@ -122,31 +122,29 @@
         </div>
 
         <!-- Real Robot Showcase Card (Authentic Engineering Presentation) -->
-        <div id="hero-tilt-card" class="relative transition-transform duration-300 ease-out" style="perspective: 1200px;">
-          <div class="grain relative overflow-hidden rounded-3xl border border-edge bg-surface shadow-2xl">
-            <div class="relative overflow-hidden bg-carbon/60 min-h-[340px] sm:min-h-[420px] lg:min-h-[460px] flex flex-col justify-between p-6 sm:p-8">
+        <div id="hero-tilt-card" class="relative transition-transform duration-300 ease-out cursor-pointer" style="perspective: 1200px;" onclick="openImageLightbox('images/real_robot_hero.jpg', 'Big Hero 6ix - Autonomous Line-Following Robot', 'Fully assembled robot platform with 3D-printed chassis, breadboard electronics, ESP32-S3 microcontroller, 7-photoresistor sensor array, L298N motor driver, and dual TT gear motors.')">
+          <div class="grain relative overflow-hidden rounded-3xl border border-edge bg-surface shadow-2xl transition-all duration-300 hover:border-cyan/40 hover:glow-cyan group">
+            <div class="relative overflow-hidden bg-carbon/60 flex flex-col justify-between p-6 sm:p-8">
               <div class="flex items-center justify-between border-b border-edge/60 pb-4">
                 <div class="flex items-center gap-2.5">
-                  <span class="h-2 w-2 rounded-full bg-mint"></span>
-                  <span class="font-mono text-[11px] tracking-wider text-mint uppercase font-semibold">Final Competition Robot</span>
+                  <span class="h-2 w-2 rounded-full bg-mint animate-pulse"></span>
+                  <span class="font-mono text-[11px] tracking-wider text-mint uppercase font-semibold">Autonomous Mobile Robot</span>
                 </div>
                 <span class="font-mono text-[10px] tracking-widest text-mute">ECE 5 · FALL 2026</span>
               </div>
 
               <!-- Main Real Robot Photo Container -->
               <div class="my-auto py-4">
-                <div class="relative overflow-hidden rounded-2xl border border-edge bg-carbon/80 group">
-                  <img id="main-robot-photo" src="images/placeholder_robot.svg" alt="ECE 5 Competition Robot Placeholder" class="h-64 sm:h-80 w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]">
-                  <div class="absolute inset-0 bg-gradient-to-t from-carbon/90 via-transparent to-transparent"></div>
-                  <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs">
-                    <span class="font-mono text-[11px] text-cyan font-medium">Big Hero 6ix Autonomous Platform</span>
-                    <span class="text-mute font-mono text-[10px]">UC San Diego ECE 5</span>
-                  </div>
+                <div class="relative overflow-hidden rounded-2xl border border-edge bg-[#08090D] flex items-center justify-center">
+                  <img id="main-robot-photo" src="images/real_robot_hero.jpg" alt="Big Hero 6ix Autonomous Mobile Robot" class="h-64 sm:h-80 w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]">
+                  <span class="absolute right-4 top-4 flex items-center gap-1.5 rounded-full glass border border-edge px-3 py-1.5 font-mono text-[10px] tracking-widest text-cyan opacity-0 transition-opacity duration-300 group-hover:opacity-100 shadow-lg">
+                    🔍 INSPECT
+                  </span>
                 </div>
               </div>
 
               <div class="border-t border-edge/60 pt-4 flex flex-wrap items-center justify-between gap-2 text-mute text-xs">
-                <span>Breadboard · ESP32-S3 · 7-Photoresistor Bar · L298N</span>
+                <span>Fully Assembled Hardware Platform</span>
                 <span class="font-mono text-cyan text-[11px] font-semibold">Team Big Hero 6ix</span>
               </div>
             </div>
@@ -284,21 +282,21 @@
               </span>
             </div>
             <div class="relative border-t border-edge/60 bg-surface/90 p-7 sm:p-8">
-              <h3 class="text-xl font-bold tracking-tight text-cream">ESP32-S3 Core Compute Brain</h3>
+              <h3 class="text-xl font-bold tracking-tight text-cream">ESP32-S3 Microcontroller Board</h3>
               <p class="mt-2 text-[13.5px] text-mute leading-relaxed">ESP32-S3 microcontroller with 12-bit ADC and USB CDC telemetry</p>
             </div>
           </button>
 
-          <!-- Card 2: 7-LDR Sensor Comb -->
+          <!-- Card 2: 7-Photoresistor Sensor Array -->
           <button onclick="openBentoModal('comb')" class="card-surface group relative overflow-hidden rounded-3xl text-left md:col-span-5 flex flex-col justify-between border border-edge transition-all duration-300 hover:border-cyan/40 hover:glow-cyan">
             <div class="relative overflow-hidden h-80 sm:h-96 w-full bg-[#08090D] flex items-center justify-center p-6">
-              <img src="images/hardware/ch1b_ldr_breadboard.png" alt="7-LDR Sensor Comb" class="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-[1.04]">
+              <img src="images/hardware/ch1b_ldr_breadboard.png" alt="7-Photoresistor Sensor Array" class="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-[1.04]">
               <span class="absolute right-4 top-4 flex items-center gap-1.5 rounded-full glass border border-edge px-3 py-1.5 font-mono text-[10px] tracking-widest text-cyan opacity-0 transition-opacity duration-300 group-hover:opacity-100 shadow-lg">
                 🔍 INSPECT
               </span>
             </div>
             <div class="relative border-t border-edge/60 bg-surface/90 p-7 sm:p-8">
-              <h3 class="text-xl font-bold tracking-tight text-cream">7-LDR Optoelectronic Comb</h3>
+              <h3 class="text-xl font-bold tracking-tight text-cream">7-Photoresistor Sensor Array</h3>
               <p class="mt-2 text-[13.5px] text-mute leading-relaxed">7-channel optical reflectance array with 10k Ohm voltage dividers</p>
             </div>
           </button>
@@ -312,8 +310,8 @@
               </span>
             </div>
             <div class="relative border-t border-edge/60 bg-surface/90 p-7 sm:p-8">
-              <h3 class="text-xl font-bold tracking-tight text-cream">L298N Dual H-Bridge Driver</h3>
-              <p class="mt-2 text-[13.5px] text-mute leading-relaxed">Bi-directional high-current DC motor drive</p>
+              <h3 class="text-xl font-bold tracking-tight text-cream">L298N Dual H-Bridge Motor Driver</h3>
+              <p class="mt-2 text-[13.5px] text-mute leading-relaxed">Bi-directional high-current DC motor drive with power isolation</p>
             </div>
           </button>
 
@@ -326,12 +324,12 @@
               </span>
             </div>
             <div class="relative border-t border-edge/60 bg-surface/90 p-7 sm:p-8">
-              <h3 class="text-xl font-bold tracking-tight text-cream">4-Channel Analog Tuning Cockpit</h3>
+              <h3 class="text-xl font-bold tracking-tight text-cream">4-Potentiometer Gain Tuning Deck</h3>
               <p class="mt-2 text-[13.5px] text-mute leading-relaxed">4-channel potentiometer deck for real-time speed and gain calibration</p>
             </div>
           </button>
 
-          <!-- Card 5: Low-CG Power & Frame -->
+          <!-- Card 5: 3D-Printed Chassis & Power Assembly -->
           <button onclick="openBentoModal('frame')" class="card-surface group relative overflow-hidden rounded-3xl text-left md:col-span-12 flex flex-col justify-between border border-edge transition-all duration-300 hover:border-cyan/40 hover:glow-cyan">
             <div class="relative overflow-hidden h-96 sm:h-[440px] w-full bg-[#08090D] flex items-center justify-center p-6">
               <img src="images/hardware/ch1d_onshape_slot.png" alt="Onshape 3D CAD Chassis" class="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-[1.03]">
@@ -340,8 +338,8 @@
               </span>
             </div>
             <div class="relative border-t border-edge/60 bg-surface/90 p-7 sm:p-8">
-              <h3 class="text-xl font-bold tracking-tight text-cream">Low-CG Power & Frame</h3>
-              <p class="mt-2 text-[13.5px] text-mute leading-relaxed">Custom 6×AA 9V battery bay and front ball caster</p>
+              <h3 class="text-xl font-bold tracking-tight text-cream">3D-Printed Chassis & Power Assembly</h3>
+              <p class="mt-2 text-[13.5px] text-mute leading-relaxed">Custom 6×AA 9V battery bay, front ball caster, and integrated ESP32 mounting slot</p>
             </div>
           </button>
         </div>
@@ -355,7 +353,7 @@
         <div class="flex max-w-3xl flex-col items-start">
           <p class="font-mono text-[11px] font-semibold tracking-[0.3em] text-cyan">COURSE DELIVERABLES</p>
           <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-cream sm:text-4xl lg:text-5xl">Official Submission Slide Deck</h2>
-          <p class="mt-5 text-[15.5px] leading-relaxed text-mute sm:text-base">The complete five-slide technical dossier submitted for grading in ECE 5: Making, Breaking, Hacking Stuff. Click any slide to inspect the schematics, breadboard builds, and Onshape CAD models in full 200 DPI resolution.</p>
+          <p class="mt-5 text-[15.5px] leading-relaxed text-mute sm:text-base">The complete five-slide project presentation submitted for Lab 4 in ECE 5: Making, Breaking, Hacking Stuff. Click any slide to inspect the circuit schematics, breadboard wiring, and Onshape 3D CAD chassis models.</p>
         </div>
 
         <div class="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -439,7 +437,7 @@
         <div class="flex max-w-3xl flex-col items-start">
           <p class="font-mono text-[11px] font-semibold tracking-[0.3em] text-cyan">PHYSICS-BASED DIGITAL TWIN</p>
           <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-cream sm:text-4xl lg:text-5xl">Real-Time Track Simulation Lab</h2>
-          <p class="mt-5 text-[15.5px] leading-relaxed text-mute sm:text-base">A physics-true digital twin of Big Hero 6ix: 7 raycast reflectance sensors, differential-drive kinematics and the exact closed-loop steering law flown on hardware. Tune it live or wire in the real robot.</p>
+          <p class="mt-5 text-[15.5px] leading-relaxed text-mute sm:text-base">Interactive simulation of Big Hero 6ix: 7 simulated reflectance sensors, differential-drive kinematics, and the closed-loop steering algorithm programmed on the robot. Test starting gains live in the browser.</p>
         </div>
 
         <div class="mt-16 grid gap-8 xl:grid-cols-[1.62fr_1fr]">
@@ -590,9 +588,9 @@
               </div>
             </div>
 
-            <!-- Sensor Comb Readout Bars -->
+            <!-- Sensor Array Readout Bars -->
             <div class="rounded-3xl border border-edge bg-surface/50 p-7">
-              <p class="font-mono text-[9px] tracking-[0.22em] text-mute">SENSOR COMB - 7-CHANNEL READOUT</p>
+              <p class="font-mono text-[9px] tracking-[0.22em] text-mute">7-CHANNEL SENSOR ARRAY READOUT</p>
               <div class="mt-5 flex justify-between">
                 <div class="flex flex-col items-center gap-2">
                   <div id="sensor-bar-0" class="h-10 w-2.5 rounded-full bg-cyan transition-all duration-100" style="opacity: 0.25;"></div>

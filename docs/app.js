@@ -214,10 +214,10 @@
       chips: ["Full Integration", "Isolated 9V Rail", "Low-CG Battery Bay", "Front Ball Caster", "Closed-Loop Control"],
       images: [
         {
-          src: "images/placeholder_chassis.svg",
-          title: "Integrated Mobile Robot Prototype",
-          badge: "SYSTEM PROTOTYPE",
-          desc: "Complete autonomous mobile robot platform with breadboard, sensors, and drive assembly."
+          src: "images/real_robot_hero.jpg",
+          title: "Assembled Robot Platform",
+          badge: "REAL HARDWARE",
+          desc: "Fully assembled two-wheel drive robot platform with 3D-printed chassis, breadboard electronics, and optoelectronic sensor bar."
         },
         {
           src: "images/slides/slide_2_objective.png",
@@ -294,7 +294,7 @@
   const bentoData = {
     esp32: {
       img: 'images/hardware/esp32_devboard_pinout.png',
-      title: 'ESP32-S3 Core Compute Brain',
+      title: 'ESP32-S3 Microcontroller Board',
       sub: 'ESP32-S3 microcontroller with 12-bit ADC and USB CDC telemetry',
       callouts: [
         ['MCU', 'ESP32-S3 DevBoard (EnVision Maker Studio edition)'],
@@ -305,7 +305,7 @@
     },
     comb: {
       img: 'images/hardware/ch1b_ldr_breadboard.png',
-      title: '7-Photoresistor Optoelectronic Sensor Array',
+      title: '7-Photoresistor Sensor Array',
       sub: '7-channel optical reflectance array with 10k Ohm voltage dividers',
       callouts: [
         ['SENSORS', '7 discrete 5 mm CdS photoresistors mapped to analog inputs IO1 to IO7'],
@@ -338,8 +338,8 @@
     },
     frame: {
       img: 'images/hardware/ch1d_onshape_slot.png',
-      title: 'Onshape CAD 3D-Printed Chassis',
-      sub: 'Custom 3D-printed chassis with 2 critical functional engineering improvements',
+      title: '3D-Printed Chassis & Power Assembly',
+      sub: 'Custom 3D-printed chassis with integrated ESP32 cradle slot and diagonal cross-beam',
       callouts: [
         ['MOD 1', 'Integrated snap-in cradle slot to firmly hold the ESP32-S3 board'],
         ['MOD 2', 'Diagonal structural cross-beam engineered to maximize torsional rigidity'],
