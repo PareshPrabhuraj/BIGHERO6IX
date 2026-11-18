@@ -1,6 +1,6 @@
-# ECE 5 Project 4: Robot Hardware BOM, Pinout & Interconnect Architecture
-**Principal:** Paresh Prabhu Raj (Section: ECE5_FA26_A00)  
-**Course:** ECE 5 (Prof. Karcher Morris)  
+# ECE 5 Project 4: Robot Hardware BOM, Pinout & Wiring Guide
+**Team:** Big Hero 6ix (Simar Singh, Gavin Huang, John Barojas, Paresh Prabhu Raj)  
+**Course:** UC San Diego ECE 5 (Prof. Karcher Morris) - Fall 2026  
 **Target Platform:** ESP32-S3 Dev Board + L298N Dual H-Bridge Driver  
 
 ---
@@ -20,7 +20,7 @@
 | **6xAA Battery Pack** | 1 | Mobile DC Power Source | 9.0V nominal (6x 1.5V alkaline AA cells), standard barrel / lead wires |
 | **3D Printed Chassis** | 1 | Electromechanical Frame | Initial baseline frame in black PLA (must be returned at quarter end) |
 | **Half-Size Breadboards** | 2 | Solderless Prototyping | Dual bus rails, isolated tie points for LDR array and pot bank |
-| **Jumper Wire Set** | 40+ | Interconnect Harness | M-M and M-F flexible jumpers for board and driver routing |
+| **Jumper Wire Set** | 40+ | Jumper Wire Harness | M-M and M-F flexible jumpers for board and driver routing |
 
 ---
 
@@ -65,20 +65,19 @@ All pin designations are mapped to ADC1 channels to avoid conflict with Wi-Fi / 
    - Supplied from the ESP32 onboard low-dropout (LDO) regulator.
    - Powers the 4 potentiometers and the pull-up sides of the 7 LDR dividers.
 
-### B. Critical Safety and Isolation Invariant
-> [!CAUTION]
-> **STRICT DUAL POWER PREVENTION:** Never connect the ESP32 to a computer via USB while the 9V battery pack is powering the ESP32 5V pin.
-> - When programming or running serial diagnostics: Disconnect the 5V jumper wire between L298N and ESP32.
-> - When running untethered track tests: Unplug the USB cable, verify the chassis switch is OFF, reconnect the 5V wire from L298N to ESP32, then switch battery power ON.
+### B. Critical Safety Rule: Dual Power Prevention
+**IMPORTANT:** Never connect the ESP32 to a computer via USB while the 9V battery pack is powering the ESP32 5V pin.
+- When programming or running serial monitor diagnostics: Disconnect the 5V jumper wire between L298N and ESP32.
+- When running untethered track tests: Unplug the USB cable, verify the chassis power switch is OFF, reconnect the 5V wire from L298N to ESP32, then switch battery power ON.
 
 ---
 
-## 4. Mechanical & Assembly Directives
+## 4. Mechanical & Assembly Notes
 
-1. **Soldering Moratorium:** No sensor or potentiometer pins may be soldered prior to submitting the Challenge 3 line-following video. All connections must remain on solderless breadboards for agile pin re-allocation.
-2. **Motor Lead Strain Relief:** Solder flexible stranded jumper leads to the two motor tabs. Immediately encapsulate the tabs with hot glue to prevent the fragile copper solder lugs from breaking under chassis vibration.
+1. **Breadboard Testing Rule:** Keep all sensor and potentiometer connections on solderless breadboards during testing so pins can be remapped or adjusted easily.
+2. **Motor Lead Strain Relief:** Solder flexible stranded jumper leads to the motor tabs and apply hot glue over the joints to prevent the copper lugs from snapping under vibration.
 3. **Photoresistor Array Geometry:**
-   - Mount all 7 LDRs in a straight horizontal line across the front bumper breadboard.
-   - Center-to-center pitch: exactly 8 mm to 10 mm.
-   - Ground clearance: maintain exactly 5 mm to 8 mm above the track surface.
-4. **Optical Light Shield:** Fabricate a cardboard or 3D printed opaque skirt enclosing the sensor bank to reject ceiling fluorescent ambient lighting.
+   - Mount all 7 LDRs in a straight line across the front bumper breadboard.
+   - Center-to-center pitch: approximately 8 mm to 10 mm.
+   - Ground clearance: maintain 5 mm to 8 mm above the track surface.
+4. **Light Shielding:** Add an opaque skirt or cardstock shroud around the sensor bank to block ambient overhead room lighting from interfering with line detection.

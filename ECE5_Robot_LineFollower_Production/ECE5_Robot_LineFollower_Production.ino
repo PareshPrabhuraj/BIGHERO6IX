@@ -1,15 +1,15 @@
 /*
  * ECE 5 Project 4: Autonomous Line-Following Robot
- * Principal: Paresh Prabhu Raj (A19386710 | ECE5_FA26_A00)
- * Course: ECE 5 (Making, Breaking, Hacking Stuff | Prof. Karcher Morris)
+ * Team: Big Hero 6ix (Simar Singh, Gavin Huang, John Barojas, Paresh Prabhu Raj)
+ * Course: ECE 5 (Prof. Karcher Morris) - Fall 2026
  * 
- * Production Closed-Loop PID Line Tracking Firmware
- * Architecture:
- *   1. ReadPotentiometers() -> Maps Speed, Kp, Ki, Kd to 0-100 engineering scale
- *   2. ReadPhotoresistors()  -> Reads 7 LDR voltage dividers
- *   3. CalcError()          -> Evaluates weighted centroid with 2x noise rejection
- *   4. PID_Turn()           -> Discrete PID feedback with integral anti-windup
- *   5. RunMotors()          -> Differential H-bridge PWM motor actuation
+ * Final Line Follower Robot Firmware
+ * Control Flow:
+ *   1. ReadPotentiometers() -> Reads tuning pots for Speed, Kp, Ki, Kd
+ *   2. ReadPhotoresistors()  -> Reads 7 LDR sensor array
+ *   3. CalcError()          -> Determines line position and tracking error
+ *   4. PID_Turn()           -> Computes steering turn value with integral clamping
+ *   5. RunMotors()          -> Drives left and right motors through L298N
  */
 
 #include <Arduino.h>
@@ -134,7 +134,7 @@ int getDarkestIndex() {
     // Average sensor reading
     long avgVal = totalVal / NUM_SENSORS;
 
-    // Course Heuristic: To verify sensor is on black line, reading must exceed 2x average
+    // Check if the darkest reading is at least 2x the average to make sure we are actually on the black tape
     if (maxDarkValue < (avgVal * 2)) {
         // Line lost or ambient lighting even: return -1 to signal no line lock
         return -1;
@@ -299,7 +299,7 @@ void setup() {
 }
 
 void loop() {
-    // Execution cycle conforming to Lab 4 control loop hierarchy
+    // Read sensors, compute PID turn, and update motors
     ReadPotentiometers();
     ReadPhotoresistors();
     CalcError();
@@ -307,7 +307,7 @@ void loop() {
     RunMotors();
 
 #if PRINTALLDATA
-    // High-frequency telemetry for bench calibration
+    // Print debug values to Serial Monitor when testing on the bench
     Serial.print("Sp: "); Serial.print(speedRead);
     Serial.print(" P: "); Serial.print(kPRead);
     Serial.print(" I: "); Serial.print(kIRead);

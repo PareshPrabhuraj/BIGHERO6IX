@@ -1,10 +1,9 @@
 /*
  * ECE 5 Project 4: Autonomous Line-Following Robot
- * Student: Paresh Prabhu Raj (A19386710 | ECE5_FA26_A00)
+ * Team: Big Hero 6ix (Simar Singh, Gavin Huang, John Barojas, Paresh Prabhu Raj)
  * UC San Diego | Jacobs School of Engineering
  *
- * Closed-Loop PID Line Tracking Firmware Template
- * Compatible with ESP32-S3 and Arduino AVR Architectures
+ * Line Following Starter Template Code
  */
 
 #include <Arduino.h>

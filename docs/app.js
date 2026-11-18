@@ -2,7 +2,7 @@
 // ============================================================
 // Big Hero 6ix - Autonomous Line-Following Robot
 // UC San Diego ECE 5: Making, Breaking, Hacking Stuff
-// Production Firmware Architecture & Interactive Hardware Showcase
+// Team Big Hero 6ix - Robot Showcase & Interactive Gallery
 // ============================================================
 
 (function () {
@@ -217,7 +217,7 @@
         },
         {
           src: "images/slides/slide_2_objective.png",
-          title: "Lab 4 Architecture Presentation",
+          title: "Lab 4 Presentation Slides",
           badge: "LAB 4 PRESENTATION",
           desc: "Official Lab 4 Robotics engineering objective and system integration scope."
         }

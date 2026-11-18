@@ -3,18 +3,20 @@
 **University of California, San Diego**  
 **ECE 5: Making, Breaking, Hacking Stuff (Prof. Karcher Morris)**  
 **Fall Quarter 2026 | Team: Big Hero 6ix**  
+**Team Members:** Simar Singh, Gavin Huang, John Barojas, Paresh Prabhu Raj  
+**Project Site:** [https://pareshprabhuraj.github.io/BIGHERO6IX/](https://pareshprabhuraj.github.io/BIGHERO6IX/)
 
 ---
 
 ## 1. Project Overview
 
-This repository contains the embedded C++ firmware, hardware pinouts, and PID line-tracking control software for Team **Big Hero 6ix** in the UC San Diego ECE 5 Autonomous Line-Following Robot Competition.
+This repository contains the Arduino C++ firmware, circuit wiring diagrams, and project documentation for Team **Big Hero 6ix** in the UC San Diego ECE 5 Line-Following Robot project.
 
 Target Hardware:
 - **Microcontroller**: ESP32-S3 Dev Module (240 MHz dual-core, 12-bit ADC)
 - **Motor Driver**: L298N Dual H-Bridge Driver
 - **Sensors**: 7x CdS Photoresistor (LDR) optical reflectance array with 10k Ohm voltage dividers
-- **Tuning Interface**: 4x 10k Ohm Rotary Potentiometers for live Speed, $K_p$, $K_i$, and $K_d$ gain calibration
+- **Tuning Pots**: 4x 10k Ohm Rotary Potentiometers for real-time Speed, Kp, Ki, and Kd tuning
 - **Power**: 6xAA Battery Pack (9.0V nominal) supplying the L298N high-current rail
 
 ---
@@ -24,8 +26,9 @@ Target Hardware:
 ```
 BIGHERO6IX/
 ├── README.md
+├── docs/                                         # GitHub Pages project portfolio & code viewer
 ├── hardware/
-│   └── ROBOT_HARDWARE_PINOUT_AND_WIRING.md       # Full BOM, electrical interconnects & power rules
+│   └── ROBOT_HARDWARE_PINOUT_AND_WIRING.md       # Full BOM, electrical wiring & safety rules
 ├── ESP32Photoresistor_Code/
 │   └── ESP32Photoresistor_Code.ino               # Challenge 1B: 7-LDR sensor array calibration
 ├── ESP32Potentiometer_Code/
@@ -35,7 +38,7 @@ BIGHERO6IX/
 ├── Robot_LineFollower_Template/
 │   └── Robot_LineFollower_Template.ino           # Base line follower starter template
 └── ECE5_Robot_LineFollower_Production/
-    └── ECE5_Robot_LineFollower_Production.ino    # Complete closed-loop PID production firmware
+    └── ECE5_Robot_LineFollower_Production.ino    # Complete closed-loop line follower robot firmware
 ```
 
 ---
