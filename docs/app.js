@@ -205,15 +205,15 @@
     },
     {
       id: "2",
-      title: "Systems Integration & Line Following (Upcoming)",
-      stepBadge: "CHALLENGE 2 - UPCOMING MILESTONE",
-      body: "Upcoming phase: Mounting the calibrated photoresistor sensor comb, potentiometer tuning deck, and tested L298N motor driver onto the 3D-printed chassis. Challenge 2 will focus on developing the closed-loop line following steering algorithm, sensor calibration on the competition track, and live PID gain tuning.",
+      title: "Challenge 2: Systems Integration & Line Following Code",
+      stepBadge: "CHALLENGE 2 - FULL INTEGRATION & LINE FOLLOWING",
+      body: "Full systems integration: mounting the 7-photoresistor sensor comb (IO8 to IO2), 4-potentiometer tuning deck (IO13, IO12, IO11, IO10), and L298N motor driver (IO42, IO41, IO40, IO37, IO39, IO38) onto the 3D-printed chassis. The closed-loop line following firmware executes a 200 Hz PID control loop, white/black surface normalization, deadband motor compensation, and dynamic recovery on sharp curves.",
       images: [
         {
           src: "images/real_robot_hero.jpg",
-          title: "Assembled Chassis & Circuits",
+          title: "Assembled Line Following Robot",
           badge: "HARDWARE CHASSIS",
-          desc: "Two-wheel drive chassis with dual DC gear motors, front ball caster, and breadboard circuit bays."
+          desc: "Two-wheel drive chassis with dual DC gear motors, front ball caster, 7-sensor comb, and breadboard circuit bays."
         },
         {
           src: "images/slides/slide_2_objective.png",
@@ -296,7 +296,7 @@
       title: '7-Photoresistor Sensor Array',
       sub: '7-channel optical reflectance array with 10k Ohm voltage dividers',
       callouts: [
-        ['SENSORS', '7 discrete 5 mm CdS photoresistors mapped to analog inputs IO1 to IO7'],
+        ['SENSORS', '7 discrete 5 mm CdS photoresistors mapped to analog inputs IO8 to IO2 (Far Left to Far Right)'],
         ['DIVIDERS', '10k Ohm pull-down resistor network converting resistance to analog voltage'],
         ['READINGS', 'White surface: 2100-2400 ADC | Black surface: 3000-3500 ADC'],
         ['HEIGHT', '4-5 mm ground clearance calibrated for clear white-to-black surface contrast'],
@@ -308,8 +308,8 @@
       sub: 'Bi-directional DC motor control with power isolation',
       callouts: [
         ['OUTPUT', 'Dual H-Bridge driving two yellow TT DC gear motors'],
-        ['PWM', 'Speed control via hardware PWM on IO8 and IO13'],
-        ['DIR', 'Direction logic control on IO9, IO10, IO11, and IO12'],
+        ['PWM', 'Speed control via PWM: IO42 (Left ENA) and IO37 (Right ENB)'],
+        ['DIR', 'Direction logic control on IO41, IO40 (Left) and IO39, IO38 (Right)'],
         ['POWER', 'Dedicated 9V external battery pack with common ground isolation'],
       ],
     },
@@ -318,10 +318,10 @@
       title: '4-Potentiometer Tuning Deck',
       sub: '4-channel potentiometer deck for speed and gain calibration',
       callouts: [
-        ['IO4', 'Base Speed potentiometer mapped from 0 to 100'],
-        ['IO3', 'Proportional gain (Kp) potentiometer for error correction'],
-        ['IO2', 'Integral gain (Ki) potentiometer for steady-state error elimination'],
-        ['IO1', 'Derivative gain (Kd) potentiometer for oscillation damping'],
+        ['IO13', 'Base Speed potentiometer mapped from 0 to 100% in Challenge 2 (IO4 in Ch 1A)'],
+        ['IO12', 'Proportional gain (Kp) potentiometer for error correction (IO3 in Ch 1A)'],
+        ['IO11', 'Integral gain (Ki) potentiometer for steady-state error elimination (IO2 in Ch 1A)'],
+        ['IO10', 'Derivative gain (Kd) potentiometer for oscillation damping (IO1 in Ch 1A)'],
       ],
     },
     frame: {
@@ -403,7 +403,7 @@
   const sketches = [
     {
       name: "ESP32Potentiometer_Code.ino",
-      label: "Real-time gain tuning bank · IO1-IO4",
+      label: "Real-time gain tuning bank · IO1-IO4 (Standalone Test)",
       code: `/* ============================================================
    ESP32Potentiometer_Code.ino - Challenge 1A
    4-potentiometer real-time tuning deck
@@ -435,7 +435,7 @@ void loop() {
     },
     {
       name: "ESP32Photoresistor_Code.ino",
-      label: "7-sensor LDR array normalization · IO1-IO7",
+      label: "7-sensor LDR array normalization · IO1-IO7 (Standalone Test)",
       code: `/* ============================================================
    ESP32Photoresistor_Code.ino - Challenge 1B
    7-channel photoresistor reflectance bar with per-sensor
@@ -479,6 +479,145 @@ void loop() {
 
   delay(20);
 }`
+    },
+    {
+      name: "ESP32Motor_Driver_Code.ino",
+      label: "L298N dual H-bridge motor driver · IO42/IO37 PWM, IO41/IO40/IO39/IO38 DIR",
+      code: `/* ============================================================
+   ESP32Motor_Driver_Code.ino - Challenge 1C
+   L298N dual H-bridge motor driver bring-up and verification
+   Left Motor: ENA=42, IN1=41, IN2=40
+   Right Motor: ENB=37, IN3=39, IN4=38
+   ============================================================ */
+
+#include <Arduino.h>
+#include <L298NX2.h>
+
+enum side {LEFT, RIGHT};
+
+// Left Motor (ENA, IN1, IN2), Right Motor (ENB, IN3, IN4)
+L298NX2 DriveMotors(42, 41, 40, 37, 39, 38);
+
+int speed = 75;
+
+void runMotorAtSpeed(side _side, int speed) {
+  if (_side == LEFT) {
+    DriveMotors.setSpeedA(abs(speed));
+    if (speed > 0) DriveMotors.forwardA();
+    else DriveMotors.backwardA();
+  }
+  if (_side == RIGHT) {
+    DriveMotors.setSpeedB(abs(speed));
+    if (speed > 0) DriveMotors.forwardB();
+    else DriveMotors.backwardB();
+  }
+}
+
+void setup() {
+  delay(1500);  // Settling delay before motors spin up
+}
+
+void loop() {
+  // Forward 3s
+  runMotorAtSpeed(LEFT, speed);
+  runMotorAtSpeed(RIGHT, speed);
+  delay(3000);
+
+  // Backward 3s
+  runMotorAtSpeed(LEFT, -speed);
+  runMotorAtSpeed(RIGHT, -speed);
+  delay(3000);
+
+  // Stop 3s
+  runMotorAtSpeed(LEFT, 0);
+  runMotorAtSpeed(RIGHT, 0);
+  delay(3000);
+}`
+    },
+    {
+      name: "Robot_LineFollower_Template.ino",
+      label: "Integrated PID line following control algorithm · IO8-IO2, IO10-IO13, IO46",
+      code: `/* ============================================================
+   Robot_LineFollower_Template.ino - Challenge 2 Line Following
+   UCSD ECE 5 Lab 4 Line Following Robot with PID Control
+   Team: Big Hero 6ix (Simar Singh, Gavin Huang, John Barojas, Paresh Prabhu Raj)
+   ============================================================ */
+
+#include <Arduino.h>
+#include <L298NX2.h>
+
+#define PRINTALLDATA   0   // 0 = untethered run (Slide 12 & 15), 1 = debug
+#define NOMINALSPEED  45   // Base motor speed to overcome gearbox deadband
+
+// Motor Driver: Left (ENA=42, IN1=41, IN2=40), Right (ENB=37, IN3=39, IN4=38)
+L298NX2 DriveMotors(42, 41, 40, 37, 39, 38);
+enum side {LEFT, RIGHT};
+
+// 7 Photoresistors from Left to Right looking from rear (IO8 down to IO2)
+int LDR_Pin[] = {8, 7, 6, 5, 4, 3, 2};
+
+// Potentiometer Tuning Deck (IO10-IO13)
+const int S_pin = 13; // Speed
+const int P_pin = 12; // Proportional (Kp)
+const int I_pin = 11; // Integral (Ki)
+const int D_pin = 10; // Derivative (Kd)
+const int led_Pins[] = {46}; // Calibration status LED
+
+int totalPhotoResistors = sizeof(LDR_Pin) / sizeof(LDR_Pin[0]);
+float Mn[20], Mx[20], LDRf[20];
+int LDR[20];
+int SpRead = 0, kPRead = 0, kIRead = 0, kDRead = 0;
+float error = 0, lasterror = 0, sumerror = 0, last_valid_error = 0;
+float kP = 0, kI = 0, kD = 0;
+int Turn = 0, M1P = 0, M2P = 0;
+int M1SpeedtoMotor = 0, M2SpeedtoMotor = 0;
+
+void runMotorAtSpeed(side _side, int speed) {
+  if (abs(speed) > 0 && abs(speed) < NOMINALSPEED) {
+    speed = (speed > 0) ? NOMINALSPEED : -NOMINALSPEED;
+  }
+  speed = constrain(speed, -255, 255);
+  if (_side == LEFT) {
+    DriveMotors.setSpeedA(abs(speed));
+    if (speed > 0) DriveMotors.forwardA();
+    else DriveMotors.backwardA();
+  }
+  if (_side == RIGHT) {
+    DriveMotors.setSpeedB(abs(speed));
+    if (speed > 0) DriveMotors.backwardB(); // Mirrored physical motor mounting
+    else DriveMotors.forwardB();
+  }
+}
+
+void PID_Turn() {
+  kP = (kPRead / 1023.0) * 1.5;
+  kI = (kIRead / 1023.0) * 0.05;
+  kD = (kDRead / 1023.0) * 0.8;
+
+  sumerror = constrain(sumerror + error, -200, 200);
+  float dError = error - lasterror;
+
+  Turn = (kP * error) + (kI * sumerror) + (kD * dError);
+  M1P = Turn;   // Left motor delta (Slide 13)
+  M2P = -Turn;  // Right motor delta
+  lasterror = error;
+}
+
+void RunMotors() {
+  M1SpeedtoMotor = constrain(SpRead + M1P, -255, 255);
+  M2SpeedtoMotor = constrain(SpRead + M2P, -255, 255);
+  runMotorAtSpeed(LEFT, M1SpeedtoMotor);
+  runMotorAtSpeed(RIGHT, M2SpeedtoMotor);
+}
+
+void loop() {
+  readPotentiometers();
+  readPhotoresistors();
+  calculateError();
+  PID_Turn();
+  RunMotors();
+  delay(5); // ~200 Hz deterministic control loop
+}`
     }
   ];
 
@@ -489,7 +628,7 @@ void loop() {
     return esc
       .replace(/(\/\/.*?$|\/\*[\s\S]*?\*\/)/gm, '<span class="tok-cmt">$1</span>')
       .replace(/(#[a-zA-Z_]+)/g, '<span class="tok-pre">$1</span>')
-      .replace(/\b(void|int|float|double|bool|const|uint8_t|uint16_t|pinMode|ledcSetup|ledcAttachPin|ledcWrite|digitalWrite|analogRead|constrain|abs|delay|Serial|setup|loop)\b/g, '<span class="tok-kw">$1</span>')
+      .replace(/\b(void|int|float|double|bool|const|uint8_t|uint16_t|enum|if|else|for|while|return|sizeof|pinMode|ledcSetup|ledcAttachPin|ledcWrite|digitalWrite|analogRead|constrain|abs|delay|Serial|setup|loop)\b/g, '<span class="tok-kw">$1</span>')
       .replace(/\b(\d+\.?\d*)\b/g, '<span class="tok-num">$1</span>');
   }
 
@@ -515,8 +654,16 @@ void loop() {
     if (code) code.innerHTML = highlightCode(sketch.code);
   };
 
+  window.copyCurrentCode = function () {
+    const sketch = sketches[currentSketchIndex];
+    if (!sketch) return;
+    navigator.clipboard.writeText(sketch.code).then(() => {
+      showToast('Source copied to clipboard', 'success');
+    }).catch(() => {
+      showToast('Failed to copy code', 'error');
+    });
+  };
 
-  
   // Initialize Code Studio Tab 0
   window.selectSketchTab(0);
 })();

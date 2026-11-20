@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <title>Big Hero 6ix - Line Following ECE 5 Robot | UC San Diego ECE 5</title>
-  <link rel="stylesheet" href="style.css?v=2">
+  <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body class="bg-carbon text-cream antialiased">
 
@@ -107,7 +107,7 @@
           </h1>
 
           <p class="mt-8 max-w-xl text-[15.5px] leading-[1.75] text-mute sm:text-base">
-            Built by Simar Singh, Gavin Huang, John Barojas, and Paresh Prabhu Raj for UC San Diego ECE 5 (Prof. Karcher Morris). Currently in hardware bring-up and motor testing: calibrating our 7-photoresistor sensor array, potentiometer tuning bank, and L298N motor driver, with line following implementation planned for Challenge 2.
+            Built by Simar Singh, Gavin Huang, John Barojas, and Paresh Prabhu Raj for UC San Diego ECE 5 (Prof. Karcher Morris). Full hardware and firmware integration complete: featuring an integrated 7-photoresistor reflectance comb, 4-potentiometer real-time PID tuning deck, L298N dual H-bridge motor driver, and closed-loop line following control algorithm.
           </p>
 
           <div class="mt-10 flex flex-wrap items-center gap-4">
@@ -165,7 +165,7 @@
         <div class="flex max-w-3xl flex-col items-start">
           <p class="font-mono text-[11px] font-semibold tracking-[0.3em] text-cyan">SUBSYSTEM PROTOTYPING</p>
           <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-cream sm:text-4xl lg:text-5xl">Build Timeline - Challenges 1A through 2</h2>
-          <p class="mt-5 text-[15.5px] leading-relaxed text-mute sm:text-base">Lab progress across ECE 5: breadboard sensor testing and motor driver validation (Challenges 1A-1D complete), leading into upcoming Challenge 2 line following integration.</p>
+          <p class="mt-5 text-[15.5px] leading-relaxed text-mute sm:text-base">Lab progress across ECE 5: subsystem prototyping through Challenges 1A-1D, culminating in full hardware and firmware integration for Challenge 2 line following.</p>
         </div>
 
         <div class="mt-16 grid gap-10 lg:grid-cols-[340px_1fr]">
@@ -193,7 +193,7 @@
             </button>
             <button data-timeline-btn onclick="selectTimelineStep(4)" class="group relative flex min-w-[240px] items-center gap-4 rounded-2xl border p-5 text-left transition-all duration-300 lg:min-w-0 border-edge bg-surface/50 hover:border-cyan/25">
               <span class="timeline-step-num font-mono text-sm font-bold text-mute">2</span>
-              <span class="flex-1 text-[13.5px] font-semibold leading-snug text-mute group-hover:text-cream">Challenge 2 (Upcoming)</span>
+              <span class="flex-1 text-[13.5px] font-semibold leading-snug text-mute group-hover:text-cream">Challenge 2: Line Following</span>
               <svg class="timeline-chevron shrink-0 text-cyan opacity-0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
             </button>
           </div>
@@ -379,7 +379,7 @@
         <div class="flex max-w-3xl flex-col items-start">
           <p class="font-mono text-[11px] font-semibold tracking-[0.3em] text-cyan">FIRMWARE CODE</p>
           <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-cream sm:text-4xl lg:text-5xl">Arduino Firmware & Code</h2>
-          <p class="mt-5 text-[15.5px] leading-relaxed text-mute sm:text-base">Arduino C++ firmware sketches: real-time potentiometer calibration and 7-channel photoresistor reflectance sensing.</p>
+          <p class="mt-5 text-[15.5px] leading-relaxed text-mute sm:text-base">Arduino C++ firmware sketches across all lab challenges: potentiometer calibration, photoresistor sensing, motor driver testing, and the complete integrated line following control algorithm.</p>
         </div>
 
         <!-- IDE Container -->
@@ -415,6 +415,12 @@
             <button data-code-tab onclick="selectSketchTab(1)" class="flex items-center gap-2 rounded-lg px-3.5 py-2 font-mono text-[11.5px] transition-all duration-300 text-mute hover:bg-white/[0.04] hover:text-cream">
               <span class="text-mute font-bold">#</span> ESP32Photoresistor_Code.ino
             </button>
+            <button data-code-tab onclick="selectSketchTab(2)" class="flex items-center gap-2 rounded-lg px-3.5 py-2 font-mono text-[11.5px] transition-all duration-300 text-mute hover:bg-white/[0.04] hover:text-cream">
+              <span class="text-mute font-bold">#</span> ESP32Motor_Driver_Code.ino
+            </button>
+            <button data-code-tab onclick="selectSketchTab(3)" class="flex items-center gap-2 rounded-lg px-3.5 py-2 font-mono text-[11.5px] transition-all duration-300 text-mute hover:bg-white/[0.04] hover:text-cream">
+              <span class="text-mute font-bold">#</span> Robot_LineFollower_Template.ino
+            </button>
           </div>
 
           <!-- Code Header Sub-bar -->
@@ -424,7 +430,13 @@
                 <span class="rounded bg-mint/10 px-2 py-0.5 font-mono text-[10px] font-semibold text-mint">ACTIVE SOURCE</span>
                 <span id="code-header-name" class="font-mono text-[12px] text-cream font-medium">ESP32Potentiometer_Code.ino</span>
               </div>
-              <span id="code-header-label" class="font-mono text-[11px] tracking-wider text-mute">Real-time gain tuning bank · IO1-IO4</span>
+              <div class="flex items-center gap-3">
+                <span id="code-header-label" class="hidden sm:inline font-mono text-[11px] tracking-wider text-mute">Real-time gain tuning bank · IO1-IO4 (Standalone Test)</span>
+                <button onclick="copyCurrentCode()" class="flex items-center gap-1.5 rounded-lg border border-edge/80 bg-carbon/60 px-2.5 py-1 font-mono text-[11px] text-cream transition-colors hover:border-cyan/40 hover:text-cyan" title="Copy code to clipboard">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                  <span>Copy</span>
+                </button>
+              </div>
             </div>
 
             <!-- Code Viewer Pane -->
@@ -684,6 +696,6 @@
       </div>
     </div>
   </div>
-  <script src="app.js?v=2"></script>
+  <script src="app.js?v=3"></script>
 </body>
 </html>
