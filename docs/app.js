@@ -598,8 +598,8 @@ void PID_Turn() {
   float dError = error - lasterror;
 
   Turn = (kP * error) + (kI * sumerror) + (kD * dError);
-  M1P = Turn;   // Left motor delta (Slide 13)
-  M2P = -Turn;  // Right motor delta
+  M1P = -Turn;  // Left motor delta
+  M2P = Turn;   // Right motor delta
   lasterror = error;
 }
 
