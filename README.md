@@ -68,20 +68,27 @@ BIGHERO6IX/
 
 ---
 
-## 4. Building and Flashing the Test Sketches
+## 4. Building and Flashing the Sketches
+
+### Flashing the Line Following Code (`Robot_LineFollower_Template`)
+1. Open `Robot_LineFollower_Template/Robot_LineFollower_Template.ino` in the Arduino IDE.
+2. Select **Tools > Board > ESP32S3 Dev Module**.
+3. Verify that the **L298NX2** library by Andrea Lombardo is installed in your Arduino library manager.
+4. With battery power disconnected from the ESP32 5V pin, plug in the USB-C cable and click **Upload**.
+5. Once uploaded:
+   - For bench calibration and testing: set `#define PRINTALLDATA 1` to view live telemetry over Serial Monitor at 9600 baud.
+   - For untethered track runs: set `#define PRINTALLDATA 0` to eliminate serial delay and enable the 200 Hz PID control loop.
+   - Sweep the front bumper over the white poster board for 2 seconds (LED 46 flashes), then sweep over the black tape for 2 seconds (LED 46 flashes again).
+   - Place on the track and observe line following. Use the 4 potentiometers to fine-tune Speed (IO13), Kp (IO12), Ki (IO11), and Kd (IO10) on the fly.
 
 ### Flashing the Motor Spin Test (`ESP32Motor_Driver_Code`)
-1. Open the Arduino IDE and ensure the **ESP32 by Espressif** board package is installed.
-2. Under **Tools > Board**, select **ESP32S3 Dev Module**.
-3. Install the **L298NX2** library via **Tools > Manage Libraries...** (search `L298NX2` by Andrea Lombardo).
-4. Connect the ESP32-S3 via USB-C (ensure battery power to the ESP32 5V rail is disconnected while USB is connected).
-5. Open `ESP32Motor_Driver_Code/ESP32Motor_Driver_Code.ino`.
-6. Click **Upload**. After flashing, elevate the robot chassis so the wheels spin freely in the air, connect battery power, and observe:
+1. Open `ESP32Motor_Driver_Code/ESP32Motor_Driver_Code.ino`.
+2. Click **Upload**. After flashing, elevate the robot chassis so the wheels spin freely in the air, connect battery power, and observe:
    - Both motors spin forward for 3 seconds.
    - Both motors spin backward for 3 seconds.
    - Both motors stop for 3 seconds.
 
-### Flashing Sensor & Potentiometer Calibration Sketches
+### Flashing Standalone Sensor & Potentiometer Calibration Sketches
 - `ESP32Potentiometer_Code/ESP32Potentiometer_Code.ino`: Open Serial Monitor at 115200 baud to observe real-time mapped readings (0-100) as you turn each potentiometer.
 - `ESP32Photoresistor_Code/ESP32Photoresistor_Code.ino`: Open Serial Monitor at 115200 baud to view raw ADC readings across all 7 photoresistors over light and dark surfaces.
 

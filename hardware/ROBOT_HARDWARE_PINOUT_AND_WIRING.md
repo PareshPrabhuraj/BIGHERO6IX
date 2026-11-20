@@ -3,7 +3,7 @@
 **Team:** Big Hero 6ix (Simar Singh, Gavin Huang, John Barojas, Paresh Prabhu Raj)  
 **Course:** UC San Diego ECE 5 (Prof. Karcher Morris) - Fall Quarter 2026  
 **Platform:** ESP32-S3 Dev Module + L298N Dual H-Bridge Motor Driver  
-**Current Milestone:** Hardware Bring-Up & Motor Validation (Challenge 1C Complete; Line Following Code Planned for Challenge 2)  
+**Current Milestone:** Challenge 2 - Line Following Code Integrated (Hardware IO Pins Verified)  
 
 ---
 
@@ -72,7 +72,7 @@ When all circuits are mounted to the chassis for Challenge 2 line following, the
 ### A. Photoresistor Voltage Divider Circuit
 Each of the 7 photoresistors forms an analog voltage divider with a 10k Ohm carbon film resistor:
 - **Top Rail:** 3.3V from the ESP32 `3V3` pin connects to one lead of the photoresistor.
-- **Midpoint Tap:** The connection between the other photoresistor lead and the 10k Ohm resistor goes directly to the designated ESP32 analog pin (`IO1` through `IO7`).
+- **Midpoint Tap:** The connection between the other photoresistor lead and the 10k Ohm resistor goes directly to the designated ESP32 analog pin (`IO8` down through `IO2`).
 - **Bottom Rail:** The remaining lead of the 10k Ohm resistor connects to the common breadboard ground rail (`GND`).
 
 **Voltage Behavior:**
@@ -82,7 +82,7 @@ Each of the 7 photoresistors forms an analog voltage divider with a 10k Ohm carb
 ### B. Potentiometer Wiring
 For each 10k Ohm rotary potentiometer:
 - **Pin 1 (Outer):** Connected to the 3.3V power bus rail.
-- **Pin 2 (Wiper / Center):** Connected to the respective analog pin (`IO47`, `IO35`, `IO39`, `IO42`).
+- **Pin 2 (Wiper / Center):** Connected to the respective analog pin (`IO13` for Speed, `IO12` for Kp, `IO11` for Ki, `IO10` for Kd).
 - **Pin 3 (Outer):** Connected to the common ground bus rail (`GND`).
 
 Turning the knob clockwise increases the wiper voltage from 0V to 3.3V (0 to 4095 on the 12-bit ADC).
