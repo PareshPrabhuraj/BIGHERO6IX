@@ -38,7 +38,7 @@
 // ************************************************************************************************* //
 // Change Robot Settings here
 
-#define PRINTALLDATA        1  // Turn to 1  to prints ALL the data when changed to 1, Could be useful for debugging =)
+#define PRINTALLDATA        0  // Turn to 1  to prints ALL the data when changed to 1, Could be useful for debugging =)
                                 // !! Turn to 0 when running robot untethered
 #define NOMINALSPEED        30 // This is the base speed for both motors, can also be increased by using potentiometers
 
@@ -53,7 +53,8 @@ L298NX2 DriveMotors(  42, 41, 40,      37, 39, 38);
 
 enum side {LEFT, RIGHT};
 
-int LDR_Pin[] = {7,6,5,4,3,2,1}; // SET PINS CONNECTED TO PHOTORESISTORS // FROM LEFT TO RIGHT OF THE ROBOT, ROBOT IS ORIENTED WHERE PHOTORESISOTRS FARTHEST FROM YOU AND WHEELS ARE CLOSEST TO YOU      
+
+int LDR_Pin[] = {8,7,6,5,4,3,2}; // SET PINS CONNECTED TO PHOTORESISTORS // FROM LEFT TO RIGHT OF THE ROBOT, ROBOT IS ORIENTED WHERE PHOTORESISOTRS FARTHEST FROM YOU AND WHEELS ARE CLOSEST TO YOU      
 
 // Potentiometer Pins
 const int S_pin = 13; // Speed
@@ -322,12 +323,12 @@ void PID_Turn() {
     sumerror = 0;
 
   if (Turn < 0) {
-    M1P = -Turn;       // One motor becomes slower and the other faster
-    M2P = Turn;
+    M1P = Turn;       // One motor becomes slower and the other faster
+    M2P = -Turn;
   }
   else if (Turn > 0) {
-    M1P = -Turn;
-    M2P = Turn;
+    M1P = Turn;
+    M2P = -Turn;
   }
   else {
     M1P = 0;
