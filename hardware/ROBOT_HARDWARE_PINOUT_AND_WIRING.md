@@ -50,20 +50,20 @@ When all circuits are mounted to the chassis for Challenge 2 line following, the
 | | Right Motor PWM (`ENB`) | `IO37` | Digital Out | Hardware PWM speed signal for Right Motor (retains Ch 1C wiring) |
 | | Right Motor Dir 1 (`IN3`) | `IO39` | Digital Out | Right motor direction logic pin 1 |
 | | Right Motor Dir 2 (`IN4`) | `IO38` | Digital Out | Right motor direction logic pin 2 |
-| **LDR Sensor Comb** | LDR 0 (Far Left) | `IO7` | Analog In | Left-to-right looking from rear (robot oriented with sensors forward) |
-| | LDR 1 (Mid Left) | `IO6` | Analog In | 10k Ohm pull-down divider midpoint to GND |
-| | LDR 2 (Inner Left) | `IO5` | Analog In | 10k Ohm pull-down divider midpoint to GND |
-| | LDR 3 (Center) | `IO4` | Analog In | Centerline tracking reference |
-| | LDR 4 (Inner Right) | `IO3` | Analog In | 10k Ohm pull-down divider midpoint to GND |
-| | LDR 5 (Mid Right) | `IO2` | Analog In | 10k Ohm pull-down divider midpoint to GND |
-| | LDR 6 (Far Right) | `IO1` | Analog In | Left-to-right looking from rear (robot oriented with sensors forward) |
+| **LDR Sensor Comb** | LDR 0 (Far Left) | `IO8` | Analog In | Left-to-right looking from rear (robot oriented with sensors forward) |
+| | LDR 1 (Mid Left) | `IO7` | Analog In | 10k Ohm pull-down divider midpoint to GND |
+| | LDR 2 (Inner Left) | `IO6` | Analog In | 10k Ohm pull-down divider midpoint to GND |
+| | LDR 3 (Center) | `IO5` | Analog In | Centerline tracking reference |
+| | LDR 4 (Inner Right) | `IO4` | Analog In | 10k Ohm pull-down divider midpoint to GND |
+| | LDR 5 (Mid Right) | `IO3` | Analog In | 10k Ohm pull-down divider midpoint to GND |
+| | LDR 6 (Far Right) | `IO2` | Analog In | Left-to-right looking from rear (robot oriented with sensors forward) |
 | **Potentiometers** | Speed Trim (`S_pin`) | `IO13` | Analog In | Reads 0-4095; maps to nominal speed (0-100 scale) |
 | | Proportional Gain ($K_p$, `P_pin`) | `IO12` | Analog In | Reads 0-4095; scales proportional steering response |
 | | Integral Gain ($K_i$, `I_pin`) | `IO11` | Analog In | Reads 0-4095; scales integral error accumulation |
 | | Derivative Gain ($K_d$, `D_pin`) | `IO10` | Analog In | Reads 0-4095; dampens steering oscillations |
 | **Status Indicator** | Calibration LED (`led_Pins`) | `IO46` | Digital Out | Visual feedback during White/Black calibration routines |
 
-*Hardware Architecture Note:* The integrated line follower retains the exact L298N motor driver wiring tested in Challenge 1C (pins IO37-IO42), allocates analog pins IO1-IO7 to the 7-sensor photoresistor comb (oriented left-to-right from rear as IO7 down to IO1), and remaps the 4 gain tuning potentiometers to pins IO10-IO13.
+*Hardware Architecture Note:* The integrated line follower retains the exact L298N motor driver wiring tested in Challenge 1C (pins IO37-IO42), allocates analog pins IO8 down to IO2 to the 7-sensor photoresistor comb (oriented left-to-right from rear as IO8 to IO2), and remaps the 4 gain tuning potentiometers to pins IO10-IO13.
 
 ---
 

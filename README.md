@@ -53,13 +53,13 @@ BIGHERO6IX/
 | **Right Motor Speed (PWM)** | `ENB` | `IO37` | Hardware PWM signal to L298N driver |
 | **Right Motor Dir 1** | `IN3` | `IO39` | Right motor direction logic pin 1 |
 | **Right Motor Dir 2** | `IN4` | `IO38` | Right motor direction logic pin 2 |
-| **LDR 0 (Far Left)** | `LDR_Pin[0]` | `IO7` | Left-to-right looking from rear of robot |
-| **LDR 1 (Mid Left)** | `LDR_Pin[1]` | `IO6` | 10k Ohm pull-down voltage divider |
-| **LDR 2 (Inner Left)** | `LDR_Pin[2]` | `IO5` | 10k Ohm pull-down voltage divider |
-| **LDR 3 (Center)** | `LDR_Pin[3]` | `IO4` | Centerline reference sensor |
-| **LDR 4 (Inner Right)** | `LDR_Pin[4]` | `IO3` | 10k Ohm pull-down voltage divider |
-| **LDR 5 (Mid Right)** | `LDR_Pin[5]` | `IO2` | 10k Ohm pull-down voltage divider |
-| **LDR 6 (Far Right)** | `LDR_Pin[6]` | `IO1` | Left-to-right looking from rear of robot |
+| **LDR 0 (Far Left)** | `LDR_Pin[0]` | `IO8` | Left-to-right looking from rear of robot |
+| **LDR 1 (Mid Left)** | `LDR_Pin[1]` | `IO7` | 10k Ohm pull-down voltage divider |
+| **LDR 2 (Inner Left)** | `LDR_Pin[2]` | `IO6` | 10k Ohm pull-down voltage divider |
+| **LDR 3 (Center)** | `LDR_Pin[3]` | `IO5` | Centerline reference sensor |
+| **LDR 4 (Inner Right)** | `LDR_Pin[4]` | `IO4` | 10k Ohm pull-down voltage divider |
+| **LDR 5 (Mid Right)** | `LDR_Pin[5]` | `IO3` | 10k Ohm pull-down voltage divider |
+| **LDR 6 (Far Right)** | `LDR_Pin[6]` | `IO2` | Left-to-right looking from rear of robot |
 | **Speed Trim Pot** | `S_pin` | `IO13` | Mapped 0-100 base motor speed |
 | **$K_p$ Proportional Pot** | `P_pin` | `IO12` | Proportional steering gain |
 | **$K_i$ Integral Pot** | `I_pin` | `IO11` | Steady-state error accumulation gain |
