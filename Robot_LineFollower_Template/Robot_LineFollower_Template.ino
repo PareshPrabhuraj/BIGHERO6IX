@@ -304,14 +304,14 @@ void PID_Turn() {
   if (abs(error) < 0.2)
     sumerror = 0;
 
-  // Steering direction: flipped so robot turns toward line
+  // Steering direction: turns toward line
   if (Turn < 0) {
-    M1P = -Turn;
-    M2P = Turn;
+    M1P = Turn;
+    M2P = -Turn;
   }
   else if (Turn > 0) {
-    M1P = -Turn;
-    M2P = Turn;
+    M1P = Turn;
+    M2P = -Turn;
   }
   else {
     M1P = 0;
