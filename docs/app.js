@@ -590,22 +590,45 @@ void runMotorAtSpeed(side _side, int speed) {
 }
 
 void PID_Turn() {
-  kP = (kPRead / 1023.0) * 1.5;
-  kI = (kIRead / 1023.0) * 0.05;
-  kD = (kDRead / 1023.0) * 0.8;
+  kP = (float)kPRead * 1.0;
+  kI = (float)kIRead * 0.001;
+  kD = (float)kDRead * 0.15;
 
-  sumerror = constrain(sumerror + error, -200, 200);
-  float dError = error - lasterror;
+  Turn = error * kP + sumerror * kI + (error - lasterror) * kD;
 
-  Turn = (kP * error) + (kI * sumerror) + (kD * dError);
-  M1P = Turn;   // Left motor delta
-  M2P = -Turn;  // Right motor delta
+  if (sumerror > 5)
+    sumerror = 5;
+  else if (sumerror < -5)
+    sumerror = -5;
+
+  if (abs(error) < 0.2)
+    sumerror = 0;
+
+  // Steering direction: turns toward line
+  if (Turn < 0) {
+    M1P = Turn;
+    M2P = -Turn;
+  }
+  else if (Turn > 0) {
+    M1P = Turn;
+    M2P = -Turn;
+  }
+  else {
+    M1P = 0;
+    M2P = 0;
+  }
+
   lasterror = error;
+  sumerror = sumerror + error;
 }
 
 void RunMotors() {
-  M1SpeedtoMotor = constrain(SpRead + M1P, -255, 255);
-  M2SpeedtoMotor = constrain(SpRead + M2P, -255, 255);
+  int leftTarget = NOMINALSPEED + SpRead + M1P;
+  int rightTarget = NOMINALSPEED + SpRead + M2P;
+
+  M1SpeedtoMotor = constrain(leftTarget, -255, 255);
+  M2SpeedtoMotor = constrain(rightTarget, -255, 255);
+
   runMotorAtSpeed(LEFT, M1SpeedtoMotor);
   runMotorAtSpeed(RIGHT, M2SpeedtoMotor);
 }
