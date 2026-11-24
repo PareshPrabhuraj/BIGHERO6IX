@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <title>Big Hero 6ix - Line Following ECE 5 Robot | UC San Diego ECE 5</title>
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="style.css?v=4">
 </head>
 <body class="bg-carbon text-cream antialiased">
 
@@ -50,6 +50,7 @@
       <!-- Desktop Nav Anchors: Floating Glass Pill with No-Wrap Links -->
       <div class="hidden items-center gap-1 xl:gap-2 lg:flex rounded-full border border-edge/80 bg-surface/75 p-1.5 backdrop-blur-xl shadow-lg shadow-black/30">
         <button data-nav-target="overview" onclick="scrollToSection('overview')" class="whitespace-nowrap rounded-full px-3.5 xl:px-4 py-1.5 font-mono text-[11px] xl:text-[11.5px] font-semibold tracking-wider transition-all duration-300 text-mute hover:text-cream hover:bg-white/[0.05]">Overview</button>
+        <button data-nav-target="video" onclick="scrollToSection('video')" class="whitespace-nowrap rounded-full px-3.5 xl:px-4 py-1.5 font-mono text-[11px] xl:text-[11.5px] font-semibold tracking-wider transition-all duration-300 text-mute hover:text-cream hover:bg-white/[0.05]">Video Demo</button>
         <button data-nav-target="timeline" onclick="scrollToSection('timeline')" class="whitespace-nowrap rounded-full px-3.5 xl:px-4 py-1.5 font-mono text-[11px] xl:text-[11.5px] font-semibold tracking-wider transition-all duration-300 text-mute hover:text-cream hover:bg-white/[0.05]">Timeline</button>
         <button data-nav-target="anatomy" onclick="scrollToSection('anatomy')" class="whitespace-nowrap rounded-full px-3.5 xl:px-4 py-1.5 font-mono text-[11px] xl:text-[11.5px] font-semibold tracking-wider transition-all duration-300 text-mute hover:text-cream hover:bg-white/[0.05]">Hardware</button>
         <button data-nav-target="slides" onclick="scrollToSection('slides')" class="whitespace-nowrap rounded-full px-3.5 xl:px-4 py-1.5 font-mono text-[11px] xl:text-[11.5px] font-semibold tracking-wider transition-all duration-300 text-mute hover:text-cream hover:bg-white/[0.05]">Slides</button>
@@ -73,6 +74,7 @@
     <!-- Mobile Menu Drawer -->
     <div id="mobile-menu" class="hidden glass border-t border-edge px-6 pb-7 pt-3 space-y-1 lg:hidden">
       <button onclick="scrollToSection('overview')" class="block w-full rounded-xl px-4 py-3 text-left font-mono text-[13px] font-semibold text-mute hover:bg-white/[0.04] hover:text-cyan transition-colors">Overview</button>
+      <button onclick="scrollToSection('video')" class="block w-full rounded-xl px-4 py-3 text-left font-mono text-[13px] font-semibold text-mute hover:bg-white/[0.04] hover:text-cyan transition-colors">Video Demo</button>
       <button onclick="scrollToSection('timeline')" class="block w-full rounded-xl px-4 py-3 text-left font-mono text-[13px] font-semibold text-mute hover:bg-white/[0.04] hover:text-cyan transition-colors">Build Timeline</button>
       <button onclick="scrollToSection('anatomy')" class="block w-full rounded-xl px-4 py-3 text-left font-mono text-[13px] font-semibold text-mute hover:bg-white/[0.04] hover:text-cyan transition-colors">Hardware Anatomy</button>
       <button onclick="scrollToSection('slides')" class="block w-full rounded-xl px-4 py-3 text-left font-mono text-[13px] font-semibold text-mute hover:bg-white/[0.04] hover:text-cyan transition-colors">Submission Slides</button>
@@ -111,13 +113,17 @@
           </p>
 
           <div class="mt-10 flex flex-wrap items-center gap-4">
-            <button onclick="scrollToSection('anatomy')" class="group flex items-center gap-2.5 rounded-full bg-cyan px-7 py-3.5 text-sm font-bold text-carbon transition-all duration-300 hover:glow-cyan hover:brightness-110">
+            <button onclick="scrollToSection('video')" class="group flex items-center gap-2.5 rounded-full bg-cyan px-7 py-3.5 text-sm font-bold text-carbon transition-all duration-300 hover:glow-cyan hover:brightness-110">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              Watch Video Demo
+            </button>
+            <button onclick="scrollToSection('anatomy')" class="flex items-center gap-2.5 rounded-full border border-edge bg-surface/70 px-7 py-3.5 text-sm font-semibold text-cream transition-all duration-300 hover:border-cyan/40 hover:text-cyan">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
-              Explore Robot Hardware
+              Explore Hardware
             </button>
             <button onclick="scrollToSection('slides')" class="flex items-center gap-2.5 rounded-full border border-edge bg-surface/70 px-7 py-3.5 text-sm font-semibold text-cream transition-all duration-300 hover:border-cyan/40 hover:text-cyan">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-              View Submission Slides
+              Submission Slides
             </button>
           </div>
         </div>
@@ -150,12 +156,58 @@
         </div>
       </div>
 
-      <!-- Scroll Cue to Build Timeline -->
+      <!-- Scroll Cue to Video Demonstration -->
       <div class="mx-auto mt-16 max-w-7xl px-6 text-center lg:mt-24 lg:px-10">
-        <button onclick="scrollToSection('timeline')" class="mx-auto flex flex-col items-center gap-2 text-mute transition-colors hover:text-cyan">
-          <span class="font-mono text-[10px] tracking-[0.3em]">EXPLORE THE BUILD</span>
+        <button onclick="scrollToSection('video')" class="mx-auto flex flex-col items-center gap-2 text-mute transition-colors hover:text-cyan">
+          <span class="font-mono text-[10px] tracking-[0.3em]">WATCH VIDEO DEMONSTRATION</span>
           <svg class="animate-bounce" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"></path></svg>
         </button>
+      </div>
+    </section>
+
+    <!-- CHALLENGE 3 VIDEO DEMONSTRATION SECTION -->
+    <section id="video" class="relative py-24 lg:py-32 border-t border-edge/60 bg-gradient-to-b from-carbon to-[#08090D]">
+      <div class="mx-auto max-w-7xl px-6 lg:px-10">
+        <div class="flex flex-col items-center text-center max-w-3xl mx-auto">
+          <div class="inline-flex items-center gap-2 rounded-full border border-cyan/30 bg-cyan/10 px-4 py-1.5 font-mono text-[11px] font-semibold text-cyan">
+            <span class="h-1.5 w-1.5 rounded-full bg-cyan animate-pulse"></span>
+            CHALLENGE 3: OFFICIAL VIDEO SUBMISSION
+          </div>
+          <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-cream sm:text-4xl lg:text-5xl">Autonomous Line Following</h2>
+          <p class="mt-4 text-[15.5px] leading-relaxed text-mute sm:text-base max-w-2xl">Big Hero 6ix navigating the black electrical tape course untethered. Closed-loop PID steering running at 200 Hz on the ESP32-S3 microcontroller, reading our 7-photoresistor sensor comb to command differential drive motors.</p>
+        </div>
+
+        <div class="mt-12 mx-auto max-w-md sm:max-w-lg">
+          <div class="grain relative overflow-hidden rounded-3xl border border-edge/80 bg-surface/90 shadow-2xl p-4 sm:p-6 transition-all duration-300 hover:border-cyan/40">
+            <div class="relative overflow-hidden rounded-2xl bg-black border border-edge/60 aspect-[9/16] max-h-[640px] flex items-center justify-center">
+              <video id="main-challenge-video" class="h-full w-full object-contain" controls playsinline preload="metadata" poster="media/robot_line_following_poster.jpg">
+                <source src="media/robot_line_following.mp4" type="video/mp4">
+                Your browser does not support HTML5 video playback.
+              </video>
+            </div>
+            <div class="mt-5 grid grid-cols-3 gap-2.5 text-center">
+              <div class="rounded-xl border border-edge/60 bg-carbon/60 p-3">
+                <span class="block font-mono text-[10px] text-mute uppercase tracking-wider">Control Rate</span>
+                <span class="mt-1 block font-mono text-[13px] font-bold text-cyan">200 Hz PID</span>
+              </div>
+              <div class="rounded-xl border border-edge/60 bg-carbon/60 p-3">
+                <span class="block font-mono text-[10px] text-mute uppercase tracking-wider">Sensor Array</span>
+                <span class="mt-1 block font-mono text-[13px] font-bold text-cream">7 LDR Comb</span>
+              </div>
+              <div class="rounded-xl border border-edge/60 bg-carbon/60 p-3">
+                <span class="block font-mono text-[10px] text-mute uppercase tracking-wider">Power Mode</span>
+                <span class="mt-1 block font-mono text-[13px] font-bold text-mint">9V Battery</span>
+              </div>
+            </div>
+            <div class="mt-4 flex items-center justify-between px-1 text-xs text-mute font-mono">
+              <span>Format: MP4 (H.264/AAC, 720p)</span>
+              <a href="media/robot_line_following.mp4" download="BigHero6ix_LineFollowing_Challenge3.mp4" class="text-cyan hover:underline flex items-center gap-1">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                Direct Video Link
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -164,8 +216,8 @@
       <div class="mx-auto max-w-7xl px-6 lg:px-10">
         <div class="flex max-w-3xl flex-col items-start">
           <p class="font-mono text-[11px] font-semibold tracking-[0.3em] text-cyan">SUBSYSTEM PROTOTYPING</p>
-          <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-cream sm:text-4xl lg:text-5xl">Build Timeline - Challenges 1A through 2</h2>
-          <p class="mt-5 text-[15.5px] leading-relaxed text-mute sm:text-base">Lab progress across ECE 5: subsystem prototyping through Challenges 1A-1D, culminating in full hardware and firmware integration for Challenge 2 line following.</p>
+          <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-cream sm:text-4xl lg:text-5xl">Build Timeline - Challenges 1A through 3</h2>
+          <p class="mt-5 text-[15.5px] leading-relaxed text-mute sm:text-base">Lab progress across ECE 5: subsystem prototyping through Challenges 1A-1D, culminating in full hardware and firmware integration for Challenges 2 and 3 line following.</p>
         </div>
 
         <div class="mt-16 grid gap-10 lg:grid-cols-[340px_1fr]">
@@ -194,6 +246,11 @@
             <button data-timeline-btn onclick="selectTimelineStep(4)" class="group relative flex min-w-[240px] items-center gap-4 rounded-2xl border p-5 text-left transition-all duration-300 lg:min-w-0 border-edge bg-surface/50 hover:border-cyan/25">
               <span class="timeline-step-num font-mono text-sm font-bold text-mute">2</span>
               <span class="flex-1 text-[13.5px] font-semibold leading-snug text-mute group-hover:text-cream">Challenge 2: Line Following</span>
+              <svg class="timeline-chevron shrink-0 text-cyan opacity-0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+            <button data-timeline-btn onclick="selectTimelineStep(5)" class="group relative flex min-w-[240px] items-center gap-4 rounded-2xl border p-5 text-left transition-all duration-300 lg:min-w-0 border-edge bg-surface/50 hover:border-cyan/25">
+              <span class="timeline-step-num font-mono text-sm font-bold text-mute">3</span>
+              <span class="flex-1 text-[13.5px] font-semibold leading-snug text-mute group-hover:text-cream">Challenge 3: Video Demonstration</span>
               <svg class="timeline-chevron shrink-0 text-cyan opacity-0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
             </button>
           </div>
@@ -696,6 +753,6 @@
       </div>
     </div>
   </div>
-  <script src="app.js?v=3"></script>
+  <script src="app.js?v=4"></script>
 </body>
 </html>

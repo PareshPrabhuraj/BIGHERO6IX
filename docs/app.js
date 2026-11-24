@@ -58,7 +58,7 @@
   // --- Navbar Scroll & Spy ---
   const header = document.querySelector('header');
   const navLinks = document.querySelectorAll('[data-nav-target]');
-  const sections = ['overview', 'timeline', 'anatomy', 'slides', 'code', 'poster', 'team'];
+  const sections = ['overview', 'video', 'timeline', 'anatomy', 'slides', 'code', 'poster', 'team'];
 
   window.addEventListener('scroll', () => {
     if (window.scrollY > 20) {
@@ -220,6 +220,26 @@
           title: "Lab 4 Presentation Slides",
           badge: "LAB 4 PRESENTATION",
           desc: "ECE 5 Lab 4 presentation slides documenting our build challenges and line tracking goals."
+        }
+      ]
+    },
+    {
+      id: "3",
+      title: "Challenge 3: Autonomous Line Following Demonstration",
+      stepBadge: "CHALLENGE 3 - UNTETHERED TRACK RUN",
+      body: "Official untethered course run of Big Hero 6ix autonomously following the black electrical tape track on white poster board. Closed-loop PID steering operating at 200 Hz on the ESP32-S3 microcontroller, reading our 7-photoresistor sensor comb with dual TT DC gear motors powered by an onboard 9V battery.",
+      images: [
+        {
+          src: "media/robot_line_following_poster.jpg",
+          title: "Course Run Video Frame",
+          badge: "VIDEO RUN",
+          desc: "Robot navigating the line course during autonomous Challenge 3 demonstration."
+        },
+        {
+          src: "images/real_robot_hero.jpg",
+          title: "Assembled Line Following Robot",
+          badge: "HARDWARE CHASSIS",
+          desc: "Two-wheel drive chassis with dual DC gear motors, front ball caster, 7-sensor comb, and breadboard circuit bays."
         }
       ]
     }
