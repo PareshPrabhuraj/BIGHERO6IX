@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <title>Big Hero 6ix - Line Following ECE 5 Robot | UC San Diego ECE 5</title>
-  <link rel="stylesheet" href="style.css?v=4">
+  <link rel="stylesheet" href="style.css?v=5">
 </head>
 <body class="bg-carbon text-cream antialiased">
 
@@ -166,45 +166,21 @@
     </section>
 
     <!-- CHALLENGE 3 VIDEO DEMONSTRATION SECTION -->
-    <section id="video" class="relative py-24 lg:py-32 border-t border-edge/60 bg-gradient-to-b from-carbon to-[#08090D]">
+    <section id="video" class="relative py-20 lg:py-28 border-t border-edge/60 bg-gradient-to-b from-carbon to-[#08090D]">
       <div class="mx-auto max-w-7xl px-6 lg:px-10">
         <div class="flex flex-col items-center text-center max-w-3xl mx-auto">
-          <div class="inline-flex items-center gap-2 rounded-full border border-cyan/30 bg-cyan/10 px-4 py-1.5 font-mono text-[11px] font-semibold text-cyan">
-            <span class="h-1.5 w-1.5 rounded-full bg-cyan animate-pulse"></span>
-            CHALLENGE 3: OFFICIAL VIDEO SUBMISSION
-          </div>
-          <h2 class="mt-4 text-3xl font-extrabold tracking-tight text-cream sm:text-4xl lg:text-5xl">Autonomous Line Following</h2>
-          <p class="mt-4 text-[15.5px] leading-relaxed text-mute sm:text-base max-w-2xl">Big Hero 6ix navigating the black electrical tape course untethered. Closed-loop PID steering running at 200 Hz on the ESP32-S3 microcontroller, reading our 7-photoresistor sensor comb to command differential drive motors.</p>
+          <p class="font-mono text-[11px] font-semibold tracking-[0.3em] text-cyan">CHALLENGE 3</p>
+          <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-cream sm:text-4xl">Line Following Demonstration</h2>
+          <p class="mt-3 text-sm sm:text-base text-mute">Big Hero 6ix autonomously navigating the line track.</p>
         </div>
 
-        <div class="mt-12 mx-auto max-w-md sm:max-w-lg">
-          <div class="grain relative overflow-hidden rounded-3xl border border-edge/80 bg-surface/90 shadow-2xl p-4 sm:p-6 transition-all duration-300 hover:border-cyan/40">
+        <div class="mt-10 mx-auto max-w-md sm:max-w-lg">
+          <div class="grain relative overflow-hidden rounded-3xl border border-edge/80 bg-surface/90 shadow-2xl p-4 sm:p-5 transition-all duration-300 hover:border-cyan/40">
             <div class="relative overflow-hidden rounded-2xl bg-black border border-edge/60 aspect-[9/16] max-h-[640px] flex items-center justify-center">
               <video id="main-challenge-video" src="media/robot_line_following.mp4" class="h-full w-full object-contain" controls playsinline preload="metadata" poster="media/robot_line_following_poster.jpg">
                 <source src="media/robot_line_following.mp4" type="video/mp4">
                 Your browser does not support HTML5 video playback.
               </video>
-            </div>
-            <div class="mt-5 grid grid-cols-3 gap-2.5 text-center">
-              <div class="rounded-xl border border-edge/60 bg-carbon/60 p-3">
-                <span class="block font-mono text-[10px] text-mute uppercase tracking-wider">Control Rate</span>
-                <span class="mt-1 block font-mono text-[13px] font-bold text-cyan">200 Hz PID</span>
-              </div>
-              <div class="rounded-xl border border-edge/60 bg-carbon/60 p-3">
-                <span class="block font-mono text-[10px] text-mute uppercase tracking-wider">Sensor Array</span>
-                <span class="mt-1 block font-mono text-[13px] font-bold text-cream">7 LDR Comb</span>
-              </div>
-              <div class="rounded-xl border border-edge/60 bg-carbon/60 p-3">
-                <span class="block font-mono text-[10px] text-mute uppercase tracking-wider">Power Mode</span>
-                <span class="mt-1 block font-mono text-[13px] font-bold text-mint">9V Battery</span>
-              </div>
-            </div>
-            <div class="mt-4 flex items-center justify-between px-1 text-xs text-mute font-mono">
-              <span>Format: MP4 (H.264/AAC, 720p)</span>
-              <a href="media/robot_line_following.mp4" download="BigHero6ix_LineFollowing_Challenge3.mp4" class="text-cyan hover:underline flex items-center gap-1">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                Direct Video Link
-              </a>
             </div>
           </div>
         </div>
@@ -753,6 +729,6 @@
       </div>
     </div>
   </div>
-  <script src="app.js?v=4"></script>
+  <script src="app.js?v=5"></script>
 </body>
 </html>

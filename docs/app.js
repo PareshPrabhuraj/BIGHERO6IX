@@ -226,14 +226,14 @@
     {
       id: "3",
       title: "Challenge 3: Autonomous Line Following Demonstration",
-      stepBadge: "CHALLENGE 3 - UNTETHERED TRACK RUN",
-      body: "Official untethered course run of Big Hero 6ix autonomously following the black electrical tape track on white poster board. Closed-loop PID steering operating at 200 Hz on the ESP32-S3 microcontroller, reading our 7-photoresistor sensor comb with dual TT DC gear motors powered by an onboard 9V battery.",
+      stepBadge: "CHALLENGE 3 - LINE FOLLOWING RUN",
+      body: "Video demonstration of Big Hero 6ix autonomously following the black line track untethered.",
       images: [
         {
           src: "media/robot_line_following_poster.jpg",
-          title: "Course Run Video Frame",
+          title: "Track Run Video Frame",
           badge: "VIDEO RUN",
-          desc: "Robot navigating the line course during autonomous Challenge 3 demonstration."
+          desc: "Robot navigating the line course during Challenge 3 demonstration."
         },
         {
           src: "images/real_robot_hero.jpg",
