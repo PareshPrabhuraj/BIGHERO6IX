@@ -8,7 +8,7 @@
 #include <L298NX2.h>
 
 // Robot Settings
-#define PRINTALLDATA        0  // 0 for track run, 1 for serial debug
+#define PRINTALLDATA        1  // 0 for track run, 1 for serial debug
 #define NOMINALSPEED        45 // Base motor speed
 
 // Motor driver pins (Left: ENA, IN1, IN2 | Right: ENB, IN3, IN4)
@@ -306,12 +306,12 @@ void PID_Turn() {
 
   // Steering direction: turns toward line
   if (Turn < 0) {
-    M1P = Turn;
-    M2P = -Turn;
+    M1P = -Turn;
+    M2P = Turn;
   }
   else if (Turn > 0) {
-    M1P = Turn;
-    M2P = -Turn;
+    M1P = -Turn;
+    M2P = Turn;
   }
   else {
     M1P = 0;

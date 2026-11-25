@@ -566,7 +566,7 @@ void loop() {
 #include <Arduino.h>
 #include <L298NX2.h>
 
-#define PRINTALLDATA   0   // 0 = untethered run (Slide 12 & 15), 1 = debug
+#define PRINTALLDATA   1   // 0 = untethered run (Slide 12 & 15), 1 = debug
 #define NOMINALSPEED  45   // Base motor speed to overcome gearbox deadband
 
 // Motor Driver: Left (ENA=42, IN1=41, IN2=40), Right (ENB=37, IN3=39, IN4=38)
@@ -626,12 +626,12 @@ void PID_Turn() {
 
   // Steering direction: turns toward line
   if (Turn < 0) {
-    M1P = Turn;
-    M2P = -Turn;
+    M1P = -Turn;
+    M2P = Turn;
   }
   else if (Turn > 0) {
-    M1P = Turn;
-    M2P = -Turn;
+    M1P = -Turn;
+    M2P = Turn;
   }
   else {
     M1P = 0;
